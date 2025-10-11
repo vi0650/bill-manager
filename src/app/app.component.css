@@ -1,0 +1,76 @@
+.logo-container a {
+  align-items: center;
+  padding: 1rem;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 600;
+}
+
+.logo-container a nb-icon {
+  font-size: 25px;
+}
+
+nb-layout-header .header-button button {
+  margin: 20px;
+}
+
+.flex-centered {
+  margin: auto;
+}
+nb-card-body {
+  display: flex;
+}
+
+.title {
+  text-align: center;
+}
+
+.sub-title {
+  text-align: center;
+  display: block;
+  margin-bottom: 3rem;
+}
+
+.home-button {
+  margin-bottom: 2rem;
+}
+
+/* Welcome content styling */
+.welcome-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 2rem;
+}
+
+.welcome-card {
+  max-width: 500px;
+  text-align: center;
+}
+
+.welcome-card h2 {
+  color: var(--text-basic-color);
+  margin: 0.5rem;
+}
+
+.welcome-card p {
+  color: var(--text-hint-color);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}

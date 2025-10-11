@@ -1,0 +1,28 @@
+<nb-actions size="medium">
+    <nb-action >
+      <button nbButton>
+        <nb-icon
+          class="nb-icon"
+          icon="person-add"
+        ></nb-icon> 
+      </button>
+    </nb-action>
+  </nb-actions>
+  
+  <nb-card size="medium">
+    <nb-card-header>Admins</nb-card-header>
+    <nb-card-body>
+      <ng-container>
+        <nb-list>
+          <nb-list-item *ngFor="let users of Admin" class="card-content">
+            <nb-user [name]="users.shopName"> </nb-user>
+            <nb-icon
+              class="card-icon"
+              icon="trash-2"
+              [options]="{ animation: { type: 'shake' } }"
+            ></nb-icon>
+          </nb-list-item>
+        </nb-list>
+      </ng-container>
+    </nb-card-body>
+  </nb-card>

@@ -1,0 +1,21 @@
+nb-card {
+  min-width: 15rem;
+  max-width: 20rem;
+  margin-bottom: 0;
+  height: 100%;
+  max-height: 100vh;
+  max-height: -webkit-fill-available;
+}
+
+::ng-deep {
+  nb-layout-column {
+    height: 80vw;
+  }
+  button + button {
+    margin-left: 1rem;
+  }
+}
+
+.nb-theme-default [nbInput].size-medium{
+  margin: 10px;
+}

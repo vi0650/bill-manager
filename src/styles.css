@@ -1,1 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
+
+@import "@nebular/theme/styles/prebuilt/default.css";
+
+.nb-theme-default
+  nb-layout
+  .layout
+  .layout-container
+  .content
+  .columns
+  nb-layout-column {
+  padding: 0rem !important;
+}
+
+.nb-theme-default nb-layout .with-scroll .scrollable-container {
+  height: auto !important;
+  overflow: visible !important;
+}
+
+.nb-theme-default nb-actions {
+  margin: 20px !important;
+}
+
+nb-card {
+  margin: 0rem 2rem 0rem 2rem !important;
+}
+
+.layout-column{
+  margin-bottom: 0px !important;
+  position: relative !important;
+}
+
+.nb-theme-default nb-layout .layout .layout-container .content{
+  height: 90vh;
+  overflow:hidden;
+}
+
+.nb-theme-default nb-actions.size-medium nb-action nb-icon{
+  font-size: 2vw !important;
+}
+
+.nb-theme-default nb-sidebar .scrollable{
+  padding: 2rem 0rem 2rem 1.25rem !important;
+}

@@ -1,0 +1,14 @@
+<nb-layout>
+  <nb-sidebar
+    tag="super-sidebar"
+    state="expanded"
+    responsive
+    style="background-color: aliceblue"
+  >
+    <nb-menu [items]="menuItems"></nb-menu>
+  </nb-sidebar>
+
+  <nb-layout-column fixed class="layout-column">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+</nb-layout>
