@@ -20,7 +20,8 @@ const routes: Routes = [
     path: 'admin', component: AdminComponent,
     children: [
       { path: 'bills', component: InvoiceListComponent },
-      { path: 'Profile', component: ProfileComponent }
+      { path: 'Profile', component: ProfileComponent },
+      { path: 'products', component: InvoiceListComponent } // You may want to create a separate ProductsComponent
     ]
   },
 ];

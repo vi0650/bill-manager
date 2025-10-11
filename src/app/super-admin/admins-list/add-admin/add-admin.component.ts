@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { Component,HostBinding } from '@angular/core';
+import { NbDialogRef, NbGlobalPhysicalPosition, NbToastrService } from '@nebular/theme';
 import { Admins } from '../../../core/models/admin.model';
 
 @Component({
@@ -10,7 +10,12 @@ import { Admins } from '../../../core/models/admin.model';
 })
 export class AddAdminComponent {
 
-  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>) {}
+  private index: number = 0;
+  @HostBinding('class')
+  classes = 'example-items-rows';
+  positions = NbGlobalPhysicalPosition;
+
+  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private toastrService: NbToastrService) {}
 
   newAdmin = { shopName: '', title: '' }
 
@@ -20,8 +25,9 @@ export class AddAdminComponent {
     if(user.shopName && user.title) {
       console.log('Closing dialog with data:', this.newAdmin); // Debug log
       this.dialogRef.close(this.newAdmin);
-    } else {
-      console.log('Validation failed - missing data'); // Debug log
+    } else{
+      console.log('Validation failed - missing data'); 
+      this.toastrService.show(status || 'Success', `Toast ${this.index}`)
     }
   }
 

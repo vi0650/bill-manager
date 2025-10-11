@@ -12,8 +12,8 @@ export class AdminComponent {
   @Input() AdminList: Admins[] = []
 
   menuItems =[
-    { title: 'Bills', icon: 'file-add-outline', link: '/bills' },
-    { title: 'Products', icon: 'cube', link: '/products' },
-    { title: 'Profile', icon: 'person-done', link: '/profile' },
+    { title: 'Bills', icon: 'file-add-outline', link: 'bills' },
+    { title: 'Products', icon: 'cube', link: 'products' },
+    { title: 'Profile', icon: 'person-done', link: 'Profile' },
   ];
 }

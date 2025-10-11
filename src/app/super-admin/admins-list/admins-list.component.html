@@ -15,12 +15,13 @@
   <nb-card-body>
     <ng-container>
       <nb-list>
-        <nb-list-item class="card-content" *ngFor="let users of Admin">
+        <nb-list-item class="card-content" *ngFor="let users of Admin; let i = index">
           <nb-user [name]="users.shopName" [title]="users.title"> </nb-user>
           <nb-icon
             class="card-icon"
             icon="trash-2"
             [options]="{ animation: { type: 'shake' } }"
+            (click)="deleteAdmin(i)"
           ></nb-icon>
         </nb-list-item>
       </nb-list>
