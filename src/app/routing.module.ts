@@ -1,29 +1,35 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SuperAdminComponent } from './super-admin/super-admin.component';
-import { InvoiceListComponent } from './admin/components/invoice-list/invoice-list.component';
-import { ProfileComponent } from './admin/components/profile/profile.component';
-import { AppComponent } from './app.component';
-import { AdminComponent } from './admin/admin.component';
-import { AdminsListComponent } from './super-admin/admins-list/admins-list.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  { path: '', component: AppComponent },
+  { path: '', component: HomeComponent },
+  // { path: '', redirectTo: 'admin', pathMatch: 'full' },
   {
     path: 'super-admin',
-    component: SuperAdminComponent,
-    children: [
-      { path: 'admins-list', component: AdminsListComponent }
-    ]
+    loadChildren: () => import('./super-admin/super-admin.module')
+      .then(m => m.SuperAdminModule),
   },
+  // {
+  //   path: 'super-admin',
+  //   component: SuperAdminComponent,
+  //   children: [
+  //     { path: 'admins-list', component: AdminsListComponent }
+  //   ]
+  // },
   {
-    path: 'admin', component: AdminComponent,
-    children: [
-      { path: 'bills', component: InvoiceListComponent },
-      { path: 'Profile', component: ProfileComponent },
-      { path: 'products', component: InvoiceListComponent } // You may want to create a separate ProductsComponent
-    ]
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module')
+      .then(m => m.AdminModule),
   },
+  // {
+  //   path: 'admin', component: AdminComponent,
+  //   children: [
+  //     { path: 'bills', component: InvoiceListComponent },
+  //     { path: 'Profile', component: ProfileComponent },
+  //     { path: 'products', component: InvoiceListComponent }
+  //   ]
+  // },
 ];
 
 @NgModule({

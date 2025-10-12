@@ -1,4 +1,6 @@
 export interface Admins{
     shopName:string;
-    title:string;
+    userName:string;
+    emailId:string;
+    mobileNo:string;
 }

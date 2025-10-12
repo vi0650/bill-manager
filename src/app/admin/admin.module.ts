@@ -5,6 +5,7 @@ import { InvoiceListComponent } from './components/invoice-list/invoice-list.com
 import { AdminComponent } from './admin.component';
 import { NebulerModule } from '../shared/nebuler.module';
 import { RouterModule } from '@angular/router';
+import { AdminRoutingModule } from './admin-routing.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
-    NebulerModule
+    NebulerModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }

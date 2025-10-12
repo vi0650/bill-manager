@@ -1,15 +1,48 @@
-<nb-card>
-    <nb-card-header>
-      Add New Admin
-    </nb-card-header>
-    <nb-card-body>
-          <label for="username">ShopName</label>
-          <input type="text" nbInput fullWidth id="username" [(ngModel)]="newAdmin.shopName" name="ShopName" placeholder="ShopName">
-          <label for="email">Title</label>
-          <input type="text" nbInput fullWidth id="text" [(ngModel)]="newAdmin.title" name="email" placeholder="Title">
-    </nb-card-body>
-    <nb-card-footer>
-      <button nbButton status="danger" (click)="cancel()">Cancel</button>
-      <button nbButton status="success" (click)="addAdmin()">Add</button>
-    </nb-card-footer>
+<nb-card class="wide-dialog-card">
+  <nb-card-header>
+    Add New Admin
+  </nb-card-header>
+
+  <nb-card-body>
+    <form (ngSubmit)="addAdmin()" #form="ngForm">
+
+      <div class="form-group">
+        <label for="shopNameInput" class="label">Shop Name</label>
+        <input type="text" nbInput shape="semi-round" fullWidth id="shopNameInput" 
+               [(ngModel)]="newAdmin.shopName" name="shopName" 
+               placeholder="Enter Shop Name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="usernameInput" class="label">Username</label>
+        <input type="text" nbInput shape="semi-round" fullWidth id="usernameInput" 
+               [(ngModel)]="newAdmin.username" name="username" 
+               placeholder="Enter Username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="emailInput" class="label">Email ID</label>
+        <input type="email" nbInput shape="semi-round" fullWidth id="emailInput" 
+               [(ngModel)]="newAdmin.email" name="email" 
+               placeholder="Enter Email Address" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobileNoInput" class="label">Mobile No.</label>
+        <input type="tel" nbInput shape="semi-round" fullWidth id="mobileNoInput" 
+               [(ngModel)]="newAdmin.mobileNo" name="mobileNo" 
+               placeholder="Enter Mobile Number" required>
+      </div>
+      
+      </form>
+  </nb-card-body>
+
+  <nb-card-footer>
+    <div class="action-buttons">
+      <button nbButton status="success" ghost (click)="addAdmin()" [disabled]="!form.valid">
+        Add
+      </button>
+      <button nbButton status="danger" ghost (click)="cancel()">Cancel</button>
+    </div>
+  </nb-card-footer>
 </nb-card>

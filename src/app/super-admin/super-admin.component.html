@@ -1,4 +1,14 @@
 <nb-layout>
+
+  <nb-layout-header fixed>
+    <div class="header-container">
+      <button nbButton ghost (click)="toggle()">
+        <nb-icon icon="menu-arrow-outline"></nb-icon>
+      </button>
+      <span class="header-title">Super Admin</span>
+    </div>
+  </nb-layout-header>
+
   <nb-sidebar
     tag="super-sidebar"
     state="expanded"

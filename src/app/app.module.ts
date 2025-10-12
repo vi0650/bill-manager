@@ -6,17 +6,19 @@ import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
 import { SuperAdminModule } from './super-admin/super-admin.module';
 import { NebulerModule } from './shared/nebuler.module';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     RoutingModule,
     AdminModule,
     SuperAdminModule,
-    NebulerModule
+    NebulerModule,
+    HomeComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

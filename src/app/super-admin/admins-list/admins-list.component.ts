@@ -29,8 +29,8 @@ export class AdminsListComponent implements OnInit {
     } else {
       // Default data if no stored data
       this.Admin = [
-        { shopName: 'Haldiram', title: 'Snacks' },
-        { shopName: 'Bikaji', title: 'Snacks' }
+        { shopName: 'Haldiram',userName:'hldr',emailId:'haldiram@gmail.com',mobileNo:'+919932523523'},
+        { shopName: 'Bikaji', userName:'bkg',emailId:'bikaji@gmail.com',mobileNo:'+919938548523' }
       ];
       this.saveAdminsToStorage();
       console.log('No stored data found, using default admins:', this.Admin);

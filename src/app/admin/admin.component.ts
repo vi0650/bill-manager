@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Admins } from '../core/models/admin.model';
+import { NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-admin',
@@ -9,11 +10,18 @@ import { Admins } from '../core/models/admin.model';
 })
 export class AdminComponent {
 
+  constructor(private sidebarService: NbSidebarService) {}
+
   @Input() AdminList: Admins[] = []
 
   menuItems =[
-    { title: 'Bills', icon: 'file-add-outline', link: 'bills' },
+    { title: 'Invoices', icon: 'file-add-outline', link: 'Invoices' },
     { title: 'Products', icon: 'cube', link: 'products' },
     { title: 'Profile', icon: 'person-done', link: 'Profile' },
   ];
+
+  toggle() {
+    this.sidebarService.toggle(true, 'super-sidebar');
+    return false;
+  }
 }

@@ -1,3 +1,48 @@
 .nb-icon{
-    font-size:10px !important;
+  font-size:10px !important;
+}
+
+:host ::ng-deep .layout-container {
+  padding-top: 0 !important;
+}
+
+nb-layout-header > .layout-container {
+  padding-top: 0;
+}
+
+nb-list-item:hover {
+  background-color: #F8F6F4;
+}
+
+.nb-icon:hover {
+  color: royalblue;
+}
+
+.card-icon {
+  margin-left: 80px;
+}
+
+.card-icon:hover {
+  color: royalblue;
+}
+
+.card-content {
+  justify-content: space-between;
+  display: flex;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.header-container button nb-icon:hover{
+  color: royalblue;
+}
+
+.header-title {
+  font-size: 1.2rem;
+  font-weight: 500;
 }

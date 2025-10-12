@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Admins } from '../../../core/models/admin.model';
 
 @Component({
@@ -9,7 +9,9 @@ import { Admins } from '../../../core/models/admin.model';
 })
 export class InvoiceListComponent {
 
-  Admin: Admins[] = [{ shopName: 'Haldiram', title: 'Snacks' },
-  { shopName: 'Bikaji', title: 'Snacks' }]
+  @Input() Admin:Admins[] = []
+
+  // Admin: Admins[] = [{ shopName: 'Haldiram', username: 'Snacks', email:'' },
+  // { shopName: 'Bikaji', username: 'Snacks' }]
 
 }

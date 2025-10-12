@@ -1,7 +1,4 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { NbSidebarService, NbThemeService } from '@nebular/theme';
-import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -11,29 +8,23 @@ import { filter } from 'rxjs/operators';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  currentRoute = '';
 
-  constructor(
-    private themeService: NbThemeService,
-    private sidebarService: NbSidebarService,
-    private router: Router
-  ) {
-    this.themeService.changeTheme('default');
 
-    // Track route changes
-    this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
-      .subscribe((event: NavigationEnd) => {
-        this.currentRoute = event.url;
-      });
-  }
+  // currentRoute = '';
 
-  toggle() {
-    this.sidebarService.toggle(true, 'super-sidebar');
-    return false;
-  }
+  // constructor(
+  //   private themeService: NbThemeService,
+  //   private router: Router
+  // ) {
+  //   this.themeService.changeTheme('default');
+  //   this.router.events
+  //     .pipe(filter(event => event instanceof NavigationEnd))
+  //     .subscribe((event: NavigationEnd) => {
+  //       this.currentRoute = event.url;
+  //     });
+  // }
 
-  isRouteActive(): boolean {
-    return this.currentRoute !== '/' && this.currentRoute !== '';
-  }
+  // isRouteActive(): boolean {
+  //   return this.currentRoute !== '/' && this.currentRoute !== '';
+  // }
 }

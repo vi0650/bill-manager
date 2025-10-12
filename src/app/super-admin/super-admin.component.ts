@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'super-admin',
@@ -8,8 +9,15 @@ import { Component } from '@angular/core';
 })
 export class SuperAdminComponent {  
 
-  menuItems = [
+  constructor(private sidebarService: NbSidebarService) {}
+
+  menuItems:NbMenuItem[] = [
     { title: 'Home', icon: 'home-outline', link: '/' },
     { title: 'Admins', icon: 'person-outline', link: '/super-admin/admins-list' }
   ];
+
+  toggle() {
+    this.sidebarService.toggle(true, 'super-sidebar');
+    return false;
+  }
 }

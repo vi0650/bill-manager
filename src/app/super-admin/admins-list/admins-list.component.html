@@ -4,7 +4,6 @@
       <nb-icon
         class="nb-icon"
         icon="person-add"
-        (click)="openAddAdminDialog()"
       ></nb-icon> 
     </button>
   </nb-action>
@@ -16,7 +15,7 @@
     <ng-container>
       <nb-list>
         <nb-list-item class="card-content" *ngFor="let users of Admin; let i = index">
-          <nb-user [name]="users.shopName" [title]="users.title"> </nb-user>
+          <nb-user [name]="users.shopName" [title]="users.emailId"> </nb-user>
           <nb-icon
             class="card-icon"
             icon="trash-2"

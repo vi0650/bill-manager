@@ -1,36 +1,14 @@
 <nb-layout>
   <nb-layout-header fixed>
     <div class="logo-container">
-      <a href="#" (click)="toggle()">
+      <!-- <a href="#">
         <nb-icon icon="menu-arrow-outline"></nb-icon>
-      </a>
+      </a> -->
       <a [routerLink]="['/']">bill manager</a>
     </div>
   </nb-layout-header>
 
   <nb-layout-column>
     <router-outlet></router-outlet>
-    
-    <!-- Default content when no route is active -->
-    <div *ngIf="!isRouteActive()" class="welcome-content">
-      <nb-card class="welcome-card">
-        <nb-card-header>
-          <h2>Welcome to Bill Manager</h2>
-        </nb-card-header>
-        <nb-card-body>
-          <p>Please select a mode to continue:</p>
-          <div class="button-group">
-            <button nbButton status="primary" size="medium" [routerLink]="['/super-admin']">
-              <nb-icon icon="person-outline"></nb-icon>
-              Super Admin
-            </button>
-            <button nbButton status="info" size="medium" [routerLink]="['/admin']">
-              <nb-icon icon="settings-outline"></nb-icon>
-              Admin
-            </button>
-          </div>
-        </nb-card-body>
-      </nb-card>
-    </div>
   </nb-layout-column>
 </nb-layout>

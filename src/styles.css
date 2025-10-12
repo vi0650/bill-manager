@@ -1,6 +1,10 @@
 
 @import "@nebular/theme/styles/prebuilt/default.css";
 
+*{
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .nb-theme-default
   nb-layout
   .layout
