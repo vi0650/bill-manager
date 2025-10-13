@@ -1,0 +1,102 @@
+:host {
+  display: flex;
+}
+
+nb-card {
+  flex: 1 1 45%;
+  margin: 0 2.5%;
+
+  &.own-scroll {
+    height: 45rem;
+  }
+}
+
+.invoice-form-card {
+    // Make the dialog wider to accommodate the table layout
+    max-width: 900px;
+    width: 95vw;
+  }
+  
+  .section-title {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-basic-color-3);
+    font-weight: 600;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  /* --- Items Table Styling --- */
+  .items-table-container {
+    border: 1px solid var(--border-basic-color-3);
+    border-radius: var(--border-radius);
+    padding: 0.5rem;
+  }
+  
+  .items-row {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--border-basic-color-3);
+  }
+  
+  .header-row {
+    font-weight: bold;
+    font-size: 0.9em;
+  }
+  
+  .data-row {
+      position: relative;
+      
+      // Remove bottom border for the last item
+      &:last-child {
+          border-bottom: none;
+      }
+  }
+  
+  .item-col {
+    padding: 0 0.5rem;
+    
+    // Set flex basis for columns to define table layout
+    &.col-srno { flex-basis: 5%; }
+    &.col-description { flex-basis: 40%; }
+    &.col-qty { flex-basis: 15%; }
+    &.col-rate { flex-basis: 15%; }
+    &.col-amount { flex-basis: 25%; text-align: right; }
+    
+    // Ensure inputs take full width of their column
+    nb-input { width: 100%; }
+  }
+  
+  .delete-item-btn {
+      // Position the delete button outside the flow like the image
+      position: absolute;
+      right: -1.5rem;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+  
+  /* --- Totals Section Styling --- */
+  .totals-section {
+    padding-left: 2rem;
+  }
+  
+  .totals-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0;
+  }
+  
+  .grand-total-row {
+    font-size: 1.2em;
+    color: var(--color-primary-500);
+  }
+  
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+  }

@@ -1,0 +1,114 @@
+<nb-card class="invoice-form-card own-scroll">
+    <nb-card-header>Add New Invoice</nb-card-header>
+  
+    <nb-card-body>
+      <form (ngSubmit)="saveInvoice()" #form="ngForm">
+        
+        <h5 class="section-title">Patient Details</h5>
+        <div class="row">
+          <div class="col-sm-6 form-group">
+            <label for="nameInput" class="label">Name</label>
+            <input type="text" nbInput fullWidth id="nameInput" 
+                   [(ngModel)]="invoice.customerName" name="patientName" 
+                   placeholder="Enter Patient Name" required>
+          </div>
+          
+          <div class="col-sm-6 form-group">
+            <label for="phoneInput" class="label">Phone No</label>
+            <input type="tel" nbInput fullWidth id="phoneInput" 
+                   [(ngModel)]="invoice.phoneNo" name="phoneNo" 
+                   placeholder="Enter Patient Phone No" required>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="emailInput" class="label">Email Address</label>
+          <input type="email" nbInput fullWidth id="emailInput" 
+                 [(ngModel)]="invoice.emailAddress" name="emailAddress" 
+                 placeholder="Enter Email Address">
+        </div>
+  
+        <h5 class="section-title">Items Details</h5>
+        
+        <div class="items-table-container">
+          <div class="items-row header-row">
+            <div class="item-col col-srno">Sr. No.</div>
+            <div class="item-col col-description">DESCRIPTION</div>
+            <div class="item-col col-qty">QTY</div>
+            <div class="item-col col-rate">RATE</div>
+            <div class="item-col col-amount">AMOUNT</div>
+          </div>
+  
+          <ng-container *ngFor="let item of invoice.items; let i = index">
+            <div class="items-row data-row">
+              <div class="item-col col-srno">{{ i + 1 }}</div>
+              <div class="item-col col-description">
+                <input type="text" nbInput fullWidth placeholder="Choose Product"
+                       [(ngModel)]="item.description" name="description_{{i}}">
+              </div>
+              <div class="item-col col-qty">
+                <input type="number" nbInput fullWidth placeholder="0"
+                       [(ngModel)]="item.qty" name="qty_{{i}}">
+              </div>
+              <div class="item-col col-rate">
+                <input type="number" nbInput fullWidth placeholder="0"
+                       [(ngModel)]="item.rate" name="rate_{{i}}">
+              </div>
+              <div class="item-col col-amount">{{ item.amount.valueOf() | currency:'INR' }}</div>
+              
+              <button nbButton status="danger" size="tiny" class="delete-item-btn"
+                      (click)="removeItem()">
+                  <nb-icon icon="trash-2-outline"></nb-icon>
+              </button>
+            </div>
+          </ng-container>
+  
+          <div class="d-flex justify-content-start mt-2">
+              <button nbButton status="primary" size="small" (click)="addItem()">
+                  <nb-icon icon="plus-outline"></nb-icon> ADD
+              </button>
+          </div>
+        </div>
+        
+        <div class="row mt-4">
+            <div class="col-sm-6">
+                <h6 class="comments-title">COMMENTS</h6>
+                <textarea nbInput fullWidth rows="4" placeholder="Add comments here..."></textarea>
+                <p class="comment-text">1. Full payment is required...</p>
+                <p class="comment-text">2. Provide accurate health details...</p>
+                </div>
+            <div class="col-sm-6 totals-section">
+                <div class="totals-row">
+                    <span>SUBTOTAL</span>
+                    <span>{{ invoice.subtotal.valueOf() | currency }}</span>
+                </div>
+                <div class="totals-row">
+                    <span>CGST (9%)</span>
+                    <span>{{ invoice.cgst.valueOf() | currency }}</span>
+                </div>
+                <div class="totals-row strong-row">
+                    <span>TAXABLE AMOUNT</span>
+                    <span>{{ invoice.taxableAmount.valueOf() | currency }}</span>
+                </div>
+                <div class="totals-row">
+                    <span>Discount ({{ invoice.discountPercent }}%)</span>
+                    <span>{{ invoice.discount.valueOf() | currency }}</span>
+                </div>
+                <hr>
+                <div class="totals-row grand-total-row">
+                    <span class="font-weight-bold">GRAND TOTAL</span>
+                    <span class="font-weight-bold">{{ invoice.grandTotal.valueOf() | currency }}</span>
+                </div>
+            </div>
+        </div>
+  
+      </form>
+    </nb-card-body>
+  
+    <nb-card-footer>
+      <div class="action-buttons">
+        <button nbButton status="danger" (click)="cancel()">CANCEL</button>
+        <button nbButton status="success" (click)="saveInvoice()" [disabled]="!form.valid">ADD</button>
+      </div>
+    </nb-card-footer>
+  </nb-card>

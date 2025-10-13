@@ -11,7 +11,7 @@ import { SuperAdminRoutingModule } from './super-admin-routing.module';
   declarations: [
     SuperAdminComponent,
     AdminsListComponent,
-    AddAdminComponent
+    AddAdminComponent,
   ],
   imports: [
     CommonModule,

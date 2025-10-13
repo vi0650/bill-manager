@@ -9,7 +9,6 @@ const routes: Routes = [
     component: SuperAdminComponent,
     children: [
       { path: 'admins-list', component: AdminsListComponent },
-      { path: '', redirectTo: 'admins-list', pathMatch: 'full' },
     ],
   },  
 ];

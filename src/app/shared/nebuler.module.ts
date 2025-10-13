@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDialogModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbThemeModule, NbUserModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDialogModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbThemeModule, NbUserModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [],
@@ -24,7 +24,8 @@ import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbD
     NbSelectModule,
     NbInputModule,
     NbEvaIconsModule,
-    NbListModule
+    NbListModule,
+    NbSpinnerModule
   ]
 })
 export class NebulerModule { }
