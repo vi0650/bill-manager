@@ -20,6 +20,5 @@ export class SuperAdminComponent {
     this.sidebarService.toggle(true, 'super-sidebar');
     return false;
   }
-
   
 }

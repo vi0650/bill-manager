@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Admins } from '../../../core/models/admin.model';
 
 @Component({
@@ -10,13 +10,13 @@ import { Admins } from '../../../core/models/admin.model';
 })
 export class AddAdminComponent {
 
-  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>) {}
+  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private NbTostrService:NbToastrService) {}
 
   newAdmin = { AdminId:'', shopName: '',username:'',emailId:'',mobileNo:'' }
 
   addAdmin() {  
     const user:Admins={AdminId:this.newAdmin.AdminId,shopName:this.newAdmin.shopName,userName:this.newAdmin.username,emailId:this.newAdmin.emailId,mobileNo:this.newAdmin.mobileNo};
-    if((user.AdminId.length+1).toString() && user.shopName && user.userName && user.emailId && user.mobileNo)
+    if((user.AdminId.length+1) && user.shopName && user.userName && user.emailId && user.mobileNo)
       this.dialogRef.close(this.newAdmin);
   }
 

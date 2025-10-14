@@ -1,1 +1,31 @@
-<p>product works</p>
+<nb-actions size="medium">
+    <nb-action >
+      <button nbButton>
+        <nb-icon
+          class="nb-icon"
+          icon="person-add"
+          (click)="openAddProductDialog()"
+        ></nb-icon> 
+      </button>
+    </nb-action>
+  </nb-actions>
+  
+  <nb-card size="medium">
+    <nb-card-header>Invoices</nb-card-header>
+    <nb-card-body>
+      <ng-container>
+        <nb-list>
+          <nb-list-item class="card-content" *ngFor="let Product of Products; let i = index">
+            <nb-user [name]="Product.name" [id]="Product.id"> </nb-user>
+            <nb-icon
+              class="card-icon"
+              icon="trash-2"
+              [options]="{ animation: { type: 'shake' } }"
+              
+            ></nb-icon>
+          </nb-list-item>
+        </nb-list>
+      </ng-container>
+    </nb-card-body>
+  </nb-card>
+  

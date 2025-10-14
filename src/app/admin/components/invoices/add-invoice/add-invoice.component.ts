@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NbDialogRef } from '@nebular/theme';
+import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Invoice } from '../../../../core/models/invoice.model';
 
 @Component({
@@ -10,38 +10,41 @@ import { Invoice } from '../../../../core/models/invoice.model';
 })
 export class AddInvoiceComponent {
 
-  constructor(protected dialogRef: NbDialogRef<AddInvoiceComponent>) { }
+  public title?: string;
+
+  constructor(protected dialogRef: NbDialogRef<AddInvoiceComponent>, private NbdialogService:NbDialogService) { }
+
+  selectedItem: string = '';
 
   invoice: Invoice = {
     customerName: '',
     phoneNo: '',
     emailAddress: '',
-    items: [{ description: '', qty: 1, rate: 200, amount: 160 }],
-    subtotal: 150,
-    cgst: 9,
-    taxableAmount: 13,
-    discountPercent: 3,
-    discount: 5,
-    grandTotal: 130,
+    InvoiceDate: new Date(),
+    items: [{ description: '', qty: 0, rate: 0, amount:0 }],
+    subtotal: 0,
+    cgst: 0,
+    taxableAmount: 0,
+    discountPercent: 0,
+    discount: 0,
+    grandTotal: 0,
   };
 
   saveInvoice() {
-    const bill : Invoice =this.invoice;
+    const bill: Invoice = this.invoice;
     console.log('bill data:-', bill);
     this.dialogRef.close();
   }
 
   addItem() {
-    this.invoice.items.push({description:'',qty:0,rate:0,amount:160})
-    console.log(this.invoice);
-    
+    this.NbdialogService.open(AddInvoiceComponent);
   }
 
   removeItem() {
 
   }
 
-  calclateTotal(){
+  calculateTotal() {
 
   }
 

@@ -18,5 +18,12 @@
 }
 
 nb-list-item:hover {
-  background-color:#F8F6F4;
+  background-color: #f8f6f4;
+}
+
+::ng-deep nb-layout-column {
+  height: 80vw;
+}
+::ng-deep nb-layout-column {
+  overflow: auto;
 }

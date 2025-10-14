@@ -18,6 +18,7 @@ import { SuperAdminRoutingModule } from './super-admin-routing.module';
     NebulerModule,
     FormsModule,
     SuperAdminRoutingModule
-]
+],
+providers: [],
 })
 export class SuperAdminModule { }

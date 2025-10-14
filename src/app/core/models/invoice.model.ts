@@ -9,6 +9,7 @@ export interface Invoice {
   customerName: string,
   phoneNo: string,
   emailAddress: string,
+  InvoiceDate: Date,
   items:invoiceItems[],
   subtotal: Number,
   cgst: Number,

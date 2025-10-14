@@ -7,6 +7,8 @@ import { AdminModule } from './admin/admin.module';
 import { SuperAdminModule } from './super-admin/super-admin.module';
 import { NebulerModule } from './shared/nebuler.module';
 import { HomeComponent } from './home/home.component';
+import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -18,9 +20,9 @@ import { HomeComponent } from './home/home.component';
     AdminModule,
     SuperAdminModule,
     NebulerModule,
-    HomeComponent
+    HomeComponent,
   ],
-  providers: [],
+  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
