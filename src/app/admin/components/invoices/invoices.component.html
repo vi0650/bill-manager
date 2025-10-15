@@ -17,12 +17,13 @@
         <nb-list>
           <nb-list-item class="card-content" *ngFor="let users of Admin; let i = index">
             <nb-user [name]="users.shopName" [title]="users.emailId"> </nb-user>
+            <button nbButton size="small">
             <nb-icon
               class="card-icon"
               icon="trash-2"
               [options]="{ animation: { type: 'shake' } }"
-              
             ></nb-icon>
+          </button>
           </nb-list-item>
         </nb-list>
       </ng-container>

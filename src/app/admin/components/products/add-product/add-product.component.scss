@@ -1,0 +1,28 @@
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.label {
+  display: block; // Makes the label take full width above the input
+  margin-bottom: 0.5rem; // Space between label and input field
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-start; // Pushes buttons to the right
+  gap: 1rem; // Adds space between the buttons
+}
+
+.close{
+    float: right;
+    margin-top: -5px;
+    margin-right: -5px;
+    margin-bottom: -5px;
+    cursor: pointer;
+}
+
+::ng-deep {
+  button + button {
+    margin: 0rem 1rem 0rem 1rem;
+  }
+}

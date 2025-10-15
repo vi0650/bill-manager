@@ -4,7 +4,7 @@
 }
 
 .card-icon {
-  margin-left: 80px;
+  margin-left: 0rem !important;
 }
 
 .card-icon:hover {
@@ -12,9 +12,30 @@
 }
 
 /* Card content layout */
+nb-card {
+  max-width: 70vw !important;
+  min-width: 82vw !important;
+  max-height: 80vh;
+  min-height: 60vh;
+}
+
+nb-list {
+  min-width: 68vw !important;
+  padding: 0 !important;
+}
+
 .card-content {
   justify-content: space-between;
   display: flex;
+  flex-wrap: wrap;
+}
+
+nb-user {
+  padding-right: 20px !important;
+}
+
+.card-icon {
+  cursor: pointer;
 }
 
 nb-list-item:hover {
@@ -22,8 +43,10 @@ nb-list-item:hover {
 }
 
 ::ng-deep nb-layout-column {
-  height: 80vw;
+  height: 600vh !important;
+  min-width: 105vw !important;
+  max-width: auto !important;
 }
 ::ng-deep nb-layout-column {
-  overflow: auto;
+  overflow: hidden !important;
 }

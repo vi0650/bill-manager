@@ -26,7 +26,6 @@ import { FormsModule } from '@angular/forms';
     NebulerModule,
     AdminRoutingModule,
     FormsModule,
-    
   ]
 })
 export class AdminModule { }

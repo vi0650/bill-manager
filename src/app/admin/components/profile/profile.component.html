@@ -1,1 +1,30 @@
-<p>profile works!</p>
+<nb-actions size="medium">
+    <nb-action >
+      <button nbButton>
+        <nb-icon
+          class="nb-icon"
+          icon="edit-2-outline"
+        ></nb-icon> 
+      </button>
+    </nb-action>
+  </nb-actions>
+  
+  <nb-card size="medium">
+    <nb-card-header>Invoices</nb-card-header>
+    <nb-card-body>
+      <ng-container>
+        <nb-list>
+          <nb-list-item class="card-content">
+            <nb-user > </nb-user>
+            <nb-icon
+              class="card-icon"
+              icon="trash-2"
+              [options]="{ animation: { type: 'shake' } }"
+              
+            ></nb-icon>
+          </nb-list-item>
+        </nb-list>
+      </ng-container>
+    </nb-card-body>
+  </nb-card>
+  

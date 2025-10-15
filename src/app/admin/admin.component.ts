@@ -10,14 +10,17 @@ import { NbSidebarService } from '@nebular/theme';
 })
 export class AdminComponent {
 
-  constructor(private sidebarService: NbSidebarService) {}
+  constructor(private sidebarService: NbSidebarService) {
+    console.log(this.AdminList);
+    
+  }
 
   @Input() AdminList: Admins[] = []
 
   menuItems =[
     { title: 'Invoices', icon: 'file-add-outline', link: 'invoices' },
     { title: 'Products', icon: 'cube', link: 'products' },
-    { title: 'Profile', icon: 'person-done', link: 'profile' },
+    { title: 'Profile', icon: 'settings-2-outline', link: 'profile' },
   ];
 
   toggle() {

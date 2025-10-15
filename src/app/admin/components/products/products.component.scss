@@ -1,0 +1,37 @@
+.nb-icon:hover{
+    color: royalblue;
+}
+
+.card-icon{
+    margin-left: 0px !important;
+}
+
+.card-icon:hover{
+    color: royalblue;
+}
+
+/* admin-list.component.scss */
+ .card-content{
+    justify-content:space-between;
+    display: flex;
+ }
+
+ .product-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allows the details block to take available space */
+  padding-right: 1rem; // Add some space before the trash icon
+}
+
+.product-name {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-basic-color);
+}
+
+.product-price, .product-category, .product-id {
+  margin: 0.1rem 0;
+  font-size: 0.9rem;
+  color: var(--text-hint-color);
+}

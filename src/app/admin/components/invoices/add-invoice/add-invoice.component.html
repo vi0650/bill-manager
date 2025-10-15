@@ -2,7 +2,7 @@
   <nb-card-header>Add New Invoice</nb-card-header>
 
   <nb-card-body>
-    <form (ngSubmit)="saveInvoice()" #form="ngForm">
+    <form #form="ngForm">
       <h5 class="section-title">Invoice Details</h5>
       <div class="row">
         <div class="col-sm-6">
@@ -13,8 +13,8 @@
               nbInput
               fullWidth
               id="nameInput"
-              [(ngModel)]="invoice.customerName"
-              name="patientName"
+              [(ngModel)]="addInvoice.customerName"
+              name="customerName"
               placeholder="Enter Customer Name"
               required
             />
@@ -29,7 +29,7 @@
               nbInput
               fullWidth
               id="phoneInput"
-              [(ngModel)]="invoice.phoneNo"
+              [(ngModel)]="addInvoice.phoneNo"
               name="phoneNo"
               placeholder="Enter Phone No"
               required
@@ -47,7 +47,7 @@
               nbInput
               fullWidth
               id="emailInput"
-              [(ngModel)]="invoice.emailAddress"
+              [(ngModel)]="addInvoice.emailAddress"
               name="emailAddress"
               placeholder="Enter Email Address"
             />
@@ -61,7 +61,7 @@
             nbInput
             fullWidth
             id="invoiceDateInput"
-            [(ngModel)]="invoice.InvoiceDate"
+            [(ngModel)]="addInvoice.InvoiceDate"
             name="invoiceDate"
             placeholder="Select Invoice Date"
             required
@@ -77,6 +77,8 @@
           fullWidth
           rows="3"
           placeholder="Add address here...."
+          [(ngModel)]="addInvoice.Address"
+          name="Address"
         ></textarea>
       </div>
 
@@ -93,7 +95,7 @@
           <div class="item-col col-amount">AMOUNT</div>
         </div>
 
-        <ng-container *ngFor="let item of invoice.items; let i = index">
+        <ng-container *ngFor="let item of addInvoice.items; let i = index">
           <div class="items-row data-row">
             <div class="item-col col-srno">{{ i + 1 }}</div>
             <div class="item-col col-products">
@@ -101,9 +103,9 @@
                 placeholder="Choose Product"
                 required
                 fullWidth
-                [(ngModel)]="item.description"
-                [(selected)]="selectedItem"
-                name=""
+                [(ngModel)]="item.products"
+                [(selected)]="selectedProduct"
+                name="products_{{ i }}"
               >
                 <nb-option disabled>select option</nb-option>
                 <nb-option value="1">Option 1</nb-option>
@@ -136,9 +138,9 @@
             <div class="item-col col-gst">
               <nb-select
                 placeholder="Gst"
-                [(ngModel)]="item.description"
-                [(selected)]="selectedItem"
-                name=""
+                [(ngModel)]="item.gst"
+                [(selected)]="selectedGst"
+                name="gst_{{ i }}"
               >
                 <nb-option disabled>select option</nb-option>
                 <nb-option value="5">5%</nb-option>
@@ -195,28 +197,32 @@
           <div class="totals-row">
             <span>SUBTOTAL</span>
             <hr />
-            <span>{{ invoice.subtotal.valueOf() | currency : "INR" }}</span>
+            <span>{{ addInvoice.subtotal | currency : "INR" }}</span>
           </div>
           <hr />
           <div class="totals-row">
-            <span>CGST (9%)</span>
-            <span>{{ invoice.cgst.valueOf() | currency : "INR" }}</span>
+            <span>CGST </span>
+            <span>{{ addInvoice.discount.valueOf() | currency : "INR" }}</span>
+          </div>
+          <div class="totals-row">
+            <span>SGST </span>
+            <span>{{ addInvoice.discount.valueOf() | currency : "INR" }}</span>
           </div>
           <div class="totals-row strong-row">
             <span>TAXABLE AMOUNT</span>
             <span>{{
-              invoice.taxableAmount.valueOf() | currency : "INR"
+              addInvoice.taxableAmount.valueOf() | currency : "INR"
             }}</span>
           </div>
           <div class="totals-row">
-            <span>Discount ({{ invoice.discountPercent }}%)</span>
-            <span>{{ invoice.discount.valueOf() | currency : "INR" }}</span>
+            <span>Discount ({{ addInvoice.discountPercent }}%)</span>
+            <span>{{ addInvoice.discount.valueOf() | currency : "INR" }}</span>
           </div>
           <hr />
           <div class="totals-row grand-total-row">
             <span class="font-weight-bold">GRAND TOTAL</span>
             <span class="font-weight-bold">{{
-              invoice.grandTotal.valueOf() | currency : "INR"
+              addInvoice.grandTotal.valueOf() | currency : "INR"
             }}</span>
           </div>
         </div>

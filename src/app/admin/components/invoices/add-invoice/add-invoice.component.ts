@@ -10,34 +10,28 @@ import { Invoice } from '../../../../core/models/invoice.model';
 })
 export class AddInvoiceComponent {
 
-  public title?: string;
+  constructor(protected dialogRef: NbDialogRef<AddInvoiceComponent>, private NbdialogService: NbDialogService) { }
 
-  constructor(protected dialogRef: NbDialogRef<AddInvoiceComponent>, private NbdialogService:NbDialogService) { }
+  invoice: Invoice[]=[];
+  
+  selectedProduct: string = '';
+  selectedGst: string = '';
 
-  selectedItem: string = '';
-
-  invoice: Invoice = {
-    customerName: '',
-    phoneNo: '',
-    emailAddress: '',
-    InvoiceDate: new Date(),
-    items: [{ description: '', qty: 0, rate: 0, amount:0 }],
-    subtotal: 0,
-    cgst: 0,
-    taxableAmount: 0,
-    discountPercent: 0,
-    discount: 0,
-    grandTotal: 0,
-  };
+  gst={ cgst: 0, sgst: 0 }
+  newItems = { products: this.selectedProduct, qty: 0, rate: 0, gst:this.selectedGst, amount: 0 };
+  addInvoice = { customerName: '',phoneNo: '',emailAddress: '',InvoiceDate: new Date(),Address: '',items: [this.newItems],subtotal: 0,cgst:0,taxableAmount: 0,discountPercent: 0,discount: 0,grandTotal: 0 };
 
   saveInvoice() {
-    const bill: Invoice = this.invoice;
-    console.log('bill data:-', bill);
-    this.dialogRef.close();
+    const addedInvoice = { ...this.addInvoice };
+    this.dialogRef.close(addedInvoice);
+    console.log(addedInvoice);
   }
 
   addItem() {
-    this.NbdialogService.open(AddInvoiceComponent);
+    const newItem = this.newItems;
+    this.addInvoice.items.push(newItem);
+    
+    console.log(this.addInvoice.items);
   }
 
   removeItem() {

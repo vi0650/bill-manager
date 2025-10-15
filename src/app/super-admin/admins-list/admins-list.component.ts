@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { Admins } from '../../core/models/admin.model';
@@ -14,11 +14,18 @@ export class AdminsListComponent implements OnInit {
   constructor(private dialogService: NbDialogService, private NbTostrService: NbToastrService) {
   }
 
+  @Output() adminsChange = new EventEmitter<Admins[]>();
+
   Admin: Admins[] = [];
 
   ngOnInit() {
     AddAdminComponent
     this.getAdminData();
+  }
+
+   private emitAdmins() {
+    // Emit a new array reference to help OnPush children detect changes
+    this.adminsChange.emit([...this.Admin]);
   }
 
   getAdminData() {
@@ -32,6 +39,7 @@ export class AdminsListComponent implements OnInit {
       ];
       this.setAdminData();
     }
+    this.emitAdmins();
   }
 
   setAdminData() {
@@ -43,8 +51,14 @@ export class AdminsListComponent implements OnInit {
     const dialogRef = this.dialogService.open(AddAdminComponent);
     dialogRef.onClose.subscribe((admin) => {
       if (admin) {
+        const adminExists = this.Admin.some(a => a.AdminId === admin.AdminId);
+        if (adminExists) {
+          this.NbTostrService.warning("Admin with this ID already exists.", "Warning", { duration: 3000 });
+          return;
+        }
         this.Admin.push(admin);
         this.setAdminData();
+        this.emitAdmins();
         this.NbTostrService.success("Admin Added Successfully please refresh the page.", "Success", { duration: 3000 });
       }
     });
@@ -58,6 +72,7 @@ export class AdminsListComponent implements OnInit {
     localStorage.removeItem('Admins');
     this.Admin.splice(i, 1);
     this.setAdminData();
+    this.emitAdmins();
     console.log(i);
   }
 
