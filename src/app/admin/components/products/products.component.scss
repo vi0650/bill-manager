@@ -1,16 +1,13 @@
- .card-content{
-    justify-content:space-between;
-    display: flex;
-    justify-content: space-between;
+ .action button {
+    margin: 0 1rem 0 1rem;
  }
-
- .product-details {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1; /* Allows the details block to take available space */
-  padding-right: 1rem;
-  justify-items: center; // Add some space before the trash icon
-}
+ 
+ .card-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+ }
 
 .product-name {
   margin: 0;
@@ -20,7 +17,7 @@
 }
 
 .product-price, .product-category, .product-id {
-  margin: 0.1rem 0;
   font-size: 0.9rem;
   color: var(--text-hint-color);
+  margin-left: 1rem; /* Space between price and category */
 }

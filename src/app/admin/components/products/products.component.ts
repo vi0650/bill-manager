@@ -23,7 +23,6 @@ export class ProductsComponent {
     localStorage.setItem('Products', JSON.stringify(this.Products));
   }
   
-
   openAddProductDialog(){
     console.log('opening dialog...');
     const dialogRef = this.NbDialogService.open(AddProductComponent);
@@ -40,6 +39,10 @@ export class ProductsComponent {
   deleteProduct(index: number) {
     this.Products.splice(index, 1);
     this.setProductsData();
+  }
+
+  refresh() {
+    window.location.reload();
   }
   
 }

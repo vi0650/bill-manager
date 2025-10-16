@@ -22,8 +22,9 @@ export class AddAdminComponent {
 
   addAdmin() {  
     const user:Admins={ ...this.newAdmin};
-    if(user)
+    if(user.AdminId && user.shopName && user.userName && user.emailId && user.mobileNo) {
       this.dialogRef.close(this.newAdmin);
+    }
     console.log( user);
   }
 

@@ -1,11 +1,15 @@
 <nb-actions size="medium">
-  <nb-action>
+  <nb-action class="action">
     <button nbButton>
       <nb-icon
         class="nb-icon"
-        icon="person-add"
+        icon="plus-outline"
+        status="primary"
         (click)="openAddProductDialog()"
       ></nb-icon>
+    </button>
+    <button nbButton (click)="refresh()">
+      <nb-icon status="danger" icon="sync-outline"></nb-icon>
     </button>
   </nb-action>
 </nb-actions>
@@ -17,9 +21,9 @@
       <nb-list>
         <nb-list-item class="card-content" *ngFor="let Product of Products; let i = index">
           <div class="product-name">
-           {{Product.ProductId}} -{{Product.Name}}
+           {{Product.ProductId}} - {{Product.Name}}
           </div>
-          <span >{{Product.Rate.valueOf() | currency:'INR'}}</span>
+          <span class="product-price">{{Product.Rate.valueOf() | currency:'INR'}}</span>
           <button nbButton size="small" ghost status="danger">
               <nb-icon
                 class="card-icon"
