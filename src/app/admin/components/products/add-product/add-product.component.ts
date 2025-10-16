@@ -10,15 +10,20 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class AddProductComponent {
 
-  constructor(private dialogRef: NbDialogRef<AddProductComponent>) { }
+  productCount: number = 0;
+  constructor(private dialogRef: NbDialogRef<AddProductComponent>) { 
+    this.productCount = localStorage.getItem('Products') ? JSON.parse(localStorage.getItem('Products')!).length : 0;
+    this.newProduct.ProductId = (this.productCount + 1).toString();
+    console.log(this.productCount);
+  }
 
+  newProduct = { ProductId:'', Name: '', Rate: '' };
 
-  newProduct = { Name: '', Rate: 0 };
   addProduct() {
     const product:Product = { ...this.newProduct };
-
-    console.log('Product added:', product);
-    this.dialogRef.close();
+    if( product.ProductId && product.Name && product.Rate) {
+      this.dialogRef.close(this.newProduct);
+    }
   }
 
   close() {

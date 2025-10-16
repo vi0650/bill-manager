@@ -1,4 +1,5 @@
 export interface Product{
+    ProductId:string;
     Name:string;
-    Rate:Number;
+    Rate:string;
 }

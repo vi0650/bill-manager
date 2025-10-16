@@ -16,11 +16,6 @@ export interface invoiceItems {
   products: string,
   qty: Number,
   rate: Number,
-  gst:gstType[],
+  gst:Number,
   amount: Number
-}
-
-export interface gstType {
-  cgst: Number,
-  sgst: Number
 }

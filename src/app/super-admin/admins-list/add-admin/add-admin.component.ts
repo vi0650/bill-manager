@@ -10,15 +10,15 @@ import { Admins } from '../../../core/models/admin.model';
 })
 export class AddAdminComponent {
 
-  adminCount:number = 0;
-  
-  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private NbTostrService:NbToastrService) {
-    this.adminCount=localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!).length : 0;
-    this.newAdmin.AdminId=(this.adminCount+1).toString();
+  adminCount: number = 0;
+
+  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private NbTostrService: NbToastrService) {
+    this.adminCount = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!).length : 0;
+    this.newAdmin.AdminId = (this.adminCount + 1).toString();
     console.log(this.adminCount);
   }
 
-  newAdmin = { AdminId:'', shopName: '',userName:'',emailId:'',mobileNo:'' }
+  newAdmin = { AdminId: '', shopName: '', userName: '', emailId: '', mobileNo: '' }
 
   addAdmin() {  
     const user:Admins={ ...this.newAdmin};
@@ -31,5 +31,4 @@ export class AddAdminComponent {
     this.dialogRef.close();
   }
 
-  
 }

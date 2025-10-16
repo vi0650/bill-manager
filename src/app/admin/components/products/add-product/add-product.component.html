@@ -20,6 +20,7 @@
               name="productName"
               placeholder="Enter Product Name"
               required
+              [(ngModel)]="newProduct.Name"
             />
           </div>
           <div class="form-group">
@@ -32,6 +33,7 @@
             name="Rate"
             placeholder="Enter Rate"
             required
+            [(ngModel)]="newProduct.Rate"
           />
         </div>
       </div>
@@ -40,7 +42,7 @@
   </nb-card-body>
   <nb-card-footer>
     <div class="action-buttons">
-      <button nbButton status="primary">add</button>
+      <button nbButton status="primary" (click)="addProduct()" [disabled]="!form.valid">add</button>
     </div>
   </nb-card-footer>
 </nb-card>

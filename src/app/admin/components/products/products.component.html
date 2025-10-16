@@ -13,25 +13,23 @@
 <nb-card size="medium">
   <nb-card-header>Products</nb-card-header>
   <nb-card-body>
-    <nb-accordion multi>
-  <nb-accordion-item *ngFor="let users of Products; let i = index">
-    <nb-accordion-item-header>
-      {{ users.name }}
-    </nb-accordion-item-header>
-    <nb-accordion-item-body>
-      <nb-list-item class="card-content" >
-          <span class="card-text">Price: {{ users.price | currency }}</span>
-          
-          <button nbButton size="small" >
-            <nb-icon
-              class="card-icon"
-              icon="trash-2"
-              [options]="{ animation: { type: 'shake' } }"
-            ></nb-icon>
-          </button>
+    <ng-container>
+      <nb-list>
+        <nb-list-item class="card-content" *ngFor="let Product of Products; let i = index">
+          <div class="product-name">
+           {{Product.ProductId}} -{{Product.Name}}
+          </div>
+          <span >{{Product.Rate.valueOf() | currency:'INR'}}</span>
+          <button nbButton size="small" ghost status="danger">
+              <nb-icon
+                class="card-icon"
+                icon="trash-2"
+                [options]="{ animation: { type: 'shake' } }"
+                (click)="deleteProduct(i)"
+              ></nb-icon>
+            </button>
         </nb-list-item>
-    </nb-accordion-item-body>
-  </nb-accordion-item>
-</nb-accordion>
+      </nb-list>
+    </ng-container> 
   </nb-card-body>
 </nb-card>

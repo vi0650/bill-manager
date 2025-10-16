@@ -106,9 +106,10 @@
                 [(ngModel)]="item.products"
                 [(selected)]="selectedProduct"
                 name="products_{{ i }}"
+                ngmo
               >
                 <nb-option disabled>select option</nb-option>
-                <nb-option value="1">Option 1</nb-option>
+                <nb-option [value]="1">Option 1</nb-option>
                 <nb-option value="2">Option 2</nb-option>
                 <nb-option value="3">Option 3</nb-option>
                 <nb-option value="4">Option 4</nb-option>

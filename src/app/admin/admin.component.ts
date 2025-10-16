@@ -11,11 +11,14 @@ import { NbSidebarService } from '@nebular/theme';
 export class AdminComponent {
 
   constructor(private sidebarService: NbSidebarService) {
-    console.log(this.AdminList);
-    
   }
 
   @Input() AdminList: Admins[] = []
+
+  getData(){;
+    this.AdminList = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!) : [];
+    console.log(this.AdminList);
+  }
 
   menuItems =[
     { title: 'Invoices', icon: 'file-add-outline', link: 'invoices' },
