@@ -49,14 +49,14 @@ export class AdminsListComponent implements OnInit {
   openAddAdminDialog() {
     console.log('Opening dialog...');
     const dialogRef = this.dialogService.open(AddAdminComponent);
-    dialogRef.onClose.subscribe((admin) => {
+    dialogRef.onClose.subscribe((...admin) => {
       if (admin) {
-        const adminExists = this.Admin.some(a => a.AdminId === admin.AdminId);
+        const adminExists = this.Admin.some(a => a.AdminId === admin[0].AdminId);
         if (adminExists) {
           this.NbTostrService.warning("Admin with this ID already exists.", "Warning", { duration: 3000 });
           return;
         }
-        this.Admin.push(admin);
+        this.Admin.push(...admin);
         this.setAdminData();
         this.emitAdmins();
         this.NbTostrService.success("Admin Added Successfully please refresh the page.", "Success", { duration: 3000 });
@@ -74,6 +74,10 @@ export class AdminsListComponent implements OnInit {
     this.setAdminData();
     this.emitAdmins();
     console.log(i);
+  }
+
+  refresh() {
+    window.location.reload();
   }
 
 }

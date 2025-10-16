@@ -10,17 +10,26 @@ import { Admins } from '../../../core/models/admin.model';
 })
 export class AddAdminComponent {
 
-  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private NbTostrService:NbToastrService) {}
+  adminCount:number = 0;
+  
+  constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private NbTostrService:NbToastrService) {
+    this.adminCount=localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!).length : 0;
+    this.newAdmin.AdminId=(this.adminCount+1).toString();
+    console.log(this.adminCount);
+  }
 
-  newAdmin = { AdminId:'', shopName: '',username:'',emailId:'',mobileNo:'' }
+  newAdmin = { AdminId:'', shopName: '',userName:'',emailId:'',mobileNo:'' }
 
   addAdmin() {  
-    const user:Admins={AdminId:this.newAdmin.AdminId,shopName:this.newAdmin.shopName,userName:this.newAdmin.username,emailId:this.newAdmin.emailId,mobileNo:this.newAdmin.mobileNo};
-    if((user.AdminId) && user.shopName && user.userName && user.emailId && user.mobileNo)
+    const user:Admins={ ...this.newAdmin};
+    if(user)
       this.dialogRef.close(this.newAdmin);
+    console.log( user);
   }
 
   cancel() {
     this.dialogRef.close();
   }
+
+  
 }

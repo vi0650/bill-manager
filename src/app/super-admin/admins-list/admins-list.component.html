@@ -1,11 +1,15 @@
 <nb-actions size="medium">
   <nb-action >
-    <button nbButton>
+    <button nbButton status="primary" ghost>
       <nb-icon
         class="nb-icon"
         icon="person-add"
+        status="primary"
         (click)="openAddAdminDialog()"
       ></nb-icon> 
+    </button>
+    <button nbButton (click)="refresh()">
+      <nb-icon status="danger" icon="sync-outline"></nb-icon>
     </button>
   </nb-action>
 </nb-actions>
