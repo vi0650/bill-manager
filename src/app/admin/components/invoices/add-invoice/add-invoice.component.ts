@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogRef, NbDialogService } from '@nebular/theme';
 import { Invoice, invoiceItems } from '../../../../core/models/invoice.model';
+import { Product } from '../../../../core/models/product.model';
 
 @Component({
   selector: 'app-add-invoice',
@@ -14,16 +15,18 @@ export class AddInvoiceComponent {
 
   invoice: Invoice[] = [];
 
+  product:Product[]=[{ProductId:'1',Name:'kurkure',Rate:'20'},{ProductId:'2',Name:'chataka pataka',Rate:'20'}];
+
   selectedProduct: string = '';
   selectedGst: string = '';
 
-  private emptyItem(): invoiceItems {
+  emptyItem(): invoiceItems {
      return {
-      products: '',
-      qty: 0,
-      rate: 0,
-      gst: 0,
-      amount: 0,
+      products:this.product,
+      qty: '',
+      rate: '',
+      gst: '',
+      amount: '',
     } as invoiceItems;
   }
 
@@ -51,11 +54,12 @@ export class AddInvoiceComponent {
   addItem() {
     const newItem = this.emptyItem();
     this.addInvoice.items.push(newItem);
-    console.log(this.addInvoice.items);
+    console.log(this.addInvoice.items); 
   }
 
-  removeItem() {
-
+  removeItem(i:number) {
+    this.addInvoice.items.splice(i,1)
+    console.log(this.addInvoice.items);
   }
 
   calculateTotal() {

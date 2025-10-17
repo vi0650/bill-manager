@@ -3,7 +3,12 @@
 
   <nb-card-body>
     <form #form="ngForm">
-      <h5 class="section-title">Invoice Details</h5>
+      <div class="bill-head">
+        <h2 class="shopName">HALDIRAM</h2>
+        <hr>
+        <p>A-12, Sharda Hub , Rajsthan, India</p>
+      </div>
+      <h6 class="section-title">Invoice Details</h6>
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
@@ -93,6 +98,7 @@
           <div class="item-col col-rate">RATE</div>
           <div class="item-col col-gst">GST</div>
           <div class="item-col col-amount">AMOUNT</div>
+          <div class="item-col col-delete"></div>
         </div>
 
         <ng-container *ngFor="let item of addInvoice.items; let i = index">
@@ -103,16 +109,13 @@
                 placeholder="Choose Product"
                 required
                 fullWidth
+                multiple
+                [selected]="selectedProduct"
                 [(ngModel)]="item.products"
-                [(selected)]="selectedProduct"
                 name="products_{{ i }}"
-                ngmo
               >
                 <nb-option disabled>select option</nb-option>
-                <nb-option [value]="1">Option 1</nb-option>
-                <nb-option value="2">Option 2</nb-option>
-                <nb-option value="3">Option 3</nb-option>
-                <nb-option value="4">Option 4</nb-option>
+                <nb-option *ngFor="let product of product" [value]="product">{{product.Name}}</nb-option>
               </nb-select>
             </div>
             <div class="item-col col-qty">
@@ -141,7 +144,7 @@
                 placeholder="Gst"
                 [(ngModel)]="item.gst"
                 [(selected)]="selectedGst"
-                name="gst_{{ i }}"
+                name="gst_{{i}}"
               >
                 <nb-option disabled>select option</nb-option>
                 <nb-option value="5">5%</nb-option>
@@ -154,14 +157,14 @@
             <div class="item-col col-amount">
               {{ item.amount.valueOf() | currency : "INR" }}
             </div>
-            <div>
+            <div class="delete-item-btn col-delete">
               <button
                 nbButton
                 outline
                 status="danger"
                 size="small"
-                class="item-col delete-item-btn"
-                (click)="removeItem()"
+                class="item-col"
+                (click)="removeItem(i)"
               >
                 <nb-icon icon="trash-2-outline"></nb-icon>
               </button>

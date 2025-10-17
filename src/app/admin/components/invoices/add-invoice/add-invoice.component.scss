@@ -12,108 +12,135 @@ nb-card {
 }
 
 .invoice-form-card {
-    // Make the dialog wider to accommodate the table layout
-    max-width: 85vw;
-    justify-items: center;
-    width: 95vw;
+  max-width: 85vw;
+  justify-items: center;
+  width: 95vw;
+}
+
+.bill-head {
+  text-align: center;
+  border: 1px solid lightgray;
+  border-radius: 9px;
+  padding: 0 2rem 1rem 2rem;
+  justify-content: space-between;
+
+  h2{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: clamp(16px, 4vw, 22px);
   }
-  
-  .section-title {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-basic-color-3);
-    font-weight: 600;
+}
+
+.section-title {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-basic-color-3);
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 0.9rem;
+  max-width: 100rem;
+  min-width: 50rem;
+  flex: 1 1 45%;
+}
+
+/* --- Items Table Styling --- */
+.items-table-container {
+  border: 1px solid lightgray;
+  border-radius: 20px;
+  padding: 0.5rem;
+  max-width: 100rem;
+  min-width: 60rem;
+}
+
+.items-row {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0.5rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.header-row {
+  font-weight: bold;
+  font-size: 0.9em;
+  text-align: center;
+}
+
+.nb-theme-default [nbInput].shape-rectangle {
+  padding: 0px !important;
+}
+
+.data-row {
+  position: relative;
+  text-align: center;
+  // Remove bottom border for the last item
+  &:last-child {
+    border-bottom: none;
   }
-  
-  .form-group {
-    margin-bottom: 0.9rem;
-    max-width: 100rem;
-    min-width: 50rem;
-    flex: 1 1 45%;
+}
+
+.item-col {
+  padding: 0 0.3rem;
+
+  // Set flex basis for columns to define table layout
+  &.col-srno {
+    flex-basis: 5%;
   }
-  
-  /* --- Items Table Styling --- */
-  .items-table-container {
-    border: 1px solid lightgray;
-    border-radius: 20px;
-    padding: 0.5rem;
-    max-width: 100rem;
-    min-width: 60rem;
+  &.col-products {
+    flex-basis: 23%;
   }
-  
-  .items-row {
-    display: flex;
-    align-items: center;
-    padding: 0.5rem 0.5rem;
-    border-bottom: 1px solid lightgray;
+  &.col-qty {
+    flex-basis: 17%;
   }
-  
-  .header-row {
-    font-weight: bold;
-    font-size: 0.9em;
+  &.col-rate {
+    flex-basis: 17%;
+    text-decoration: none;
+  }
+  &.col-gst {
+    flex-basis: 25%;
+  }
+  &.col-amount {
+    flex-basis: 25%;
     text-align: center;
   }
+  &.col-delete {
+    flex-basis: 2.5%;
+    text-align: center;
+  }
+}
 
-  .nb-theme-default [nbInput].shape-rectangle{
-    padding: 0px !important;
-  }
-  
-  .data-row {
-      position: relative;
-      text-align: center;
-      // Remove bottom border for the last item
-      &:last-child {
-          border-bottom: none;
-      }
-  }
-  
+.delete-item-btn {
+  // Position the delete button outside the flow like the image
 
+  right: 1.5rem;
+}
 
-  .item-col {
-    padding: 0 0.3rem;
-    
-    // Set flex basis for columns to define table layout
-    &.col-srno { flex-basis: 5%; }
-    &.col-products { flex-basis: 25%; }
-    &.col-qty { flex-basis: 15%; }
-    &.col-rate { flex-basis: 15%; text-decoration: none;}
-    &.col-gst { flex-basis: 24%;}
-    &.col-amount { flex-basis: 25%; text-align: center; }
-  }
-  
-  .delete-item-btn {
-      // Position the delete button outside the flow like the image
-      position: absolute;
-      right: 1.5rem;
-      top: 50%;
-      transform: translateY(-50%);
-  }
+.add-item-btn-container {
+  margin: 0.5rem 1rem 0.4rem 1rem !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+}
 
-  .add-item-btn-container {
-    margin: 0.5rem 1rem 0.4rem 1rem !important;
-    display: flex !important;
-    justify-content: flex-start !important;
-  }
-  
-  /* --- Totals Section Styling --- */
-  .totals-section {
-    padding: 1rem;
-  }
-  
-  .totals-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.3rem 0.5rem;
-  }
-  
-  .grand-total-row {
-    font-size: 1.2em;
-    color: var(--color-primary-500);
-  }
-  
-  .action-buttons {
-    display: flex;
-    justify-content: flex-end;
-    gap: 1rem;
-  }
+/* --- Totals Section Styling --- */
+.totals-section {
+  padding: 1rem;
+}
+
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0.5rem;
+}
+
+.grand-total-row {
+  font-size: 1.2em;
+  color: var(--color-primary-500);
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}

@@ -4,7 +4,7 @@ export interface Invoice {
   emailAddress: string,
   InvoiceDate: Date,
   Address: string,
-  items:invoiceItems[],
+  items: invoiceItems[],
   subtotal: Number,
   taxableAmount: Number,
   discountPercent: Number,
@@ -13,9 +13,15 @@ export interface Invoice {
 };
 
 export interface invoiceItems {
-  products: string,
-  qty: Number,
-  rate: Number,
-  gst:Number,
-  amount: Number
+  products:product[],
+  qty: string,
+  rate: string,
+  gst: string,
+  amount: string,
+}
+
+export interface product {
+  ProductId: string;
+  Name: string;
+  Rate: string;
 }

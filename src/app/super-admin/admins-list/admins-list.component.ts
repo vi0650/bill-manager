@@ -11,21 +11,16 @@ import { Admins } from '../../core/models/admin.model';
 })
 export class AdminsListComponent implements OnInit {
 
-  constructor(private dialogService: NbDialogService, private NbTostrService: NbToastrService) {
+  constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService) {
+    this.refresh();
   }
 
-  @Output() adminsChange = new EventEmitter<Admins[]>();
+  @Output() adminsChange = new EventEmitter<Admins>();
 
   Admin: Admins[] = [];
 
   ngOnInit() {
-    AddAdminComponent
     this.getAdminData();
-  }
-
-   private emitAdmins() {
-    // Emit a new array reference to help OnPush children detect changes
-    this.adminsChange.emit([...this.Admin]);
   }
 
   getAdminData() {
@@ -39,7 +34,6 @@ export class AdminsListComponent implements OnInit {
       ];
       this.setAdminData();
     }
-    this.emitAdmins();
   }
 
   setAdminData() {
@@ -53,13 +47,12 @@ export class AdminsListComponent implements OnInit {
       if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo) {
         const adminExists = this.Admin.some(a => a.shopName === admin.shopName);
         if (adminExists) {
-          this.NbTostrService.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });
+          this.NbTostr.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });
           return;
         }
         this.Admin.push(admin);
         this.setAdminData();
-        this.emitAdmins();
-        this.NbTostrService.success("Admin Added Successfully please refresh the page.", "Success", { duration: 3000 });
+        this.NbTostr.success("Admin Added Successfully please refresh the page.", "Success", { duration: 3000 });
       }
       console.log('Dialog closed', admin);
     });
@@ -68,13 +61,11 @@ export class AdminsListComponent implements OnInit {
   deleteAdmin(i: number) {
     if (!confirm("Are you sure to delete this record?")) return;
     else {
-      this.NbTostrService.danger("Admin Deleted Successfully", "Deleted", { duration: 3000 });
+      this.NbTostr.danger("Admin Deleted Successfully", "Deleted", { duration: 3000 });
     }
     localStorage.removeItem('Admins');
     this.Admin.splice(i, 1);
     this.setAdminData();
-    this.emitAdmins();
-    console.log(i);
   }
 
   refresh() {

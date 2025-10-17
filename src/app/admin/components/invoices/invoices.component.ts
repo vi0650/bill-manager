@@ -12,13 +12,9 @@ import { AddInvoiceComponent } from './add-invoice/add-invoice.component';
 export class InvoicesComponent {
 
   constructor(private invoicedialogService:NbDialogService){
-
   }
 
   @Input() Admin:Admins[] = []
-
-  // Admin: Admins[] = [{ shopName: 'Haldiram', username: 'Snacks', email:'' },
-  // { shopName: 'Bikaji', username: 'Snacks' }]
 
   openAddInvoiceDialog(){
     this.invoicedialogService.open(AddInvoiceComponent)
