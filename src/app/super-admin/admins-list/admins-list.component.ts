@@ -12,7 +12,6 @@ import { Admins } from '../../core/models/admin.model';
 export class AdminsListComponent implements OnInit {
 
   constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService) {
-    this.refresh();
   }
 
   @Output() adminsChange = new EventEmitter<Admins>();
@@ -28,9 +27,9 @@ export class AdminsListComponent implements OnInit {
     if (storedAdmin) {
       this.Admin = JSON.parse(storedAdmin);
     } else {
-      this.Admin = [{ AdminId: '1', shopName: 'haldiram', userName: 'haldiram', emailId: 'haldiram@gmail.com', mobileNo: '+919993249324' },
-      { AdminId: '2', shopName: 'bikaner', userName: 'bikaner', emailId: 'bikaner@gmail.com', mobileNo: '+919993249325' },
-      { AdminId: '3', shopName: 'gopal', userName: 'gopal', emailId: 'gopal@gmail.com', mobileNo: '+919993249326' }
+      this.Admin = [{ AdminId: '1', shopName: 'haldiram', userName: 'haldiram', emailId: 'haldiram@gmail.com', mobileNo: '+919993249324',address:'india' },
+      { AdminId: '2', shopName: 'bikaner', userName: 'bikaner', emailId: 'bikaner@gmail.com', mobileNo: '+919993249325',address:'india' },
+      { AdminId: '3', shopName: 'gopal', userName: 'gopal', emailId: 'gopal@gmail.com', mobileNo: '+919993249326',address:'india' }
       ];
       this.setAdminData();
     }
@@ -44,7 +43,7 @@ export class AdminsListComponent implements OnInit {
     console.log('Opening dialog...');
     const dialogRef = this.dialogService.open(AddAdminComponent);
     dialogRef.onClose.subscribe((admin) => {
-      if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo) {
+      if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.address) {
         const adminExists = this.Admin.some(a => a.shopName === admin.shopName);
         if (adminExists) {
           this.NbTostr.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });
@@ -59,7 +58,7 @@ export class AdminsListComponent implements OnInit {
   }
 
   deleteAdmin(i: number) {
-    if (!confirm("Are you sure to delete this record?")) return;
+    if (!confirm("Are you sure to delete this admin")) return;
     else {
       this.NbTostr.danger("Admin Deleted Successfully", "Deleted", { duration: 3000 });
     }

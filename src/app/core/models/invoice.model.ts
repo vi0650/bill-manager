@@ -1,6 +1,9 @@
+import { Admins } from "./admin.model";
+
 export interface Invoice {
   customerName: string,
   phoneNo: string,
+  shopName:Admins,
   emailAddress: string,
   InvoiceDate: Date,
   Address: string,
@@ -13,15 +16,15 @@ export interface Invoice {
 };
 
 export interface invoiceItems {
-  products:product[],
+  product:string,
   qty: string,
   rate: string,
   gst: string,
   amount: string,
 }
 
-export interface product {
-  ProductId: string;
-  Name: string;
-  Rate: string;
+export interface Product{
+    ProductId:string;
+    Name:string;
+    Rate:string;
 }

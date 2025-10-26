@@ -18,11 +18,11 @@ export class AddAdminComponent {
     console.log(this.adminCount);
   }
 
-  newAdmin = { AdminId: '', shopName: '', userName: '', emailId: '', mobileNo: '' }
+  newAdmin = { AdminId: '', shopName: '', userName: '', emailId: '', mobileNo: '',address:'' }
 
   addAdmin() {  
     const user:Admins={ ...this.newAdmin};
-    if(user.AdminId && user.shopName && user.userName && user.emailId && user.mobileNo) {
+    if(user.AdminId && user.shopName && user.userName && user.emailId && user.mobileNo && user.address) {
       this.dialogRef.close(this.newAdmin);
     }
     console.log( user);

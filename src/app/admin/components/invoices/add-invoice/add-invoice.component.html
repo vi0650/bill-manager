@@ -5,7 +5,7 @@
     <form #form="ngForm">
       <div class="bill-head">
         <h2 class="shopName">HALDIRAM</h2>
-        <hr>
+        <hr />
         <p>A-12, Sharda Hub , Rajsthan, India</p>
       </div>
       <h6 class="section-title">Invoice Details</h6>
@@ -109,13 +109,17 @@
                 placeholder="Choose Product"
                 required
                 fullWidth
-                multiple
                 [selected]="selectedProduct"
-                [(ngModel)]="item.products"
+                [(ngModel)]="item.product"
+                (ngModelChange)="updateRate(item)"
                 name="products_{{ i }}"
               >
                 <nb-option disabled>select option</nb-option>
-                <nb-option *ngFor="let product of product" [value]="product">{{product.Name}}</nb-option>
+                <nb-option
+                  *ngFor="let product of products"
+                  [value]="product.Name"
+                  >{{ product.Name }}</nb-option
+                >
               </nb-select>
             </div>
             <div class="item-col col-qty">
@@ -144,13 +148,10 @@
                 placeholder="Gst"
                 [(ngModel)]="item.gst"
                 [(selected)]="selectedGst"
-                name="gst_{{i}}"
+                name="gst_{{ i }}"
               >
                 <nb-option disabled>select option</nb-option>
-                <nb-option value="5">5%</nb-option>
-                <nb-option value="10">10%</nb-option>
-                <nb-option value="12">12%</nb-option>
-                <nb-option value="18">18%</nb-option>
+                <nb-option [value]="selectedGst">{{selectedGst}}</nb-option>
               </nb-select>
             </div>
 

@@ -4,4 +4,5 @@ export interface Admins{
     userName:string;
     emailId:string;
     mobileNo:string;
+    address:string;
 }

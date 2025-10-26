@@ -1,5 +1,5 @@
 export interface profile{
-    id:string;
+    AdminId:string;
     shopName:string;
     address:string;
     gstNo:string;

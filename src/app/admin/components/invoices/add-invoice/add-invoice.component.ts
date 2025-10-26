@@ -13,16 +13,29 @@ export class AddInvoiceComponent {
 
   constructor(protected dialogRef: NbDialogRef<AddInvoiceComponent>, private NbdialogService: NbDialogService) { }
 
+  ngOnInit(): void {
+    this.getProductData();
+  }
+
+  // ------------------product data fetch from local storage--------------------------------
+
+  products: Product[] = [];
+  getProductData() {
+    const fetchProduct = localStorage.getItem('Products');
+    if (fetchProduct) {
+      this.products = JSON.parse(fetchProduct);
+    }
+  }
+
+  // ---------------Invoice add form-----------------------------------
+
   invoice: Invoice[] = [];
-
-  product:Product[]=[{ProductId:'1',Name:'kurkure',Rate:'20'},{ProductId:'2',Name:'chataka pataka',Rate:'20'}];
-
   selectedProduct: string = '';
   selectedGst: string = '';
 
   emptyItem(): invoiceItems {
-     return {
-      products:this.product,
+    return {
+      product: '',
       qty: '',
       rate: '',
       gst: '',
@@ -30,19 +43,19 @@ export class AddInvoiceComponent {
     } as invoiceItems;
   }
 
-  addInvoice = { 
-    customerName: '', 
-    phoneNo: '', 
-    emailAddress: '', 
-    InvoiceDate: new Date(), 
-    Address: '', 
-    items: [this.emptyItem()], 
-    subtotal: '', 
-    cgst: '', 
-    taxableAmount: '', 
-    discountPercent: '', 
-    discount: '', 
-    grandTotal: '' 
+  addInvoice = {
+    customerName: '',
+    phoneNo: '',
+    emailAddress: '',
+    InvoiceDate: new Date(),
+    Address: '',
+    items: [this.emptyItem()],
+    subtotal: '',
+    cgst: '',
+    taxableAmount: '',
+    discountPercent: '',
+    discount: '',
+    grandTotal: ''
   };
 
   saveInvoice() {
@@ -54,11 +67,18 @@ export class AddInvoiceComponent {
   addItem() {
     const newItem = this.emptyItem();
     this.addInvoice.items.push(newItem);
-    console.log(this.addInvoice.items); 
+    console.log(this.addInvoice.items);
   }
 
-  removeItem(i:number) {
-    this.addInvoice.items.splice(i,1)
+  updateRate(item: invoiceItems) {
+    const selectedProduct = this.products.find(p => p.Name === item.product);
+    if (selectedProduct) {
+      item.rate = String(selectedProduct.Rate);
+    }
+  }
+
+  removeItem(i: number) {
+    this.addInvoice.items.splice(i, 1)
     console.log(this.addInvoice.items);
   }
 
