@@ -17,7 +17,7 @@ export class AddProductComponent {
     console.log(this.productCount);
   }
 
-  newProduct = { ProductId:'', Name: '', Rate: '' };
+  newProduct = { ProductId:'', Name: '', Rate: null };
 
   addProduct() {
     const product:Product = { ...this.newProduct };

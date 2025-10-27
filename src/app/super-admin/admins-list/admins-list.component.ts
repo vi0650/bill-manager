@@ -44,7 +44,7 @@ export class AdminsListComponent implements OnInit {
     const dialogRef = this.dialogService.open(AddAdminComponent);
     dialogRef.onClose.subscribe((admin) => {
       if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.address) {
-        const adminExists = this.Admin.some(a => a.shopName === admin.shopName);
+        const adminExists = this.Admin.find(a => a.shopName === admin.shopName);
         if (adminExists) {
           this.NbTostr.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });
           return;

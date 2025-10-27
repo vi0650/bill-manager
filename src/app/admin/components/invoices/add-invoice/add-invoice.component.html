@@ -130,6 +130,7 @@
                 fullWidth
                 placeholder="0"
                 [(ngModel)]="item.rate"
+                (ngModelChange)="calculateAmount(item)"
                 name="rate_{{ i }}"
               />
             </div>
@@ -140,6 +141,7 @@
                 fullWidth
                 placeholder="0"
                 [(ngModel)]="item.qty"
+                (ngModelChange)="calculateAmount(item)"
                 name="qty_{{ i }}"
               />
             </div>
@@ -149,6 +151,7 @@
               hero
                 placeholder="Gst"
                 [(ngModel)]="item.gst"
+                (ngModelChange)="calculateAmount(item)"
                 multiple="disabled"
                 name="gst_{{ i }}"
               >
@@ -158,7 +161,7 @@
             </div>
 
             <div class="item-col col-amount">
-              {{ item.amount.valueOf() | currency : "INR" }}
+              {{ item.amount | currency : "INR" }}
             </div>
             <div class="delete-item-btn col-delete">
               <button
@@ -209,21 +212,21 @@
           <hr />
           <div class="totals-row">
             <span>CGST </span>
-            <span>{{ addInvoice.discount.valueOf() | currency : "INR" }}</span>
+            <span>{{ addInvoice.discount | currency : "INR" }}</span>
           </div>
           <div class="totals-row">
             <span>SGST </span>
-            <span>{{ addInvoice.discount.valueOf() | currency : "INR" }}</span>
+            <span>{{ addInvoice.discount | currency : "INR" }}</span>
           </div>
           <div class="totals-row strong-row">
             <span>TAXABLE AMOUNT</span>
             <span>{{
-              addInvoice.taxableAmount.valueOf() | currency : "INR"
+              addInvoice.taxableAmount | currency : "INR"
             }}</span>
           </div>
           <div class="totals-row">
             <span>Discount ({{ addInvoice.discountPercent }}%)</span>
-            <span>{{ addInvoice.discount.valueOf() | currency : "INR" }}</span>
+            <span>{{ addInvoice.discount | currency : "INR" }}</span>
           </div>
           <hr />
           <div class="totals-row grand-total-row">

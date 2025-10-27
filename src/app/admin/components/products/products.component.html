@@ -23,7 +23,7 @@
           <div class="product-name">
            {{Product.ProductId}} - {{Product.Name}}
           </div>
-          <span class="product-price">{{Product.Rate.valueOf() | currency:'INR'}}</span>
+          <span class="product-price">{{Product.Rate | currency:'INR'}}</span>
           <button nbButton size="small" ghost status="danger">
               <nb-icon
                 class="card-icon"

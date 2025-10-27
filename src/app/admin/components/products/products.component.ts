@@ -24,9 +24,9 @@ export class ProductsComponent {
     if (storedProducts) {
       this.Products = JSON.parse(storedProducts);
     } else {
-      this.Products = [{ ProductId: '1', Name: 'Evo x30 3D Printer', Rate: '12000' },
-      { ProductId: '2', Name: 'Creality Ender 3 Pro', Rate: '15000' },
-      { ProductId: '3', Name: 'Anycubic i3 Mega', Rate: '18000' }
+      this.Products = [{ ProductId: '1', Name: 'Evo x30 3D Printer', Rate: 12000 },
+      { ProductId: '2', Name: 'Creality Ender 3 Pro', Rate: 15000 },
+      { ProductId: '3', Name: 'Anycubic i3 Mega', Rate: 18000 }
       ];
       this.setProductsData();
     }
@@ -41,6 +41,11 @@ export class ProductsComponent {
     const dialogRef = this.NbDialogService.open(AddProductComponent);
     dialogRef.onClose.subscribe((product) => {
       if (product && product.ProductId && product.Name && product.Rate) {
+        const productExist = this.Products.find(p => p.Name === product.Name);
+        if(productExist){
+          this.NbTostr.danger("please use unique name for Products",`${product.Name} already exist.`)
+          return;
+        }
         console.log('Product received:', product);
         this.Products.push(product);
         this.setProductsData();
