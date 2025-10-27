@@ -22,9 +22,3 @@ export interface invoiceItems {
   gst: string,
   amount: string,
 }
-
-export interface Product{
-    ProductId:string;
-    Name:string;
-    Rate:string;
-}

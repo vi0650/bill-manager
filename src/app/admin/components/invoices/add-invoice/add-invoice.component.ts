@@ -29,6 +29,8 @@ export class AddInvoiceComponent {
 
   // ---------------Invoice add form-----------------------------------
 
+  gstRate:string[]=['2','5','12','18','28']
+
   invoice: Invoice[] = [];
   selectedProduct: string = '';
   selectedGst: string = '';
@@ -38,7 +40,7 @@ export class AddInvoiceComponent {
       product: '',
       qty: '',
       rate: '',
-      gst: '',
+      gst: this.selectedGst,
       amount: '',
     } as invoiceItems;
   }

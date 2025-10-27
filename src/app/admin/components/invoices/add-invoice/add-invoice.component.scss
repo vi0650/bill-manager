@@ -24,7 +24,7 @@ nb-card {
   padding: 0 2rem 1rem 2rem;
   justify-content: space-between;
 
-  h2{
+  h2 {
     text-align: center;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: clamp(16px, 4vw, 22px);
@@ -89,17 +89,16 @@ nb-card {
     flex-basis: 5%;
   }
   &.col-products {
-    flex-basis: 23%;
+    flex-basis: 25%;
+  }
+  &.col-rate {
+    flex-basis: 17%;
   }
   &.col-qty {
     flex-basis: 17%;
   }
-  &.col-rate {
-    flex-basis: 17%;
-    text-decoration: none;
-  }
   &.col-gst {
-    flex-basis: 25%;
+    flex-basis: 23%;
   }
   &.col-amount {
     flex-basis: 25%;
@@ -112,8 +111,6 @@ nb-card {
 }
 
 .delete-item-btn {
-  // Position the delete button outside the flow like the image
-
   right: 1.5rem;
 }
 

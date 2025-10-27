@@ -94,8 +94,8 @@
           <div class="item-col col-srno">Sr. No.</div>
           <hr />
           <div class="item-col col-products">PRODUCTS</div>
-          <div class="item-col col-qty">QTY</div>
           <div class="item-col col-rate">RATE</div>
+          <div class="item-col col-qty">QTY</div>
           <div class="item-col col-gst">GST</div>
           <div class="item-col col-amount">AMOUNT</div>
           <div class="item-col col-delete"></div>
@@ -107,6 +107,7 @@
             <div class="item-col col-products">
               <nb-select
                 placeholder="Choose Product"
+                hero
                 required
                 fullWidth
                 [selected]="selectedProduct"
@@ -114,23 +115,13 @@
                 (ngModelChange)="updateRate(item)"
                 name="products_{{ i }}"
               >
-                <nb-option disabled>select option</nb-option>
+                <nb-option>select option</nb-option>
                 <nb-option
                   *ngFor="let product of products"
                   [value]="product.Name"
                   >{{ product.Name }}</nb-option
                 >
               </nb-select>
-            </div>
-            <div class="item-col col-qty">
-              <input
-                type="number"
-                nbInput
-                fullWidth
-                placeholder="0"
-                [(ngModel)]="item.qty"
-                name="qty_{{ i }}"
-              />
             </div>
             <div class="item-col col-rate">
               <input
@@ -142,16 +133,27 @@
                 name="rate_{{ i }}"
               />
             </div>
+            <div class="item-col col-qty">
+              <input
+                type="number"
+                nbInput
+                fullWidth
+                placeholder="0"
+                [(ngModel)]="item.qty"
+                name="qty_{{ i }}"
+              />
+            </div>
 
             <div class="item-col col-gst">
               <nb-select
+              hero
                 placeholder="Gst"
                 [(ngModel)]="item.gst"
-                [(selected)]="selectedGst"
+                multiple="disabled"
                 name="gst_{{ i }}"
               >
-                <nb-option disabled>select option</nb-option>
-                <nb-option [value]="selectedGst">{{selectedGst}}</nb-option>
+                <nb-option>select option</nb-option>
+                <nb-option *ngFor="let gst of gstRate" [value]="gst">{{gst+'%'}}</nb-option>
               </nb-select>
             </div>
 
