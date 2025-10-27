@@ -29,7 +29,7 @@ export class AddInvoiceComponent {
 
   // ---------------Invoice add form-----------------------------------
 
-  gstRate:number[]=[2,5,12,18,28]
+  gstRate: number[] = [2, 5, 12, 18, 28]
 
   invoice: Invoice[] = [];
   selectedProduct: string = '';
@@ -48,7 +48,7 @@ export class AddInvoiceComponent {
   addInvoice = {
     customerName: '',
     phoneNo: '',
-    shopName:'',
+    shopName: '',
     emailAddress: '',
     InvoiceDate: new Date(),
     Address: '',
@@ -60,15 +60,15 @@ export class AddInvoiceComponent {
     grandTotal: 0,
   };
 
-  saveInvoice() {
-    const addedInvoice:Invoice = { ...this.addInvoice };
-    this.dialogRef.close(addedInvoice);
-    console.log(addedInvoice);
-  }
 
   addItem() {
-    const newItem = this.emptyItem();
-    this.addInvoice.items.push(newItem)
+    const newIndex = this.addInvoice.items.length - 1;
+    const newItem = this.addInvoice.items[newIndex];
+    if (newItem.product && newItem.rate && newItem.qty && newItem.amount) {
+      this.addInvoice.items.push(this.emptyItem())
+    } else {
+      this.NbTostr.info("please enter product,rate & quantity", `Details are Missing`)
+    }
     console.log(this.addInvoice.items);
   }
 
@@ -85,22 +85,28 @@ export class AddInvoiceComponent {
     console.log(this.addInvoice.items);
   }
 
-  calculateAmount(item:invoiceItems) {
+  calculateAmount(item: invoiceItems) {
     const rate = Number(String(item.rate) || 0);
     const qty = Number(String(item.qty) || 0);
     const gst = Number((item.gst) || 0);
 
     const taxableAmount = rate * qty;
-    const gstAmount = taxableAmount * (gst/100);
+    const gstAmount = taxableAmount * (gst / 100);
     const finalAmount = gstAmount + taxableAmount;
 
     item.amount = Number(String(finalAmount.toFixed(2)));
     console.log(item.amount);
   }
 
+  // ---------------------------------------after invoice filled validate------------------------------------------------------------------------
 
   cancel() {
     this.dialogRef.close();
   }
 
+  saveInvoice() {
+    const addedInvoice: Invoice = { ...this.addInvoice };
+    this.dialogRef.close(addedInvoice);
+    console.log(addedInvoice);
+  }
 }
