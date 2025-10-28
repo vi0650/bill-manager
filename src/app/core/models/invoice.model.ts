@@ -3,15 +3,13 @@
 export interface Invoice {
   customerName: string,
   phoneNo: string,
-  shopName:string,
   emailAddress: string,
   InvoiceDate: Date,
   Address: string,
   items: invoiceItems[],
+  comments:string,
   subtotal: Number | null,
-  taxableAmount: Number | null,
-  discountPercent: Number | null,
-  discount: Number | null,
+  gstAmount: Number | null,
   grandTotal: Number | null,
 };
 

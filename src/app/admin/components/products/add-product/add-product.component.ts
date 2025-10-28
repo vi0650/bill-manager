@@ -22,7 +22,7 @@ export class AddProductComponent {
   addProduct() {
     const product:Product = { ...this.newProduct };
     if( product.ProductId && product.Name && product.Rate) {
-      this.dialogRef.close(this.newProduct);
+      this.dialogRef.close(product);
     }
   }
 
