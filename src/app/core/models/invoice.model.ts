@@ -9,9 +9,7 @@ export interface Invoice {
   Address: string,
   items: invoiceItems[],
   subtotal: Number | null,
-  taxableAmount: Number | null,
-  discountPercent: Number | null,
-  discount: Number | null,
+  gstAmount: Number | null,
   grandTotal: Number | null,
 };
 
