@@ -11,17 +11,17 @@ import { Product } from '../../../../core/models/product.model';
 export class AddProductComponent {
 
   productCount: number = 0;
-  constructor(private dialogRef: NbDialogRef<AddProductComponent>) { 
+  constructor(private dialogRef: NbDialogRef<AddProductComponent>) {
     this.productCount = localStorage.getItem('Products') ? JSON.parse(localStorage.getItem('Products')!).length : 0;
-    this.newProduct.ProductId = (this.productCount + 1).toString();
+    this.newProduct.ProductId = (this.productCount + 1).toString(); // AI generated
     console.log(this.productCount);
   }
 
-  newProduct = { ProductId:'', Name: '', Rate: null };
+  newProduct = { ProductId: '', Name: '', Rate: null };
 
   addProduct() {
-    const product:Product = { ...this.newProduct };
-    if( product.ProductId && product.Name && product.Rate) {
+    const product: Product = { ...this.newProduct };
+    if (product.ProductId && product.Name && product.Rate) {
       this.dialogRef.close(product);
     }
   }

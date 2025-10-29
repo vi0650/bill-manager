@@ -10,6 +10,7 @@ import { NebulerModule } from '../shared/nebuler.module';
 import { RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule } from '@angular/forms';
+import { NbTimepickerModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     RouterModule,
     NebulerModule,
+    NbTimepickerModule.forChild(),
     AdminRoutingModule,
     FormsModule,
   ]

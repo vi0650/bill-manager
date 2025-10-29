@@ -71,16 +71,17 @@
             placeholder="Select Invoice Date"
             required
           />
-          <nb-datepicker #datepicker></nb-datepicker>
+          <nb-date-timepicker #datepicker></nb-date-timepicker>
         </div>
       </div>
 
       <div class="col-sm-6 form-group">
-        <label for="dueDateInput" class="label">Add Address</label>
+        <label for="invoiceAddressInput" class="label">Add Address</label>
         <textarea
           nbInput
           fullWidth
           rows="3"
+          id="invoiceAddressInput"
           placeholder="Add address here...."
           [(ngModel)]="addInvoice.Address"
           name="Address"
@@ -111,7 +112,6 @@
                 hero
                 required
                 fullWidth
-                [selected]="selectedProduct"
                 [(ngModel)]="item.product"
                 (ngModelChange)="updateRate(item)"
                 name="products_{{ i }}"

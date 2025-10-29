@@ -1,13 +1,13 @@
- .action button {
-    margin: 0 1rem 0 1rem;
- }
- 
- .card-content{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
- }
+.action button {
+  margin: 0 1rem 0 1rem;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 
 .product-name {
   margin: 0;
@@ -16,7 +16,9 @@
   color: var(--text-basic-color);
 }
 
-.product-price, .product-category, .product-id {
+.product-price,
+.product-category,
+.product-id {
   font-size: 0.9rem;
   color: var(--text-hint-color);
   margin-left: 1rem; /* Space between price and category */

@@ -1,32 +1,54 @@
 <nb-actions size="medium">
-    <nb-action >
-      <button nbButton>
-        <nb-icon
-          class="nb-icon"
-          icon="person-add"
-          (click)="openAddInvoiceDialog()"
-        ></nb-icon> 
-      </button>
-    </nb-action>
-  </nb-actions>
-  
-  <nb-card size="medium">
-    <nb-card-header>Invoices</nb-card-header>
-    <nb-card-body>
-      <ng-container>
-        <nb-list>
-          <nb-list-item class="card-content" *ngFor="let users of Admin; let i = index">
-            <nb-user [name]="users.shopName" [title]="users.emailId"> </nb-user>
-            <button nbButton size="small">
-            <nb-icon
-              class="card-icon"
-              icon="trash-2"
-              [options]="{ animation: { type: 'shake' } }"
-            ></nb-icon>
-          </button>
-          </nb-list-item>
-        </nb-list>
-      </ng-container>
-    </nb-card-body>
-  </nb-card>
-  
+  <nb-action class="action">
+    <button nbButton>
+      <nb-icon
+        class="nb-icon"
+        icon="file-add-outline"
+        status="primary"
+        (click)="openAddInvoiceDialog()"
+      ></nb-icon>
+    </button>
+    <button nbButton (click)="refresh()">
+      <nb-icon status="danger" icon="sync-outline"></nb-icon>
+    </button>
+  </nb-action>
+</nb-actions>
+
+<nb-card size="medium">
+  <nb-card-header>Invoices</nb-card-header>
+  <nb-card-body>
+    <ng-container>
+      <nb-list>
+        <nb-list-item
+          class="card-content"
+          *ngFor="let invoice of invoices; let i = index"
+        >
+          <nb-tag [status]="statusUpdate.status" appearance="outline" [text]="statusUpdate.text"></nb-tag>
+          <div class="invoice-name">
+            {{ invoice.invoiceId }} - {{ invoice.customerName }}
+          </div>
+          <span class="invoice-price">{{
+            invoice.InvoiceDate | date : "medium"
+          }}</span>
+          <div id="button">
+            <button nbButton size="small" ghost status="primary">
+              <nb-icon
+                class="card-icon"
+                icon="edit-2-outline"
+                (click)="editInvoiceDialog(i)"
+              ></nb-icon>
+            </button>
+            <button nbButton size="small" ghost status="danger">
+              <nb-icon
+                class="card-icon"
+                icon="trash-2"
+                [options]="{ animation: { type: 'shake' } }"
+                (click)="deleteInvoice(i)"
+              ></nb-icon>
+            </button>
+          </div>
+        </nb-list-item>
+      </nb-list>
+    </ng-container>
+  </nb-card-body>
+</nb-card>

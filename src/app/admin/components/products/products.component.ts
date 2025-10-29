@@ -9,9 +9,9 @@ import { Product } from '../../../core/models/product.model';
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent {
+export class ProductsComponent{
 
-  constructor(private NbDialogService: NbDialogService, private NbTostr: NbToastrService) { }
+  constructor(private productDialogService: NbDialogService, private NbTostr: NbToastrService) { }
 
   ngOnInit() {
     this.getProductsData();
@@ -24,10 +24,7 @@ export class ProductsComponent {
     if (storedProducts) {
       this.Products = JSON.parse(storedProducts);
     } else {
-      this.Products = [{ ProductId: '1', Name: 'Evo x30 3D Printer', Rate: 12000 },
-      { ProductId: '2', Name: 'Creality Ender 3 Pro', Rate: 15000 },
-      { ProductId: '3', Name: 'Anycubic i3 Mega', Rate: 18000 }
-      ];
+      this.Products = [{ ProductId: '1', Name: 'dummy data', Rate: 100 }];
       this.setProductsData();
     }
   }
@@ -38,12 +35,12 @@ export class ProductsComponent {
 
   openAddProductDialog() {
     console.log('opening dialog...');
-    const dialogRef = this.NbDialogService.open(AddProductComponent);
-    dialogRef.onClose.subscribe((product) => {
+    const productDialog = this.productDialogService.open(AddProductComponent);
+    productDialog.onClose.subscribe((product) => {
       if (product && product.ProductId && product.Name && product.Rate) {
         const productExist = this.Products.find(p => p.Name === product.Name);
-        if(productExist){
-          this.NbTostr.danger("please use unique name for Products",`${product.Name} already exist.`)
+        if (productExist) {
+          this.NbTostr.danger("please use unique name for Products", `${product.Name} already exist.`)
           return;
         }
         console.log('Product received:', product);
@@ -56,7 +53,6 @@ export class ProductsComponent {
   }
 
   deleteProduct(i: number) {
-    localStorage.removeItem('Products');
     this.Products.splice(i, 1);
     this.setProductsData();
   }

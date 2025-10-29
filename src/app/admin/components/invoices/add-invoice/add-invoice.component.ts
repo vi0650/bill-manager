@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
-import { Invoice, invoiceItems } from '../../../../core/models/invoice.model';
+import { Invoice, invoiceItems, statusDetail } from '../../../../core/models/invoice.model';
 import { Product } from '../../../../core/models/product.model';
 
 @Component({
@@ -10,32 +10,51 @@ import { Product } from '../../../../core/models/product.model';
   styleUrl: './add-invoice.component.scss',
 })
 export class AddInvoiceComponent {
+
+  @Input() isEdit = false;
+  @Input() editInvoice?: Invoice;
+
+  invoiceCount: number = 0;
   constructor(
-    protected dialogRef: NbDialogRef<AddInvoiceComponent>,
+    protected invoiceDialogRef: NbDialogRef<AddInvoiceComponent>,
     private NbTostr: NbToastrService
-  ) { }
+  ) {
+    this.invoiceCount = localStorage.getItem('Invoices') ? JSON.parse(localStorage.getItem('Invoices')!).length : 0;
+    this.addInvoice.invoiceId = (this.invoiceCount + 1);
+    console.log(this.invoiceCount);
+  }
 
   ngOnInit(): void {
     this.getProductData();
+    if (this.isEdit && this.editInvoice) {
+      this.addInvoice = {
+        ...this.editInvoice, 
+        items: this.editInvoice.items.map(item => ({ ...item })),
+        InvoiceDate: new Date(this.editInvoice.InvoiceDate),
+      };
+    } else {
+      this.invoiceCount = localStorage.getItem('Invoices') ? 
+      JSON.parse(localStorage.getItem('Invoices')!).length : 0;
+      this.addInvoice.invoiceId = (this.invoiceCount + 1);
+    }
   }
 
   // ------------------product data fetch from local storage--------------------------------
 
   products: Product[] = [];
   getProductData() {
-    const fetchProduct = localStorage.getItem('Products');
-    if (fetchProduct) {
-      this.products = JSON.parse(fetchProduct);
+    const productData = localStorage.getItem('Products');
+    if (productData) {
+      this.products = JSON.parse(productData);
     }
   }
 
   // ---------------Invoice add form-----------------------------------
 
-  gstRate: number[] = [2, 5, 12, 18, 28];
-
-  invoice: Invoice[] = [];
+  gstRate: number[] = [0, 5, 18, 40];
+  invoice: Invoice[] | null = null;
   selectedProduct: string = '';
-  selectedGst: number | null = 0;
+  selectedGst: number | null = null;
 
   emptyItem(): invoiceItems {
     return {
@@ -47,7 +66,8 @@ export class AddInvoiceComponent {
     } as invoiceItems;
   }
 
-  addInvoice = {
+  addInvoice: Invoice = {
+    invoiceId: 0,
     customerName: '',
     phoneNo: '',
     emailAddress: '',
@@ -132,19 +152,20 @@ export class AddInvoiceComponent {
   // ---------------------------------------after invoice filled validate------------------------------------------------------------------------
 
   cancel() {
-    this.dialogRef.close();
+    this.invoiceDialogRef.close();
   }
 
   saveInvoice() {
     const invoiceData: Invoice = { ...this.addInvoice };
     if (
+      invoiceData.invoiceId &&
       invoiceData.customerName &&
       invoiceData.phoneNo &&
       invoiceData.InvoiceDate &&
       invoiceData.Address &&
       invoiceData.items
     ) {
-      this.dialogRef.close(invoiceData);
+      this.invoiceDialogRef.close(invoiceData);
     }
     console.log(invoiceData);
   }
