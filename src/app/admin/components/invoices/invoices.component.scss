@@ -1,32 +1,81 @@
-.action button {
-  margin: 0 1rem 0 1rem;
+:host {
+  
+  :ng-deep nb-list-item {
+    display: flex;
+    flex-wrap: nowrap; /* Don't wrap on desktop */
+    justify-content: space-between; /* Pushes content left, buttons right */
+    align-items: center;
+    width: 100%;
+    padding: 1rem 0.75rem !important; /* Add some padding */
+  }
+
+  /* This container holds the text content (Name, Date).
+    It stacks them vertically.
+  */
+  .item-main-content {
+    display: flex;
+    flex-direction: column; /* Stacks row-1 and row-2 */
+    flex-grow: 1; /* Takes up available space */
+    min-width: 0; /* Prevents text from overflowing */
+  }
+
+  /* First row of text (Tag, ID, Name) */
+  .item-row-1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.35rem;
+
+    nb-tag {
+      margin-right: 0.75rem; /* Space between tag and name */
+      flex-shrink: 0; /* Stops the tag from shrinking */
+    }
+
+    .item-id-name {
+      font-size: 1rem;
+      font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; /* Adds '...' if name is too long */
+    }
+  }
+
+  /* Second row of text (Date) */
+  .item-row-2 {
+    flex-grow: 1;
+    .item-date {
+      font-size: 0.875rem;
+      color: #8f9bb3; /* Nebular's subtle text color */
+    }
+  }
+
+  /* Container for the buttons.
+    Ensures they are side-by-side as requested.
+  */
+  .item-actions {
+    display: flex;
+    flex-direction: row; /* Buttons side-by-side */
+    flex-shrink: 0; /* Stops buttons from shrinking */
+    margin-left: 1rem; /* Space between text and buttons */
+  }
 }
 
-.card-content {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
+@media (max-width: 576px) {
+  :host {
+    ::ng-deep nb-list-item {
+      flex-wrap: wrap;
+      row-gap: 0.75rem;
+    }
 
-.invoice-name {
-  margin: 0;
-  font-weight: 600;
-  color: var(--text-basic-color);
-}
+    .item-main-content {
+      flex-basis: 70%;
+      margin-right: 0;
+      flex-grow: 1
+    }
 
-.invoice-name,
-.invoice-category,
-.invoice-id {
-  font-size: 1rem;
-  color: var(--text-hint-color);
-  margin-left: 1rem;
-}
-
-#button {
-  align-items: center;
-
-  button {
-    margin-right: 0.5rem;
+    .item-actions {
+      flex-basis: 30%;
+      justify-content: flex-end;
+      margin-left: 0;
+    }
   }
 }
