@@ -46,7 +46,7 @@ export class ProductsComponent{
         console.log('Product received:', product);
         this.Products.push(product);
         this.setProductsData();
-        this.NbTostr.success("Product " + `${product.Name}` + " added successfully.", "Success", { duration: 3000 });
+        this.NbTostr.success(`Product added successfully.`, "SUCCESS", { duration: 3000 });
       }
       console.log('Dialog closed', product);
     })

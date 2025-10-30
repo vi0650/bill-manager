@@ -90,10 +90,6 @@ export class AddInvoiceComponent {
     statusUpdate: [this.emptystatus()],
   };
 
-  onStatusChange(index:number,value:any){
-    this.addInvoice.statusUpdate[index] = value;
-  }
-
   addItem() {
     const newIndex = this.addInvoice.items.length - 1;
     const newItem = this.addInvoice.items[newIndex];
@@ -102,7 +98,7 @@ export class AddInvoiceComponent {
     } else {
       this.NbTostr.info(
         'please enter product,rate & quantity',
-        `Details are Missing`
+        'Details are Missing'
       );
     }
     console.log(this.addInvoice.items);
@@ -179,7 +175,7 @@ export class AddInvoiceComponent {
       invoiceData.Address &&
       invoiceData.items &&
       invoiceData.comments &&
-      invoiceData.statusUpdate 
+      invoiceData.statusUpdate
     ) {
       this.invoiceDialogRef.close(invoiceData);
     }

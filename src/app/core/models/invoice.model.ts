@@ -24,6 +24,6 @@ export interface invoiceItems {
 }
 
 export interface statusDetail{
-  status:string,
-  text:string
+  status:string | any,
+  text:string | any
 }
