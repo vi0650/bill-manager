@@ -11,7 +11,8 @@ export interface Invoice {
   comments:string | any,
   subtotal: Number | null | any,
   gstAmount: Number | null | any,
-  grandTotal: Number | null | any
+  grandTotal: Number | null | any,
+  statusUpdate: statusDetail[];
 };
 
 export interface invoiceItems {

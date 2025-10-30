@@ -41,9 +41,7 @@
             />
           </div>
         </div>
-      
 
-      
         <div class="col-sm-6">
           <div class="form-group">
             <label for="emailInput" class="label">Email Address</label>
@@ -158,7 +156,6 @@
                 [(ngModel)]="item.gst"
                 (ngModelChange)="calculateAmount(item)"
                 (ngModelChange)="grandTotal()"
-                multiple="disabled"
                 name="gst_{{ i }}"
               >
                 <nb-option>select option</nb-option>
@@ -168,7 +165,7 @@
               </nb-select>
             </div>
 
-            <div class="item-col col-amount" >
+            <div class="item-col col-amount">
               {{ item.amount | currency : "INR" }}
             </div>
             <div class="delete-item-btn col-delete">
@@ -206,11 +203,31 @@
           <textarea
             nbInput
             fullWidth
+            required
             rows="4"
             placeholder="Add comments here..."
             name="comments"
             [(ngModel)]="addInvoice.comments"
           ></textarea>
+          <ng-container
+            *ngFor="let status of addInvoice.statusUpdate; let i = index"
+          >
+            <nb-select
+              hero
+              required
+              placeholder="Payment"
+              [(ngModel)]="addInvoice.statusUpdate[i]"
+              name="select_status_{{i}}"
+            >
+              <nb-option>select option</nb-option>
+              <nb-option
+                *ngFor="let status of statusUpdate"
+                [value]="status"
+              >
+                {{ status.text }}
+              </nb-option>
+            </nb-select>
+          </ng-container>
           <p class="comment-text">1. Full payment is required...</p>
           <p class="comment-text">2. Please Provide accurate details...</p>
         </div>
@@ -229,7 +246,7 @@
           <div class="totals-row grand-total-row">
             <span class="font-weight-bold">GRAND TOTAL</span>
             <span class="font-weight-bold">
-              {{addInvoice.grandTotal | currency : "INR"}}
+              {{ addInvoice.grandTotal | currency : "INR" }}
             </span>
           </div>
         </div>

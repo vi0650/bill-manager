@@ -25,11 +25,13 @@
         >
           <div class="item-main-content">
             <div class="item-row-1">
-              <nb-tag
-                [status]="statusUpdate.status"
-                appearance="outline"
-                [text]="statusUpdate.text"
-              ></nb-tag>
+              <ng-container *ngFor="let status of invoice.statusUpdate">
+                <nb-tag
+                  [status]="status.status"
+                  appearance="outline"
+                  [text]="status.text"
+                ></nb-tag>
+              </ng-container>
               <span class="item-id-name">
                 {{ invoice.invoiceId }} - {{ invoice.customerName }}
               </span>

@@ -11,7 +11,7 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class AddInvoiceComponent {
 
-  @Input() isEdit = false;
+  @Input() isEdit = false; // when open invoice dialog it checks
   @Input() editInvoice?: Invoice;
 
   invoiceCount: number = 0;
@@ -19,6 +19,8 @@ export class AddInvoiceComponent {
     protected invoiceDialogRef: NbDialogRef<AddInvoiceComponent>,
     private NbTostr: NbToastrService
   ) {
+
+    // for generate invoice id
     this.invoiceCount = localStorage.getItem('Invoices') ? JSON.parse(localStorage.getItem('Invoices')!).length : 0;
     this.addInvoice.invoiceId = (this.invoiceCount + 1);
     console.log(this.invoiceCount);
@@ -28,13 +30,14 @@ export class AddInvoiceComponent {
     this.getProductData();
     if (this.isEdit && this.editInvoice) {
       this.addInvoice = {
-        ...this.editInvoice, 
+        ...this.editInvoice,
         items: this.editInvoice.items.map(item => ({ ...item })),
         InvoiceDate: new Date(this.editInvoice.InvoiceDate),
+        statusUpdate:this.editInvoice.statusUpdate.map(status => ({...status}))
       };
     } else {
-      this.invoiceCount = localStorage.getItem('Invoices') ? 
-      JSON.parse(localStorage.getItem('Invoices')!).length : 0;
+      this.invoiceCount = localStorage.getItem('Invoices') ?
+        JSON.parse(localStorage.getItem('Invoices')!).length : 0;
       this.addInvoice.invoiceId = (this.invoiceCount + 1);
     }
   }
@@ -52,8 +55,7 @@ export class AddInvoiceComponent {
   // ---------------Invoice add form-----------------------------------
 
   gstRate: number[] = [0, 5, 18, 40];
-  invoice: Invoice[] | null = null;
-  selectedProduct: string = '';
+  statusUpdate: statusDetail[] = [{ text: 'paid', status: 'success' },{ text:'pending' , status:'warning'}];
   selectedGst: number | null = null;
 
   emptyItem(): invoiceItems {
@@ -64,6 +66,13 @@ export class AddInvoiceComponent {
       gst: this.selectedGst,
       amount: null,
     } as invoiceItems;
+  }
+
+  emptystatus(): statusDetail {
+    return {
+      status:'',
+      text:''
+    } as statusDetail;
   }
 
   addInvoice: Invoice = {
@@ -78,7 +87,12 @@ export class AddInvoiceComponent {
     subtotal: 0,
     gstAmount: 0,
     grandTotal: 0,
+    statusUpdate: [this.emptystatus()],
   };
+
+  onStatusChange(index:number,value:any){
+    this.addInvoice.statusUpdate[index] = value;
+  }
 
   addItem() {
     const newIndex = this.addInvoice.items.length - 1;
@@ -163,7 +177,9 @@ export class AddInvoiceComponent {
       invoiceData.phoneNo &&
       invoiceData.InvoiceDate &&
       invoiceData.Address &&
-      invoiceData.items
+      invoiceData.items &&
+      invoiceData.comments &&
+      invoiceData.statusUpdate 
     ) {
       this.invoiceDialogRef.close(invoiceData);
     }

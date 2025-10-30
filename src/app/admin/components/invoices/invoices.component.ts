@@ -19,8 +19,6 @@ export class InvoicesComponent {
     this.getInvoiceData();
   }
 
-  statusUpdate = {status: 'success',text:'paid'}
-
   invoices: Invoice[] = [];
 
   getInvoiceData() {
@@ -52,7 +50,8 @@ export class InvoicesComponent {
         invoice.phoneNo &&
         invoice.InvoiceDate &&
         invoice.Address &&
-        invoice.items
+        invoice.items &&
+        invoice.statusUpdate
       ) {
         this.invoices.push(invoice);
         this.setInvoiceData();
@@ -68,6 +67,7 @@ export class InvoicesComponent {
       ...this.invoices[i],
       items: this.invoices[i].items.map((item) => ({ ...item })),
       InvoiceDate: new Date(this.invoices[i].InvoiceDate),
+      statusUpdate:this.invoices[i].statusUpdate.map((status) => ({...status}))
     };
     const invoiceDialog = this.invoiceDialogService.open(AddInvoiceComponent, {
       context: {
@@ -83,7 +83,8 @@ export class InvoicesComponent {
         updatedInvoice.phoneNo &&
         updatedInvoice.InvoiceDate &&
         updatedInvoice.Address &&
-        updatedInvoice.items
+        updatedInvoice.items &&
+        updatedInvoice.statusUpdate
       ) {
         this.invoices[i] = updatedInvoice;
         this.setInvoiceData();
