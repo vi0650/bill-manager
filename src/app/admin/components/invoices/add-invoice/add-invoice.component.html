@@ -13,78 +13,39 @@
         <div class="col-sm-6">
           <div class="form-group">
             <label for="nameInput" class="label">Name</label>
-            <input
-              type="text"
-              nbInput
-              fullWidth
-              id="nameInput"
-              [(ngModel)]="addInvoice.customerName"
-              name="customerName"
-              placeholder="Enter Customer Name"
-              required
-            />
+            <input type="text" nbInput fullWidth id="nameInput" [(ngModel)]="addInvoice.customerName"
+              name="customerName" placeholder="Enter Customer Name" required />
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-group">
             <label for="phoneInput" class="label">Phone No</label>
-            <input
-              type="tel"
-              nbInput
-              fullWidth
-              id="phoneInput"
-              [(ngModel)]="addInvoice.phoneNo"
-              name="phoneNo"
-              placeholder="Enter Phone No"
-              required
-            />
+            <input type="tel" nbInput fullWidth id="phoneInput" [(ngModel)]="addInvoice.phoneNo" name="phoneNo"
+              placeholder="Enter Phone No" required />
           </div>
         </div>
 
         <div class="col-sm-6">
           <div class="form-group">
             <label for="emailInput" class="label">Email Address</label>
-            <input
-              type="email"
-              nbInput
-              fullWidth
-              id="emailInput"
-              [(ngModel)]="addInvoice.emailAddress"
-              name="emailAddress"
-              placeholder="Enter Email Address"
-            />
+            <input type="email" nbInput fullWidth id="emailInput" [(ngModel)]="addInvoice.emailAddress"
+              name="emailAddress" placeholder="Enter Email Address" />
           </div>
         </div>
 
         <div class="col-sm-6 form-group">
           <label for="invoiceDateInput" class="label">Invoice Date</label>
-          <input
-            [nbDatepicker]="datepicker"
-            nbInput
-            fullWidth
-            id="invoiceDateInput"
-            [(ngModel)]="addInvoice.InvoiceDate"
-            name="invoiceDate"
-            placeholder="Select Invoice Date"
-            required
-          />
+          <input [nbDatepicker]="datepicker" nbInput fullWidth id="invoiceDateInput"
+            [(ngModel)]="addInvoice.InvoiceDate" name="invoiceDate" placeholder="Select Invoice Date" required />
           <nb-date-timepicker #datepicker></nb-date-timepicker>
         </div>
       </div>
 
       <div class="col-sm-6 form-group">
         <label for="invoiceAddressInput" class="label">Add Address</label>
-        <textarea
-          nbInput
-          fullWidth
-          rows="3"
-          id="invoiceAddressInput"
-          placeholder="Add address here...."
-          [(ngModel)]="addInvoice.Address"
-          name="Address"
-          required
-        ></textarea>
+        <textarea nbInput fullWidth rows="3" id="invoiceAddressInput" placeholder="Add address here...."
+          [(ngModel)]="addInvoice.Address" name="Address" required></textarea>
       </div>
 
       <h5 class="section-title">Items Details</h5>
@@ -105,63 +66,28 @@
           <div class="items-row data-row">
             <div class="item-col col-srno">{{ i + 1 }}</div>
             <div class="item-col col-products">
-              <nb-select
-                placeholder="Choose Product"
-                hero
-                required
-                fullWidth
-                [(ngModel)]="item.product"
-                (ngModelChange)="updateRate(item)"
-                name="products_{{ i }}"
-              >
+              <nb-select placeholder="Choose Product" hero required fullWidth [(ngModel)]="item.product"
+                (ngModelChange)="updateRate(item)" name="products_{{ i }}">
                 <nb-option>select option</nb-option>
-                <nb-option
-                  *ngFor="let product of products"
-                  [value]="product.Name"
-                  >{{ product.Name }}</nb-option
-                >
+                <nb-option *ngFor="let product of products" [value]="product.Name">{{ product.Name }}</nb-option>
               </nb-select>
             </div>
             <div class="item-col col-rate">
-              <input
-                type="number"
-                nbInput
-                fullWidth
-                required
-                placeholder="0"
-                [(ngModel)]="item.rate"
-                (ngModelChange)="calculateAmount(item)"
-                (ngModelChange)="grandTotal()"
-                name="rate_{{ i }}"
-              />
+              <input type="number" nbInput fullWidth required placeholder="0" [(ngModel)]="item.rate"
+                (ngModelChange)="calculateAmount(item)" (ngModelChange)="grandTotal()" name="rate_{{ i }}" />
             </div>
             <div class="item-col col-qty">
-              <input
-                type="number"
-                nbInput
-                fullWidth
-                required
-                placeholder="0"
-                [(ngModel)]="item.qty"
-                (ngModelChange)="calculateAmount(item)"
-                (ngModelChange)="grandTotal()"
-                name="qty_{{ i }}"
-              />
+              <input type="number" nbInput fullWidth required placeholder="0" [(ngModel)]="item.qty"
+                (ngModelChange)="calculateAmount(item)" (ngModelChange)="grandTotal()" name="qty_{{ i }}" />
             </div>
 
             <div class="item-col col-gst">
-              <nb-select
-                hero
-                placeholder="Gst"
-                [(ngModel)]="item.gst"
-                (ngModelChange)="calculateAmount(item)"
-                (ngModelChange)="grandTotal()"
-                name="gst_{{ i }}"
-              >
+              <nb-select hero placeholder="Gst" [(ngModel)]="item.gst" (ngModelChange)="calculateAmount(item)"
+                (ngModelChange)="grandTotal()" name="gst_{{ i }}">
                 <nb-option>select option</nb-option>
                 <nb-option *ngFor="let gst of gstRate" [value]="gst">{{
                   gst + "%"
-                }}</nb-option>
+                  }}</nb-option>
               </nb-select>
             </div>
 
@@ -169,15 +95,8 @@
               {{ item.amount | currency : "INR" }}
             </div>
             <div class="delete-item-btn col-delete">
-              <button
-                nbButton
-                outline
-                status="danger"
-                size="small"
-                class="item-col"
-                (ngModelChange)="grandTotal()"
-                (click)="removeItem(i)"
-              >
+              <button nbButton outline status="danger" size="small" class="item-col" (ngModelChange)="grandTotal()"
+                (click)="removeItem(i)">
                 <nb-icon icon="trash-2-outline"></nb-icon>
               </button>
             </div>
@@ -185,13 +104,7 @@
         </ng-container>
 
         <div class="item-col add-item-btn-container">
-          <button
-            nbButton
-            outline
-            status="primary"
-            size="small"
-            (click)="addItem()"
-          >
+          <button nbButton outline status="primary" size="small" (click)="addItem()">
             <nb-icon icon="plus-outline"></nb-icon> ADD
           </button>
         </div>
@@ -200,29 +113,13 @@
       <div class="row mt-4">
         <div class="col-sm-6">
           <h6 class="comments-title">Comments</h6>
-          <textarea
-            nbInput
-            fullWidth
-            rows="4"
-            placeholder="Add comments here..."
-            name="comments"
-            [(ngModel)]="addInvoice.comments"
-          ></textarea>
-          <ng-container
-            *ngFor="let status of addInvoice.statusUpdate; let i = index"
-          >
-            <nb-select
-              hero
-              required
-              placeholder="Payment"
-              [(ngModel)]="addInvoice.statusUpdate[i]"
-              name="select_status_{{i}}"
-            >
+          <textarea nbInput fullWidth rows="4" placeholder="Add comments here..." name="comments"
+            [(ngModel)]="addInvoice.comments"></textarea>
+          <ng-container *ngFor="let status of addInvoice.statusUpdate; let i = index">
+            <nb-select hero required placeholder="Payment" [(ngModel)]="addInvoice.statusUpdate[i]"
+              name="select_status_{{i}}">
               <nb-option>select option</nb-option>
-              <nb-option
-                *ngFor="let status of statusUpdate"
-                [value]="status"
-              >
+              <nb-option *ngFor="let status of statusUpdate" [value]="status">
                 {{ status.text }}
               </nb-option>
             </nb-select>
@@ -256,14 +153,14 @@
   <nb-card-footer>
     <div class="action-buttons">
       <button nbButton status="danger" (click)="cancel()">CANCEL</button>
-      <button
-        nbButton
-        status="success"
-        (click)="saveInvoice()"
-        [disabled]="!form.valid"
-      >
-        ADD
+      <button nbButton status="success" (click)="saveInvoice()" [disabled]="!form.valid" *ngIf="isEdit; else add">
+        Save
       </button>
+      <ng-template #add>
+        <button nbButton status="success" (click)="saveInvoice()" [disabled]="!form.valid">
+          Add
+        </button>
+      </ng-template>
     </div>
   </nb-card-footer>
 </nb-card>

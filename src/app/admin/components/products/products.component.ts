@@ -52,6 +52,9 @@ export class ProductsComponent{
     })
   }
 
+  editProductDialog(i:number){
+  }
+
   deleteProduct(i: number) {
     this.Products.splice(i, 1);
     this.setProductsData();

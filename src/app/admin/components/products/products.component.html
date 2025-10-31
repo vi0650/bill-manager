@@ -1,12 +1,7 @@
 <nb-actions size="medium">
   <nb-action class="action">
-    <button nbButton>
-      <nb-icon
-        class="nb-icon"
-        icon="plus-outline"
-        status="primary"
-        (click)="openAddProductDialog()"
-      ></nb-icon>
+    <button nbButton (click)="openAddProductDialog()">
+      <nb-icon class="nb-icon" icon="plus-outline" status="primary"></nb-icon>
     </button>
     <button nbButton (click)="refresh()">
       <nb-icon status="danger" icon="sync-outline"></nb-icon>
@@ -21,19 +16,21 @@
       <nb-list>
         <nb-list-item class="card-content" *ngFor="let Product of Products; let i = index">
           <div class="product-name">
-           {{Product.ProductId}} - {{Product.Name}}
+            {{Product.ProductId}} - {{Product.Name}}
           </div>
           <span class="product-price">{{Product.Rate | currency:'INR'}}</span>
-          <button nbButton size="small" ghost status="danger">
+          <button nbButton size="small" ghost status="primary">
               <nb-icon
                 class="card-icon"
-                icon="trash-2"
-                [options]="{ animation: { type: 'shake' } }"
-                (click)="deleteProduct(i)"
+                icon="edit-2-outline"
+                (click)="editProductDialog(i)"
               ></nb-icon>
             </button>
+          <button nbButton size="small" ghost status="danger" (click)="deleteProduct(i)">
+            <nb-icon class="card-icon" icon="trash-2" [options]="{ animation: { type: 'pulse' } }"></nb-icon>
+          </button>
         </nb-list-item>
       </nb-list>
-    </ng-container> 
+    </ng-container>
   </nb-card-body>
 </nb-card>

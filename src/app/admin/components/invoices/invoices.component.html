@@ -1,11 +1,10 @@
 <nb-actions size="medium">
   <nb-action class="action">
-    <button nbButton>
+    <button nbButton (click)="openAddInvoiceDialog()">
       <nb-icon
         class="nb-icon"
         icon="file-add-outline"
         status="primary"
-        (click)="openAddInvoiceDialog()"
       ></nb-icon>
     </button>
     <button nbButton (click)="refresh()">
@@ -52,12 +51,11 @@
                 (click)="editInvoiceDialog(i)"
               ></nb-icon>
             </button>
-            <button nbButton size="small" ghost status="danger">
+            <button nbButton size="small" ghost status="danger" (click)="deleteInvoice(i)">
               <nb-icon
                 class="card-icon"
                 icon="trash-2"
-                [options]="{ animation: { type: 'shake' } }"
-                (click)="deleteInvoice(i)"
+                [options]="{ animation: { type: 'pulse' } }"
               ></nb-icon>
             </button>
           </div>

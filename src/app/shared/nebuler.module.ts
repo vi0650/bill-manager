@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { NbAuthModule } from '@nebular/auth'
 import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTagModule, NbThemeModule, NbToastrModule, NbUserModule } from '@nebular/theme';
 
 @NgModule({
@@ -11,6 +12,7 @@ import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbD
     NbDialogModule.forRoot(),
     NbToastrModule.forRoot(),
     NbDatepickerModule.forRoot(),
+    NbAuthModule.forRoot(),
     NbLayoutModule,
     NbEvaIconsModule,
     NbTagModule,
@@ -33,6 +35,7 @@ import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbD
     NbDatepickerModule,
     NbTagModule,
     NbFormFieldModule,
+    NbAuthModule
   ]
 })
 export class NebulerModule { }

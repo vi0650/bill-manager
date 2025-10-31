@@ -9,6 +9,8 @@ import { NebulerModule } from './shared/nebuler.module';
 import { HomeComponent } from './home/home.component';
 import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { AuthModule } from './auth/auth.module';
+
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
     AdminModule,
     SuperAdminModule,
     NebulerModule,
+    AuthModule,
     HomeComponent,
   ],
   providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations()],

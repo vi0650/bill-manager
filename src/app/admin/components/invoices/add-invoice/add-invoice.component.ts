@@ -49,13 +49,15 @@ export class AddInvoiceComponent {
     if (productData) {
       this.products = JSON.parse(productData);
     }
-  }
+  } // made by self
 
-  // ---------------Invoice add form-----------------------------------
+  //---------------Invoice add form-----------------------------------
 
   gstRate: number[] = [0, 5, 18, 40];
   statusUpdate: statusDetail[] = [{ text: 'paid', status: 'success' }, { text: 'pending', status: 'warning' }];
   selectedGst: number | null = null;
+
+  // this is array object variables which store values during add data and push into interface array object
 
   emptyItem(): invoiceItems {
     return {
@@ -64,15 +66,10 @@ export class AddInvoiceComponent {
       rate: null,
       gst: this.selectedGst,
       amount: null,
-    } as invoiceItems;
+    } as invoiceItems; //using gemini for nested array object of array
   }
 
-  emptyStatus(): statusDetail {
-    return {
-      status: '',
-      text: ''
-    } as statusDetail;
-  }
+  emptyStatus: statusDetail[]=[{status: '',text: ''}] // again same learn from gemini and used here for implement another nested array object of array
 
   addInvoice: Invoice = {
     invoiceId: 0,
@@ -81,12 +78,12 @@ export class AddInvoiceComponent {
     emailAddress: '',
     InvoiceDate: new Date(),
     Address: '',
-    items: [this.emptyItem()],
+    items: [this.emptyItem()], // nested array object array
     comments: '',
     subtotal: 0,
     gstAmount: 0,
     grandTotal: 0,
-    statusUpdate: [this.emptyStatus()],
+    statusUpdate: this.emptyStatus,
   };
 
   addItem() {
@@ -178,6 +175,5 @@ export class AddInvoiceComponent {
     ) {
       this.invoiceDialogRef.close(invoiceData);
     }
-    console.log(invoiceData);
   }
 }
