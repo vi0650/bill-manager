@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Admins } from '../core/models/admin.model';
 import { NbSidebarService } from '@nebular/theme';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
 
 @Component({
   selector: 'admin',
@@ -10,30 +11,47 @@ import { NbSidebarService } from '@nebular/theme';
 })
 export class AdminComponent {
 
-  constructor(private sidebarService: NbSidebarService) {
+  loading: boolean = false;
+
+  private navigationComplete: boolean = true;
+  private loadtimePassed:boolean = true;
+
+  constructor(private sidebarService: NbSidebarService, private router: Router) {
+    this.getData()
   }
 
-  @Input() AdminList: Admins[] = []
-
-  getData(){;
-    this.AdminList = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!) : [];
-    console.log(this.AdminList);
+  ngOnInit(): void {
+    this.routerSpinner()
   }
 
-  menuItems =[
+  menuItems = [
     { title: 'Invoices', icon: 'file-add-outline', link: 'invoices' },
     { title: 'Products', icon: 'cube', link: 'products' },
     { title: 'Profile', icon: 'settings-2-outline', link: 'profile' },
   ];
+
+  @Input() AdminList: Admins[] = []
+  
+  getData() {
+    this.AdminList = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!) : [];
+    console.log(this.AdminList);
+  }
 
   toggle() {
     this.sidebarService.toggle(true, 'super-sidebar');
     return false;
   }
 
-  loading = false;
-  spinner(){
-    this.loading = true;
-    setTimeout(() => this.loading = false , 2000);
+  routerSpinner() {
+    this.router.events.subscribe((Event) => {
+      if (Event instanceof NavigationStart) {
+        setTimeout(() => {
+          this.loading = true;
+        },2000);
+      }
+      if (Event instanceof NavigationCancel || Event instanceof NavigationEnd || Event instanceof NavigationError){
+        this.loading = false
+      }
+    })
   }
 }

@@ -32,8 +32,7 @@ export class AddInvoiceComponent {
       this.addInvoice = {
         ...this.editInvoice,
         items: this.editInvoice.items.map(item => ({ ...item })),
-        InvoiceDate: new Date(this.editInvoice.InvoiceDate),
-        statusUpdate:this.editInvoice.statusUpdate.map(status => ({...status}))
+        InvoiceDate: new Date(this.editInvoice.InvoiceDate)
       };
     } else {
       this.invoiceCount = localStorage.getItem('Invoices') ?
@@ -55,7 +54,7 @@ export class AddInvoiceComponent {
   // ---------------Invoice add form-----------------------------------
 
   gstRate: number[] = [0, 5, 18, 40];
-  statusUpdate: statusDetail[] = [{ text: 'paid', status: 'success' },{ text:'pending' , status:'warning'}];
+  statusUpdate: statusDetail[] = [{ text: 'paid', status: 'success' }, { text: 'pending', status: 'warning' }];
   selectedGst: number | null = null;
 
   emptyItem(): invoiceItems {
@@ -68,10 +67,10 @@ export class AddInvoiceComponent {
     } as invoiceItems;
   }
 
-  emptystatus(): statusDetail {
+  emptyStatus(): statusDetail {
     return {
-      status:'',
-      text:''
+      status: '',
+      text: ''
     } as statusDetail;
   }
 
@@ -87,7 +86,7 @@ export class AddInvoiceComponent {
     subtotal: 0,
     gstAmount: 0,
     grandTotal: 0,
-    statusUpdate: [this.emptystatus()],
+    statusUpdate: [this.emptyStatus()],
   };
 
   addItem() {
@@ -168,13 +167,13 @@ export class AddInvoiceComponent {
   saveInvoice() {
     const invoiceData: Invoice = { ...this.addInvoice };
     if (
+      invoiceData &&
       invoiceData.invoiceId &&
       invoiceData.customerName &&
       invoiceData.phoneNo &&
       invoiceData.InvoiceDate &&
       invoiceData.Address &&
       invoiceData.items &&
-      invoiceData.comments &&
       invoiceData.statusUpdate
     ) {
       this.invoiceDialogRef.close(invoiceData);

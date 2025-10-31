@@ -39,7 +39,7 @@ export class InvoicesComponent {
     console.log('opening dialog...');
     const invoiceDialog = this.invoiceDialogService.open(AddInvoiceComponent, {
       context: {
-        isEdit: false,
+        isEdit: false,//when dialog opens context send false value to input 
       },
     });
     invoiceDialog.onClose.subscribe((invoice) => {
@@ -66,9 +66,10 @@ export class InvoicesComponent {
     const invoiceToEdit = {
       ...this.invoices[i],
       items: this.invoices[i].items.map((item) => ({ ...item })),
-      InvoiceDate: new Date(this.invoices[i].InvoiceDate),
-      statusUpdate:this.invoices[i].statusUpdate.map((status) => ({...status}))
+      InvoiceDate: new Date(this.invoices[i].InvoiceDate)
     };
+    console.log(invoiceToEdit);
+    
     const invoiceDialog = this.invoiceDialogService.open(AddInvoiceComponent, {
       context: {
         isEdit: true,

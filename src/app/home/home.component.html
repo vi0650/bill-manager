@@ -1,7 +1,7 @@
 <div class="welcome-content">
   <nb-card class="welcome-card">
     <nb-card-header>
-      <h2>Welcome to Bill Manager</h2>
+      <h2>Test mode</h2>
     </nb-card-header>
     <nb-card-body>
       <p>Please select a mode to continue</p>
@@ -21,5 +21,39 @@
         </button>
       </div>
     </nb-card-body>
+  </nb-card>
+
+  <nb-card>
+    <nb-card-header>
+      <h3>Login</h3>
+    </nb-card-header>
+
+    <nb-card-body>
+      <form (ngSubmit)="login()">
+
+          <label for="username-input" class="label">Username</label>
+          <nb-form-field>
+            <input nbInput fullWidth id="username-input" placeholder="Enter Username" />
+            <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
+          </nb-form-field>
+    
+
+          <label for="password-input" class="label">Password</label>
+          <nb-form-field>
+            <input nbInput fullWidth id="password-input" type="password" placeholder="Enter Password" />
+            <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
+          </nb-form-field>
+
+        <div class="login-button">
+          <button nbButton [routerLink]="['/{{selectRole}}']" status="primary" type="submit">
+            Login
+          </button>
+        </div>
+      </form>
+    </nb-card-body>
+
+    <nb-card-footer>
+      <p class="text-center">Forgot Password?</p>
+    </nb-card-footer>
   </nb-card>
 </div>

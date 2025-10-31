@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbAccordionModule, NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDatepickerModule, NbDialogModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTagModule, NbThemeModule, NbToastrModule, NbUserModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTagModule, NbThemeModule, NbToastrModule, NbUserModule } from '@nebular/theme';
 
 @NgModule({
   declarations: [],
@@ -11,8 +11,9 @@ import { NbAccordionModule, NbActionsModule, NbButtonModule, NbCardModule, NbCon
     NbDialogModule.forRoot(),
     NbToastrModule.forRoot(),
     NbDatepickerModule.forRoot(),
+    NbLayoutModule,
     NbEvaIconsModule,
-    NbTagModule
+    NbTagModule,
   ],
   exports: [
     NbLayoutModule,
@@ -30,8 +31,8 @@ import { NbAccordionModule, NbActionsModule, NbButtonModule, NbCardModule, NbCon
     NbListModule,
     NbSpinnerModule,
     NbDatepickerModule,
-    NbAccordionModule,
-    NbTagModule
+    NbTagModule,
+    NbFormFieldModule,
   ]
 })
 export class NebulerModule { }
