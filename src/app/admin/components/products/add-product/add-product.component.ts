@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NbDialogRef } from '@nebular/theme';
 import { Product } from '../../../../core/models/product.model';
 
@@ -10,14 +10,26 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class AddProductComponent {
 
+  @Input() isEdit = false;
+  @Input() editProduct?: Product;
+
   productCount: number = 0;
   constructor(private dialogRef: NbDialogRef<AddProductComponent>) {
     this.productCount = localStorage.getItem('Products') ? JSON.parse(localStorage.getItem('Products')!).length : 0;
-    this.newProduct.ProductId = (this.productCount + 1).toString(); // AI generated
+    this.newProduct.ProductId = (this.productCount + 1); // AI generated
     console.log(this.productCount);
   }
 
-  newProduct = { ProductId: '', Name: '', Rate: null };
+  ngOnInit(): void {
+    if (this.isEdit && this.editProduct) {
+      this.newProduct = { ...this.editProduct };
+    } else {
+      this.productCount = localStorage.getItem('Products') ? JSON.parse(localStorage.getItem('Products')!).length : 0;
+      this.newProduct.ProductId = (this.productCount + 1);
+    }
+  }
+
+  newProduct: Product = { ProductId: '', Name: '', Rate: null };
 
   addProduct() {
     const product: Product = { ...this.newProduct };

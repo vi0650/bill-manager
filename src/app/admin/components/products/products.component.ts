@@ -34,8 +34,12 @@ export class ProductsComponent{
   }
 
   openAddProductDialog() {
-    console.log('opening dialog...');
-    const productDialog = this.productDialogService.open(AddProductComponent);
+    console.log('opening add product dialog...');
+    const productDialog = this.productDialogService.open(AddProductComponent,{
+      context:{
+        isEdit:false,
+      }
+    });
     productDialog.onClose.subscribe((product) => {
       if (product && product.ProductId && product.Name && product.Rate) {
         const productExist = this.Products.find(p => p.Name === product.Name);
@@ -53,6 +57,25 @@ export class ProductsComponent{
   }
 
   editProductDialog(i:number){
+    console.log('opening edit product dialog...');
+    const productEdit = {
+      ...this.Products[i],
+    };
+    console.log(productEdit);
+
+    const productDialog = this.productDialogService.open(AddProductComponent, {
+      context: {
+        isEdit:true,
+        editProduct:productEdit,
+      },
+    });
+    productDialog.onClose.subscribe((updateProduct) => {
+      if(updateProduct && updateProduct.ProductId && updateProduct.Name && updateProduct.Rate){
+        this.Products[i] = updateProduct;
+        this.setProductsData();
+        this.NbTostr.success('Product updated successfully','SUCCESS');
+      }
+    })
   }
 
   deleteProduct(i: number) {

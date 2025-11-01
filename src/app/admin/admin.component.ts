@@ -17,11 +17,11 @@ export class AdminComponent {
   private loadtimePassed:boolean = true;
 
   constructor(private sidebarService: NbSidebarService, private router: Router) {
-    this.getData()
+    // this.getData()
   }
 
   ngOnInit(): void {
-    this.routerSpinner()
+    // this.routerSpinner()
   }
 
   menuItems = [
@@ -42,16 +42,18 @@ export class AdminComponent {
     return false;
   }
 
-  routerSpinner() {
-    this.router.events.subscribe((Event) => {
-      if (Event instanceof NavigationStart) {
-        setTimeout(() => {
-          this.loading = true;
-        },2000);
-      }
-      if (Event instanceof NavigationCancel || Event instanceof NavigationEnd || Event instanceof NavigationError){
-        this.loading = false
-      }
-    })
-  }
+  // routerSpinner() {
+  //   this.router.events.subscribe((Event) => {
+  //     if (Event instanceof NavigationStart) {
+  //       setTimeout(() => {
+  //         this.loading = true;
+  //       },2000);
+  //     }
+  //     if (Event instanceof NavigationCancel || Event instanceof NavigationEnd || Event instanceof NavigationError){
+  //       this.loading = false
+  //     }
+  //   })
+  //   console.log(this.loading,"navigation not started");
+    
+  // }
 }

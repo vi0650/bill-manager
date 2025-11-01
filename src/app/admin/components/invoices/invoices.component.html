@@ -1,11 +1,7 @@
 <nb-actions size="medium">
   <nb-action class="action">
     <button nbButton (click)="openAddInvoiceDialog()">
-      <nb-icon
-        class="nb-icon"
-        icon="file-add-outline"
-        status="primary"
-      ></nb-icon>
+      <nb-icon class="nb-icon" icon="file-add-outline" status="primary"></nb-icon>
     </button>
     <button nbButton (click)="refresh()">
       <nb-icon status="danger" icon="sync-outline"></nb-icon>
@@ -18,48 +14,33 @@
   <nb-card-body>
     <ng-container>
       <nb-list>
-        <nb-list-item
-          class="card-content"
-          *ngFor="let invoice of invoices; let i = index"
-        >
-          <div class="item-main-content">
-            <div class="item-row-1">
-              <ng-container *ngFor="let status of invoice.statusUpdate">
-                <nb-tag
-                  [status]="status.status"
-                  appearance="outline"
-                  [text]="status.text"
-                ></nb-tag>
-              </ng-container>
-              <span class="item-id-name">
-                {{ invoice.invoiceId }} - {{ invoice.customerName }}
+        <nb-list-item class="list-item" *ngFor="let invoice of invoices; let i = index">
+          <div class="invoice-status">
+            <ng-container *ngFor="let status of invoice.statusUpdate">
+              <nb-tag [status]="status.status" appearance="outline" [text]="status.text"></nb-tag>
+            </ng-container>
+          </div>
+          <div class="invoice-details">
+            <span class="invoice-name">
+              {{ invoice.invoiceId }} - {{ invoice.customerName }}
+            </span>
+            
+            <div class="invoice-date">
+              <span class="invoice-date">
+                {{ invoice.InvoiceDate | date : "medium" }}
               </span>
             </div>
           </div>
 
-          <div class="item-row-2">
-            <span class="invoice-date">
-              {{ invoice.InvoiceDate | date : "medium" }}
-            </span>
-          </div>
-
-          <div class="item-actions">
+          <div class="product-actions">
             <button nbButton size="small" ghost status="primary">
-              <nb-icon
-                class="card-icon"
-                icon="edit-2-outline"
-                (click)="editInvoiceDialog(i)"
-              ></nb-icon>
+              <nb-icon class="card-icon" icon="edit-2-outline" (click)="editInvoiceDialog(i)"></nb-icon>
             </button>
             <button nbButton size="small" ghost status="danger" (click)="deleteInvoice(i)">
-              <nb-icon
-                class="card-icon"
-                icon="trash-2"
-                [options]="{ animation: { type: 'pulse' } }"
-              ></nb-icon>
+              <nb-icon class="card-icon" icon="trash-2" [options]="{ animation: { type: 'pulse' } }"></nb-icon>
             </button>
           </div>
-          
+
         </nb-list-item>
       </nb-list>
     </ng-container>

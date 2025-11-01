@@ -1,64 +1,63 @@
 :host {
   :ng-deep nb-list-item {
     display: flex;
-    flex-wrap: nowrap; /* Don't wrap on desktop */
-    justify-content: space-between; /* Pushes content left, buttons right */
+    flex-wrap: nowrap;
+    /* Don't wrap on desktop */
+    justify-content: space-between;
+    /* Pushes content left, buttons right */
     align-items: center;
     width: 100%;
-    padding: 1rem 0.75rem !important; /* Add some padding */
+    padding: 1rem 0.75rem !important;
+    /* Add some padding */
   }
 
   .action button {
     margin: 0 1rem 0 1rem;
   }
 
-  /* This container holds the text content (Name, Date).
+  .list-item {
+    display: flex;
+    justify-content: space-between; /* Name ne left ma, baaki ne right ma dhakelva */
+    align-items: center; /* Vertically center ma rakhva */
+    padding: 10px 0;
+
+    /* This container holds the text content (Name, Date).
     It stacks them vertically.
   */
-  .item-main-content {
-    display: flex;
-    flex-direction: column; /* Stacks row-1 and row-2 */
-    flex-grow: 0.1; /* Takes up available space */
-    min-width: 0; /* Prevents text from overflowing */
-  }
 
-  /* First row of text (Tag, ID, Name) */
-  .item-row-1 {
-    display: flex;
-    align-items: center;
-    // margin-bottom: 0.35rem;
-
-    nb-tag {
-      margin-right: 0.75rem; /* Space between tag and name */
-      flex-shrink: 0; /* Stops the tag from shrinking */
+    .invoice-status {
+      width: 15%; /* Example: Name ne vadhare jagya aapo */
+      overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
+      text-overflow: ellipsis; /* ... dots dekhaadva mate */
+      white-space: nowrap; /* Example: Name ne vadhare jagya aapo */
     }
 
-    .item-id-name {
-      font-size: 1rem;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis; /* Adds '...' if name is too long */
-    }
-  }
+    .invoice-details {
+      display: flex;
+      flex-grow: 1; /* Aene maximum space aapvi */
+      gap: 2rem;
 
-  /* Second row of text (Date) */
-  .item-row-2 {
-    flex-grow: 1;
-    .item-date {
-      font-size: 0.875rem;
-      color: #8f9bb3; /* Nebular's subtle text color */
-    }
-  }
+      .invoice-name {
+        width: 30%; /* Example: Name ne vadhare jagya aapo */
+        text-align: left;
+        overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
+        text-overflow: ellipsis; /* ... dots dekhaadva mate */
+      }
 
-  /* Container for the buttons.
-    Ensures they are side-by-side as requested.
-  */
-  .item-actions {
-    display: flex;
-    flex-direction: row; /* Buttons side-by-side */
-    flex-shrink: 0; /* Stops buttons from shrinking */
-    margin-left: 1rem; /* Space between text and buttons */
+      .invoice-date {
+        width: 30%; /* Price ne fix jagya aapo */
+        text-align: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .product-actions {
+        /* Edit ane Delete icons no group */
+        display: flex;
+        width: 10%; /* Buttons ne fix jagya aapo */
+        justify-content: flex-end; /* Buttons ne right ma chipkavi deva */
+      }
+    }
   }
 }
 
@@ -67,18 +66,44 @@
     ::ng-deep nb-list-item {
       flex-wrap: wrap;
       row-gap: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
     }
 
-    .item-main-content {
-      flex-basis: 70%;
-      margin-right: 0;
-      flex-grow: 1;
-    }
+    .list-item {
+      // flex-grow: 1;
 
-    .item-actions {
-      flex-basis: 30%;
-      justify-content: flex-end;
-      margin-left: 0;
+      .invoice-status {
+        display: flex;
+        width: 30%;
+        white-space: nowrap;
+      }
+
+      .invoice-details {
+        display: flex;
+        width: 100%;
+
+        .invoice-name {
+          width: 50%; /* Example: Name ne vadhare jagya aapo */
+          text-overflow: ellipsis;
+          text-align: left;
+        }
+
+        .invoice-date {
+          width: 40%; /* Example: Name ne vadhare jagya aapo */
+          overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
+          text-overflow: ellipsis; /* ... dots dekhaadva mate */
+          white-space: nowrap;
+        }
+
+        .item-actions {
+          // flex-direction: row;
+          justify-content: flex-end;
+          margin-left: 0;
+        }
+      }
     }
   }
 }

@@ -2,24 +2,56 @@
   margin: 0 1rem 0 1rem;
 }
 
-.card-content {
+.product-list {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: space-between; /* Name ne left ma, baaki ne right ma dhakelva */
+  align-items: center; /* Vertically center ma rakhva */
+  padding: 10px 0;
 }
 
-.product-name {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--text-basic-color);
+.product-details {
+  /* Name ane Price no group */
+  display: flex;
+  flex-grow: 2; /* Aene maximum space aapvi */
+  gap:2rem;
+
+  .product-name {
+    width: 50%; /* Example: Name ne vadhare jagya aapo */
+    overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
+    text-overflow: ellipsis; /* ... dots dekhaadva mate */
+    white-space: nowrap; /* Taki ek j line ma rahe */
+  }
+
+  .product-price {
+    width: 20%; /* Price ne fix jagya aapo */
+    text-align: right; /* Price ne right-align karva */
+  }
+
+  .product-actions {
+    /* Edit ane Delete icons no group */
+    display: flex;
+    width: 10%; /* Buttons ne fix jagya aapo */
+    justify-content: flex-end; /* Buttons ne right ma chipkavi deva */
+  }
 }
 
-.product-price,
-.product-category,
-.product-id {
-  font-size: 0.9rem;
-  color: var(--text-hint-color);
-  margin-left: 1rem; /* Space between price and category */
+@media (max-width: 576px) {
+  :host {
+    ::ng-deep nb-list-item {
+      flex-wrap: wrap;
+      row-gap: 0.75rem;
+    }
+
+    .product-details {
+      flex-basis: 50%;
+      margin-right: 0;
+      flex-grow: 1;
+    }
+
+    .item-actions {
+      flex-basis: 30%;
+      justify-content: flex-end;
+      margin-left: 0;
+    }
+  }
 }

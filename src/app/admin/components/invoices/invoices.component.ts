@@ -36,7 +36,7 @@ export class InvoicesComponent {
   }
 
   openAddInvoiceDialog() {
-    console.log('opening dialog...');
+    console.log('opening add invoice dialog...');
     const invoiceDialog = this.invoiceDialogService.open(AddInvoiceComponent, {
       context: {
         isEdit: false,//when dialog opens context send false value to input 
@@ -62,7 +62,7 @@ export class InvoicesComponent {
   }
 
   editInvoiceDialog(i: number) {
-    console.log('opening Dialog....');
+    console.log('opening edit invoice Dialog....');
     const invoiceToEdit = {
       ...this.invoices[i],
       items: this.invoices[i].items.map((item) => ({ ...item })),

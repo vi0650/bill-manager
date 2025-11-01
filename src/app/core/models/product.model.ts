@@ -1,5 +1,5 @@
 export interface Product{
-    ProductId:string;
+    ProductId:string | any;
     Name:string;
-    Rate:number| null;
+    Rate:number| null | any;
 }
