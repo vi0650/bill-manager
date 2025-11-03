@@ -13,7 +13,7 @@ export class InvoicesComponent {
   constructor(
     private invoiceDialogService: NbDialogService,
     private NbTostr: NbToastrService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getInvoiceData();
@@ -39,7 +39,7 @@ export class InvoicesComponent {
     console.log('opening add invoice dialog...');
     const invoiceDialog = this.invoiceDialogService.open(AddInvoiceComponent, {
       context: {
-        isEdit: false,//when dialog opens context send false value to input 
+        isEdit: false, //when dialog opens context send false value to input
       },
     });
     invoiceDialog.onClose.subscribe((invoice) => {
@@ -66,10 +66,10 @@ export class InvoicesComponent {
     const invoiceToEdit = {
       ...this.invoices[i],
       items: this.invoices[i].items.map((item) => ({ ...item })),
-      InvoiceDate: new Date(this.invoices[i].InvoiceDate)
+      InvoiceDate: new Date(this.invoices[i].InvoiceDate),
     };
     console.log(invoiceToEdit);
-    
+
     const invoiceDialog = this.invoiceDialogService.open(AddInvoiceComponent, {
       context: {
         isEdit: true,

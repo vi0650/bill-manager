@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NebulerModule } from '../shared/nebuler.module';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { Admins } from '../core/models/admin.model';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +13,14 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
 
+  adminId:string='';
+  userName:string='';
+  password:any='';
+  adminData:Admins[]=[];
+
   login(){
-
+    if(this.adminId && this.userName && this.password){
+      this.adminData.find
+    }
   }
-
-  selectRole:string='';
-
 }

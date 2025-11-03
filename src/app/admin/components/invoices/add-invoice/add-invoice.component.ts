@@ -11,16 +11,21 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class AddInvoiceComponent {
 
-  @Input() isEdit = false; // when open invoice dialog it checks
+  @Input() isEdit = false; 
+  //~ when open invoice dialog dialog check is it true or false if false then open work add invoice if true then it work edit invoice dialog
+  
   @Input() editInvoice?: Invoice;
+  //~ it is just using deep copy of interface array 
+  //~ so when open edit dialog context can use interface for replace edited value.
+  //~ it is simple to use because of nebuler context mechanism  
+   
 
   invoiceCount: number = 0;
   constructor(
     protected invoiceDialogRef: NbDialogRef<AddInvoiceComponent>,
     private NbTostr: NbToastrService
   ) {
-
-    // for generate invoice id
+    //~ for generate invoice id
     this.invoiceCount = localStorage.getItem('Invoices') ? JSON.parse(localStorage.getItem('Invoices')!).length : 0;
     this.addInvoice.invoiceId = (this.invoiceCount + 1);
     console.log(this.invoiceCount);
@@ -57,7 +62,7 @@ export class AddInvoiceComponent {
   statusUpdate: statusDetail[] = [{ text: 'paid', status: 'success' }, { text: 'pending', status: 'warning' }];
   selectedGst: number | null = null;
 
-  // this is array object variables which store values during add data and push into interface array object
+  //  this is
 
   emptyItem(): invoiceItems {
     return {
@@ -69,8 +74,9 @@ export class AddInvoiceComponent {
     } as invoiceItems; //using gemini for nested array object of array
   }
 
-  emptyStatus: statusDetail[]=[{status: '',text: ''}] // again same learn from gemini and used here for implement another nested array object of array
+  emptyStatus: statusDetail[] = [{ status: '', text: '' }] // again same learn from gemini and used here for implement another nested array object of array
 
+  //empty variable array object
   addInvoice: Invoice = {
     invoiceId: 0,
     customerName: '',
