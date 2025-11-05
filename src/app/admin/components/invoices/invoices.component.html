@@ -17,7 +17,7 @@
         <nb-list-item class="list-item" *ngFor="let invoice of invoices; let i = index">
           <div class="invoice-status">
             <ng-container *ngFor="let status of invoice.statusUpdate">
-              <nb-tag [status]="status.status" appearance="outline" [text]="status.text"></nb-tag>
+              <nb-tag *ngIf="status.status || status.text" [status]="status.status" appearance="outline" [text]="status.text"></nb-tag>
             </ng-container>
           </div>
           <div class="invoice-details">

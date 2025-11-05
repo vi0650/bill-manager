@@ -21,7 +21,7 @@ export class AdminComponent {
   }
 
   ngOnInit(): void {
-    // this.routerSpinner()
+    //this.routerSpinner()
   }
 
   menuItems = [
@@ -32,10 +32,10 @@ export class AdminComponent {
 
   @Input() AdminList: Admins[] = []
   
-  getData() {
-    this.AdminList = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!) : [];
-    console.log(this.AdminList);
-  }
+  // getData() {
+  //   this.AdminList = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!) : [];
+  //   console.log(this.AdminList);
+  // }
 
   toggle() {
     this.sidebarService.toggle(true, 'super-sidebar');

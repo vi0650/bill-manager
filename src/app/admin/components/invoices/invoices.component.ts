@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddInvoiceComponent } from './add-invoice/add-invoice.component';
-import { Invoice } from '../../../core/models/invoice.model';
+import { Invoice, statusDetail } from '../../../core/models/invoice.model';
 
 @Component({
   selector: 'invoices',
@@ -20,6 +20,7 @@ export class InvoicesComponent {
   }
 
   invoices: Invoice[] = [];
+  status:statusDetail[]=[];
 
   getInvoiceData() {
     const storedInvoice = localStorage.getItem('Invoices');
@@ -90,6 +91,8 @@ export class InvoicesComponent {
         this.invoices[i] = updatedInvoice;
         this.setInvoiceData();
         this.NbTostr.success('Invoice updated successfully', 'SUCCESS');
+      }else{
+        this.NbTostr.info('please add necessary field like invoice status','INFO');
       }
     });
   }
