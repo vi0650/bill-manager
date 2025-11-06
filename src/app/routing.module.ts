@@ -17,7 +17,6 @@ const routes: Routes = [
       .then(m => m.AdminModule),
   },
 ];
-
 bootstrapApplication(AppComponent,{
   providers:[
     provideRouter(routes,withHashLocation())

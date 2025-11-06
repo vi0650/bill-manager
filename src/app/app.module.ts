@@ -28,7 +28,9 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AuthModule,
     HomeComponent,
   ],
-  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),{provide: LocationStrategy,useClass:HashLocationStrategy}],
+  providers: [provideAnimations(),provideAnimationsAsync(),
+    provideNoopAnimations(),{provide: LocationStrategy,useClass:HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
