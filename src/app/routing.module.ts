@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { provideRouter, RouterModule, Routes, withHashLocation } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,6 +17,12 @@ const routes: Routes = [
       .then(m => m.AdminModule),
   },
 ];
+
+bootstrapApplication(AppComponent,{
+  providers:[
+    provideRouter(routes,withHashLocation())
+  ]
+})
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

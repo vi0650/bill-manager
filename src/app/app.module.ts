@@ -10,6 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AuthModule } from './auth/auth.module';
+import { routes } from '@nebular/auth';
+import { withHashLocation } from '@angular/router';
 
 
 @NgModule({
@@ -25,7 +27,7 @@ import { AuthModule } from './auth/auth.module';
     AuthModule,
     HomeComponent,
   ],
-  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations()],
+  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),routes],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
