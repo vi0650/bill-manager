@@ -12,6 +12,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { AuthModule } from './auth/auth.module';
 import { routes } from '@nebular/auth';
 import { withHashLocation } from '@angular/router';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { withHashLocation } from '@angular/router';
     AuthModule,
     HomeComponent,
   ],
-  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),routes],
+  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),{provide: LocationStrategy,useClass:HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
