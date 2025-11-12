@@ -1,108 +1,187 @@
 :host {
-  :ng-deep nb-list-item {
+  .action button {
+    margin: 0 1rem;
+  }
+
+  .invoice-list-container {
+    width: 100%;
+    overflow-x: hidden;
+    padding-bottom: 10px;
+  }
+
+  /* ===== Header Row ===== */
+  nb-card-header.col-header {
     display: flex;
-    flex-wrap: nowrap;
-    /* Don't wrap on desktop */
-    justify-content: space-between;
-    /* Pushes content left, buttons right */
     align-items: center;
     width: 100%;
-    padding: 1rem 0.75rem !important;
-    /* Add some padding */
+    background: transparent;
+    padding: 5px 20px;
+    box-sizing: border-box;
+
+    .invoice-header {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background: #f7f9fc;
+      border-radius: 8px;
+      padding: 8px 40px 8px 30px;
+      font-weight: 600;
+      color: #444;
+      border: 1px solid #eee;
+      box-sizing: border-box;
+
+      .col {
+        flex: 1;
+        text-align: center;
+        white-space: nowrap;
+      }
+
+      .index {
+        flex: 0.3;
+      }
+
+      .status {
+        flex: 0.8;
+      }
+
+      .name {
+        flex: 1.2;
+      }
+
+      .date {
+        flex: 1;
+      }
+
+      .actions {
+        flex: 0.6;
+        text-align: end;
+      }
+    }
   }
 
-  .action button {
-    margin: 0 1rem 0 1rem;
-  }
-
-  .list-item {
+  /* ===== List Items ===== */
+  nb-list-item.list-item {
     display: flex;
-    justify-content: space-between; /* Name ne left ma, baaki ne right ma dhakelva */
-    align-items: center; /* Vertically center ma rakhva */
-    padding: 10px 0;
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    padding: 12px 20px;
+    margin: 8px 0;
+    width: 100%;
+    transition: box-shadow 0.2s ease;
 
-    /* This container holds the text content (Name, Date).
-    It stacks them vertically.
-  */
-
-    .invoice-status {
-      width: 15%; /* Example: Name ne vadhare jagya aapo */
-      overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
-      text-overflow: ellipsis; /* ... dots dekhaadva mate */
-      white-space: nowrap; /* Example: Name ne vadhare jagya aapo */
+    &:hover {
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     }
 
-    .invoice-details {
+    .col {
+      flex: 1;
+      text-align: center;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .index {
+      flex: 0.3;
+      font-weight: 600;
+      color: #000;
+      font-size: larger;
+    }
+
+    .status {
+      flex: 0.8;
       display: flex;
-      flex-grow: 1; /* Aene maximum space aapvi */
-      gap: 2rem;
+      justify-content: center;
+    }
 
-      .invoice-name {
-        width: 30%; /* Example: Name ne vadhare jagya aapo */
-        text-align: left;
-        overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
-        text-overflow: ellipsis; /* ... dots dekhaadva mate */
-      }
+    .name {
+      flex: 1.2;
+      font-weight: 500;
+      color: #333;
+      text-transform: capitalize;
+      display: flex;
+      justify-content: center;
+    }
 
-      .invoice-date {
-        width: 30%; /* Price ne fix jagya aapo */
-        text-align: center;
-        text-overflow: ellipsis;
-        overflow: hidden;
-      }
+    .date {
+      flex: 1;
+      color: #666;
+    }
 
-      .product-actions {
-        /* Edit ane Delete icons no group */
-        display: flex;
-        width: 10%; /* Buttons ne fix jagya aapo */
-        justify-content: flex-end; /* Buttons ne right ma chipkavi deva */
-      }
+    .actions {
+      flex: 0.6;
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
     }
   }
 }
 
-@media (max-width: 576px) {
+/* ===== Responsive (Mobile) ===== */
+@media (max-width: 768px) {
   :host {
-    ::ng-deep nb-list-item {
-      flex-wrap: wrap;
-      row-gap: 0.75rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
+    ::ng-deep nb-card-header.col-header {
+      display: none !important;
     }
 
-    .list-item {
-      // flex-grow: 1;
+    nb-list-item.list-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      width: 100%;
 
-      .invoice-status {
+      .col {
+        width: 100%;
         display: flex;
-        width: 30%;
-        white-space: nowrap;
+        justify-content: space-between;
+        text-align: left;
       }
 
-      .invoice-details {
-        display: flex;
+      .status nb-tag {
+        margin-left: auto;
+      }
+
+      .actions {
         width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+    }
+  }
+}
+@media (max-width: 576px) {
+  ::ng-deep nb-card-header.col-header {
+    display: none !important;
+  }
 
-        .invoice-name {
-          width: 50%; /* Example: Name ne vadhare jagya aapo */
-          text-overflow: ellipsis;
-          text-align: left;
-        }
+  :host {
+    nb-list-item.list-item {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 12px 16px;
+      margin: 10px 0;
+      width: 100%;
 
-        .invoice-date {
-          width: 40%; /* Example: Name ne vadhare jagya aapo */
-          overflow: hidden; /* Jo naam vadhare lambu hoy toh chhipavi do */
-          text-overflow: ellipsis; /* ... dots dekhaadva mate */
-          white-space: nowrap;
-        }
+      .col {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+      }
 
-        .item-actions {
-          // flex-direction: row;
-          justify-content: flex-end;
-          margin-left: 0;
-        }
+      .status nb-tag {
+        margin-left: auto;
+      }
+
+      .actions {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 10px;
       }
     }
   }

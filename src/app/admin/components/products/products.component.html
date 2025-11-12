@@ -9,30 +9,45 @@
   </nb-action>
 </nb-actions>
 
-<nb-card size="medium">
-  <nb-card-header>Products</nb-card-header>
+<nb-card size="large">
+  <nb-card-header>
+    <h5>Products</h5>
+  </nb-card-header>
+
+  <!-- Column Header (like Bill page) -->
+  <nb-card-header class="col-header">
+    <div class="product-header">
+      <div class="col index">#</div>
+      <div class="col name">Name</div>
+      <div class="col price">Price</div>
+      <div class="col actions">Actions</div>
+    </div>
+  </nb-card-header>
+
   <nb-card-body>
-    <ng-container>
+    <div class="product-list-container">
       <nb-list>
         <nb-list-item class="product-list" *ngFor="let Product of Products; let i = index">
-          <div class="product-details">
-            <div class="product-name">
-              {{Product.ProductId}} - {{Product.Name}}
-            </div>
-            <div class="item-row-2">
-              <span class="product-price">{{Product.Rate | currency:'INR'}}</span>
-            </div>
+          <div class="col index">{{ i + 1 }}</div>
+
+          <div class="col name">
+            {{ Product.ProductId }} - {{ Product.Name }}
           </div>
-          <div class="product-actions">
+
+          <div class="col price">
+            {{ Product.Rate | currency:'INR' }}
+          </div>
+
+          <div class="col actions">
             <button nbButton size="small" ghost status="primary" (click)="editProductDialog(i)">
               <nb-icon class="card-icon" icon="edit-2-outline"></nb-icon>
             </button>
             <button nbButton size="small" ghost status="danger" (click)="deleteProduct(i)">
-              <nb-icon class="card-icon" icon="trash-2" [options]="{ animation: { type: 'pulse' } }"></nb-icon>
+              <nb-icon class="card-icon" icon="trash-2"></nb-icon>
             </button>
           </div>
         </nb-list-item>
       </nb-list>
-    </ng-container>
+    </div>
   </nb-card-body>
 </nb-card>

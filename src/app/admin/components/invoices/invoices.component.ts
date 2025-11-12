@@ -13,14 +13,16 @@ export class InvoicesComponent {
   constructor(
     private invoiceDialogService: NbDialogService,
     private NbTostr: NbToastrService
-  ) {}
+  ) {
+    console.log()
+  }
 
   ngOnInit(): void {
     this.getInvoiceData();
   }
 
   invoices: Invoice[] = [];
-  status:statusDetail[]=[];
+  status: statusDetail[] = [];
 
   getInvoiceData() {
     const storedInvoice = localStorage.getItem('Invoices');
@@ -91,8 +93,6 @@ export class InvoicesComponent {
         this.invoices[i] = updatedInvoice;
         this.setInvoiceData();
         this.NbTostr.success('Invoice updated successfully', 'SUCCESS');
-      }else{
-        this.NbTostr.info('please add necessary field like invoice status','INFO');
       }
     });
   }

@@ -10,8 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { provideAnimations, provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AuthModule } from './auth/auth.module';
-import { routes } from '@nebular/auth';
-import { withHashLocation } from '@angular/router';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
@@ -28,8 +26,8 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     AuthModule,
     HomeComponent,
   ],
-  providers: [provideAnimations(),provideAnimationsAsync(),
-    provideNoopAnimations(),{provide: LocationStrategy,useClass:HashLocationStrategy}
+  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),
+    {provide: LocationStrategy,useClass:HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })

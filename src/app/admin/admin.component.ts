@@ -1,7 +1,9 @@
 import { Component, Input } from '@angular/core';
 import { Admins } from '../core/models/admin.model';
-import { NbSidebarService } from '@nebular/theme';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { NbMediaBreakpointsService, NbSidebarService, NbMenuService } from '@nebular/theme';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admin',
@@ -11,17 +13,25 @@ import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Rout
 })
 export class AdminComponent {
 
+  private destroy$ = new Subject<void>();
   loading: boolean = false;
 
   private navigationComplete: boolean = true;
-  private loadtimePassed:boolean = true;
+  private loadtimePassed: boolean = true;
 
-  constructor(private sidebarService: NbSidebarService, private router: Router) {
-    // this.getData()
-  }
+  constructor(private sidebarService: NbSidebarService, private breakpointService: NbMediaBreakpointsService, private menuService: NbMenuService) { }
 
   ngOnInit(): void {
-    //this.routerSpinner()
+    const { lg } = this.breakpointService.getBreakpointsMap();
+
+    // When menu item is clicked, close sidebar only on mobile
+    this.menuService.onItemClick()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => {
+        if (window.innerWidth < lg) {
+          this.sidebarService.collapse('super-sidebar'); // sidebar tag
+        }
+      });
   }
 
   menuItems = [
@@ -31,7 +41,7 @@ export class AdminComponent {
   ];
 
   @Input() AdminList: Admins[] = []
-  
+
   // getData() {
   //   this.AdminList = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!) : [];
   //   console.log(this.AdminList);
@@ -40,6 +50,11 @@ export class AdminComponent {
   toggle() {
     this.sidebarService.toggle(true, 'super-sidebar');
     return false;
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   // routerSpinner() {
@@ -54,6 +69,6 @@ export class AdminComponent {
   //     }
   //   })
   //   console.log(this.loading,"navigation not started");
-    
+
   // }
 }

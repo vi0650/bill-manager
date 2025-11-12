@@ -1,19 +1,15 @@
 <nb-layout>
+
   <nb-layout-header fixed>
     <div class="header-container">
-      <button nbButton ghost (click)="toggle()">
+      <button nbButton ghost status="primary" (click)="toggle()">
         <nb-icon icon="menu-arrow-outline"></nb-icon>
       </button>
-      <span class="header-title">Admin Name</span>
+      <h5 class="header-title">Admin Name</h5>
     </div>
   </nb-layout-header>
-
-  <nb-sidebar
-    tag="super-sidebar"
-    state="expanded"
-    responsive
-    style="background-color: aliceblue"
-  >
+  
+  <nb-sidebar tag="super-sidebar" state="expanded" responsive style="background-color: aliceblue">
     <nb-menu [items]="menuItems"></nb-menu>
   </nb-sidebar>
 

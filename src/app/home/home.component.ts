@@ -7,7 +7,7 @@ import { Admins } from '../core/models/admin.model';
 @Component({
   selector: 'app-home',
   imports: [NebulerModule,RouterModule,FormsModule],
-  standalone:true,
+  // standalone:true,
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

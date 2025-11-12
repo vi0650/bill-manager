@@ -51,3 +51,7 @@ nb-card {
 .nb-theme-default nb-sidebar .scrollable{
   padding: 2rem 0rem 2rem 1.25rem !important;
 }
+
+/* :host ::ng-deep .layout-container {
+  padding-top: 4.9rem !important;
+} */

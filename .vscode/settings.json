@@ -1,32 +1,48 @@
 {
     "cSpell.words": [
         "aape",
+        "aapo",
         "Aene",
         "Anycubic",
         "baaki",
         "calculat",
         "cgst",
+        "chhipavi",
         "chho",
+        "chipkavi",
+        "dekhaadva",
+        "dhakelva",
         "emptystatus",
         "HALDIRAM",
         "iconconfig",
         "invoicedialog",
+        "jagya",
         "jyare",
         "karvama",
+        "lambu",
         "libpeerconnection",
         "loadtime",
         "mispelled",
+        "naam",
         "Nbdialog",
         "Nebuler",
         "ngoninit",
+        "rahe",
         "Rajsthan",
+        "rakhva",
         "SGST",
         "Sharda",
+        "Taki",
         "testem",
         "titlecase",
         "Toastr",
         "Tostr",
         "tyare",
-        "typscript"
-    ]
+        "typscript",
+        "vadhare"
+    ],
+    "workbench.editor.autoLockGroups": {
+        "chatgpt.conversationEditor": true
+    },
+    "chatgpt.openOnStartup": false
 }

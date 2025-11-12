@@ -27,6 +27,7 @@ export class ProductsComponent{
       this.Products = [{ ProductId: '1', Name: 'dummy data', Rate: 100 }];
       this.setProductsData();
     }
+    console.table(this.Products)
   }
 
   setProductsData() {

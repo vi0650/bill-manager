@@ -9,40 +9,52 @@
   </nb-action>
 </nb-actions>
 
-<nb-card size="medium">
-  <nb-card-header>Invoices</nb-card-header>
+<nb-card size="large">
+  <nb-card-header>
+    <h5>Invoices</h5>
+    <span></span>
+  </nb-card-header>
+  <nb-card-header class="col-header">
+    <div class="invoice-header">
+      <div class="col index">#</div>
+      <div class="col status">Status</div>
+      <div class="col name">Name</div>
+      <div class="col date">Date</div>
+      <div class="col actions">Actions</div>
+    </div>
+  </nb-card-header>
   <nb-card-body>
-    <ng-container>
+    <div class="invoice-list-container">
+      <!-- list -->
       <nb-list>
         <nb-list-item class="list-item" *ngFor="let invoice of invoices; let i = index">
-          <div class="invoice-status">
+          <div class="col index">{{ i + 1 }}</div>
+
+          <div class="col status">
             <ng-container *ngFor="let status of invoice.statusUpdate">
-              <nb-tag *ngIf="status.status || status.text" [status]="status.status" appearance="outline" [text]="status.text"></nb-tag>
+              <nb-tag *ngIf="status.status || status.text" [status]="status.status" appearance="outline"
+                [text]="status.text"></nb-tag>
             </ng-container>
           </div>
-          <div class="invoice-details">
-            <span class="invoice-name">
-              {{ invoice.invoiceId }} - {{ invoice.customerName }}
-            </span>
-            
-            <div class="invoice-date">
-              <span class="invoice-date">
-                {{ invoice.InvoiceDate | date : "medium" }}
-              </span>
-            </div>
+
+          <div class="col name">
+            {{ invoice.invoiceId }} - {{ invoice.customerName }}
           </div>
 
-          <div class="product-actions">
-            <button nbButton size="small" ghost status="primary">
-              <nb-icon class="card-icon" icon="edit-2-outline" (click)="editInvoiceDialog(i)"></nb-icon>
+          <div class="col date">
+            {{ invoice.InvoiceDate | date: "medium" }}
+          </div>
+
+          <div class="col actions">
+            <button nbButton size="small" ghost status="primary" (click)="editInvoiceDialog(i)">
+              <nb-icon icon="edit-2-outline"></nb-icon>
             </button>
             <button nbButton size="small" ghost status="danger" (click)="deleteInvoice(i)">
-              <nb-icon class="card-icon" icon="trash-2" [options]="{ animation: { type: 'pulse' } }"></nb-icon>
+              <nb-icon icon="trash-2"></nb-icon>
             </button>
           </div>
-
         </nb-list-item>
       </nb-list>
-    </ng-container>
+    </div>
   </nb-card-body>
 </nb-card>
