@@ -11,14 +11,14 @@ import { Product } from '../../../../core/models/product.model';
 })
 export class AddInvoiceComponent {
 
-  @Input() isEdit = false; 
+  @Input() isEdit = false;
   //~ when open invoice dialog dialog check is it true or false if false then open work add invoice if true then it work edit invoice dialog
-  
+
   @Input() editInvoice?: Invoice;
   //~ it is just using deep copy of interface array 
   //~ so when open edit dialog context can use interface for replace edited value.
   //~ it is simple to use because of nebuler context mechanism  
-   
+
 
   invoiceCount: number = 0;
   constructor(
@@ -26,8 +26,8 @@ export class AddInvoiceComponent {
     private NbTostr: NbToastrService
   ) {
     //~ for generate invoice id
-    this.invoiceCount = localStorage.getItem('Invoices') ? JSON.parse(localStorage.getItem('Invoices')!).length : 0;
-    this.addInvoice.invoiceId = (this.invoiceCount + 1);
+    // this.invoiceCount = localStorage.getItem('Invoices') ? JSON.parse(localStorage.getItem('Invoices')!).length : 0;
+    // this.addInvoice.invoiceId = (this.invoiceCount + 1);
     console.log(this.invoiceCount);
   }
 
@@ -62,8 +62,6 @@ export class AddInvoiceComponent {
   statusUpdate: statusDetail[] = [{ text: 'paid', status: 'success' }, { text: 'pending', status: 'warning' }];
   selectedGst: number | null = null;
 
-  //  this is
-
   emptyItem(): invoiceItems {
     return {
       product: '',
@@ -74,10 +72,11 @@ export class AddInvoiceComponent {
     } as invoiceItems; //using gemini for nested array object of array
   }
 
-  emptyStatus: statusDetail[] = [{ status: '', text: '' }] // again same learn from gemini and used here for implement another nested array object of array
+  emptyStatus: statusDetail[] = [{ status: '', text: '' }]
 
   //empty variable array object
   addInvoice: Invoice = {
+    AdminId: 0,
     invoiceId: 0,
     customerName: '',
     phoneNo: '',
@@ -163,9 +162,6 @@ export class AddInvoiceComponent {
 
   // ---------------------------------------after invoice filled validate------------------------------------------------------------------------
 
-  cancel() {
-    this.invoiceDialogRef.close();
-  }
 
   saveInvoice() {
     const invoiceData: Invoice = { ...this.addInvoice };
@@ -181,5 +177,9 @@ export class AddInvoiceComponent {
     ) {
       this.invoiceDialogRef.close(invoiceData);
     }
+  }
+
+  cancel() {
+    this.invoiceDialogRef.close();
   }
 }

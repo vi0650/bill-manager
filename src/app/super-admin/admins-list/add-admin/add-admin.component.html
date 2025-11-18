@@ -8,38 +8,48 @@
 
       <div class="form-group">
         <label for="shopNameInput" class="label">Shop Name</label>
-        <input type="text" nbInput shape="semi-round" fullWidth id="shopNameInput" 
-               [(ngModel)]="newAdmin.shopName" name="shopName" 
-               placeholder="Enter Shop Name" required>
+        <input type="text" nbInput shape="semi-round" fullWidth id="shopNameInput" [(ngModel)]="newAdmin.shopName"
+          name="shopName" placeholder="Enter Shop Name" required>
       </div>
 
       <div class="form-group">
-        <label for="usernameInput" class="label">Username</label>
-        <input type="text" nbInput shape="semi-round" fullWidth id="usernameInput" 
-               [(ngModel)]="newAdmin.userName" name="username" 
-               placeholder="Enter Username" required>
+        <div class="form-row">
+
+          <div class="form-col1">
+            <label for="usernameInput" class="label">Username</label>
+            <input type="text" nbInput shape="semi-round" fullWidth id="usernameInput"
+              [(ngModel)]="newAdmin.userName" name="username" placeholder="Enter Username" required>
+          </div>
+
+          <div class="form-col2">
+            <label for="userRoleInput" class="label">Select Role</label>
+            <nb-select [(ngModel)]="newAdmin.role" name="role" shape="semi-round" fullWidth placeholder="Role">
+              <nb-option disabled="">select Role</nb-option>
+              <nb-option value="admin">Admin</nb-option>
+              <nb-option value="super-admin">Super Admin</nb-option>
+            </nb-select>
+          </div>
+        </div>
+
       </div>
 
       <div class="form-group">
         <label for="emailInput" class="label">Email ID</label>
-        <input type="email" nbInput shape="semi-round" fullWidth id="emailInput" 
-               [(ngModel)]="newAdmin.emailId" name="emailId" 
-               placeholder="Enter Email Address" required>
+        <input type="email" nbInput shape="semi-round" fullWidth id="emailInput" [(ngModel)]="newAdmin.emailId"
+          name="emailId" placeholder="Enter Email Address" required>
       </div>
       <div class="form-group">
         <label for="mobileNoInput" class="label">Mobile No.</label>
-        <input type="tel" nbInput shape="semi-round" fullWidth id="mobileNoInput" 
-               [(ngModel)]="newAdmin.mobileNo" name="mobileNo" 
-               placeholder="Enter Mobile Number" required>
+        <input type="tel" nbInput shape="semi-round" fullWidth id="mobileNoInput" [(ngModel)]="newAdmin.mobileNo"
+          name="mobileNo" placeholder="Enter Mobile Number" required>
       </div>
       <div class="form-group">
         <label for="addressInput" class="label">Address</label>
-        <textarea type="text" nbInput shape="semi-round" fullWidth id="addressInput" 
-               [(ngModel)]="newAdmin.address" rows="2" name="addressInput" 
-               placeholder="Enter Address" required></textarea>
+        <textarea type="text" nbInput shape="semi-round" fullWidth id="addressInput" [(ngModel)]="newAdmin.address"
+          rows="2" name="addressInput" placeholder="Enter Address" required></textarea>
       </div>
-      
-      </form>
+
+    </form>
   </nb-card-body>
 
   <nb-card-footer>

@@ -1,25 +1,64 @@
 ::ng-deep {
-  nb-layout-column {
-    height: 80vw;
+  nb-card-body {
+    max-height: 70vh;
   }
+
   button + button {
     margin-left: 1rem;
   }
 }
 
-.nb-theme-default [nbInput].size-medium{
+.nb-theme-default [nbInput].size-medium {
   margin: 10px;
 }
 
 // Style to give space between input/label groups
 .form-group {
-  margin-bottom: 1.5rem; // Adds vertical space between fields
+  margin-bottom: 1rem;
+
+  .form-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 16px; /* spacing fix */
+    flex-wrap: wrap; /* IMPORTANT */
+
+    .form-col1,
+    .form-col2 {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Desktop widths */
+    .form-col1 {
+      max-width: 100%;
+      min-width: 60%;
+    }
+
+    .form-col2 {
+      width: auto;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    display: flex;
+    flex-direction: column;
+
+    .form-col2 {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+
 }
 
 // Adjust label style if necessary
 .label {
-  display: block; // Makes the label take full width above the input
+  display: flex; // Makes the label take full width above the input
   margin-bottom: 0.5rem; // Space between label and input field
+  letter-spacing: 0.4px;
 }
 
 // Align action buttons to the right (common pattern)
@@ -29,9 +68,8 @@
   gap: 1rem; // Adds space between the buttons
 }
 
-
 .wide-dialog-card {
-  width: 500px; 
+  width: 40rem;
   max-width: 80vw; // 90% of the viewport width
 }
 
@@ -42,6 +80,6 @@
 
 .action-buttons {
   display: flex;
-  justify-content:flex-start;
+  justify-content: flex-start;
   gap: 1rem;
 }

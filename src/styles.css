@@ -39,17 +39,17 @@ nb-card {
   position: relative !important;
 }
 
-.nb-theme-default nb-layout .layout .layout-container .content{
+/* .nb-theme-default nb-layout .layout .layout-container .content{
   height: 90.5vh;
   overflow:hidden;
-}
+} */
 
 .nb-theme-default nb-actions.size-medium nb-action nb-icon{
   font-size: 2vw !important;
 }
 
 .nb-theme-default nb-sidebar .scrollable{
-  padding: 2rem 0rem 2rem 1.25rem !important;
+  /* padding: 2rem 0rem 2rem 0rem !important; */
 }
 
 /* :host ::ng-deep .layout-container {

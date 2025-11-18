@@ -1,7 +1,6 @@
-
-
 export interface Invoice {
-  invoiceId:Number | null | any,
+  AdminId: number | null | any,
+  invoiceId:number | null | any,
   customerName: string | any,
   phoneNo: string | any,
   emailAddress: string | any,
@@ -9,9 +8,9 @@ export interface Invoice {
   Address: string | any,
   items: invoiceItems[],
   comments:string | any,
-  subtotal: Number | null | any,
-  gstAmount: Number | null | any,
-  grandTotal: Number | null | any,
+  subtotal: number | null | any,
+  gstAmount: number | null | any,
+  grandTotal: number | null | any,
   statusUpdate: statusDetail[];
 };
 

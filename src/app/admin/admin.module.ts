@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FormsModule } from '@angular/forms';
 import { NbTimepickerModule } from '@nebular/theme';
+import { HomeComponent } from '../home/home.component';
 
 @NgModule({
   declarations: [

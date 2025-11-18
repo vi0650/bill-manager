@@ -1,11 +1,21 @@
-<nb-layout>
-  <nb-layout-header fixed>
-    <div class="logo-container">
-      <a [routerLink]="['/']">bill manager</a>
+<nb-layout windowMode>
+
+  <nb-layout-header fixed class="site-header">
+    <div class="nav-container">
+      <div class="logo">bill-flow</div>
+      <div class="nav-right">
+        <button nbButton outline status="basic" routerLink="/login">Login</button>
+        <button nbButton status="primary" routerLink="/admin">Sign Up</button>
+      </div>
     </div>
   </nb-layout-header>
 
   <nb-layout-column>
+    <div class="nb-tag">
+      <nb-tag status="info" appearance="outline" text="✨ New Features added | version - 1.05.06 →"
+        routerLink="/login"></nb-tag>
+    </div>
+
     <div class="welcome-content">
       <nb-card class="welcome-card">
         <nb-card-header>
@@ -14,52 +24,53 @@
         <nb-card-body>
           <p>Please select a mode to continue</p>
           <div class="button-group">
-            <!-- <button nbButton status="primary" size="medium" [routerLink]="['/super-admin']">
-          <nb-icon icon="people-outline"></nb-icon>
-          Super Admin
-        </button> -->
             <button nbButton status="info" size="medium" [routerLink]="['/admin']">
               <nb-icon icon="person-outline"></nb-icon>
               Admin
             </button>
+            <button nbButton status="primary" size="medium" [routerLink]="['/super-admin']">
+              <nb-icon icon="people-outline"></nb-icon>
+              Super Admin
+            </button>
           </div>
         </nb-card-body>
       </nb-card>
-
-      <!-- <nb-card>
-    <nb-card-header>
-      <h3>Login</h3>
-    </nb-card-header>
-
-    <nb-card-body>
-      <form (ngSubmit)="login()">
-
-        <label for="username-input" class="label">Username</label>
-        <nb-form-field>
-          <input nbInput fullWidth id="username-input" placeholder="Enter Username" />
-          <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
-        </nb-form-field>
-
-
-        <label for="password-input" class="label">Password</label>
-        <nb-form-field>
-          <input nbInput fullWidth id="password-input" type="password" placeholder="Enter Password" />
-          <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-        </nb-form-field>
-
-        <div class="login-button">
-          <button nbButton [routerLink]="['/{{selectRole}}']" status="primary" type="submit">
-            Login
-          </button>
-        </div>
-      </form>
-    </nb-card-body>
-
-    <nb-card-footer>
-      <p class="text-center">Forgot Password?</p>
-    </nb-card-footer>
-  </nb-card> -->
     </div>
 
+    <section id="features" class="features-section">
+      <h2>Features</h2>
+
+      <div class="feature-grid">
+        <nb-card class="feature-card">
+          <img src="assets/team.svg">
+          <h4>Multi Admin</h4>
+          <p>Add staff & control roles.</p>
+        </nb-card>
+
+        <nb-card class="feature-card">
+          <img src="assets/cart.svg">
+          <h4>Products</h4>
+          <p>Simple stock control.</p>
+        </nb-card>
+
+        <nb-card class="feature-card">
+          <img src="assets/security.svg">
+          <h4>Secure Login</h4>
+          <p>Modern authentication.</p>
+        </nb-card>
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div>bill-flow — Made with care.</div>
+
+      <div>
+        <a>Docs</a> | <a>Contact</a> | <a>Privacy</a>
+      </div>
+    </footer>
+
   </nb-layout-column>
+
 </nb-layout>

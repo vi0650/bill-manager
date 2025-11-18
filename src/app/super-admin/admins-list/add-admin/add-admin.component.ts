@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Admins } from '../../../core/models/admin.model';
 
@@ -10,22 +10,44 @@ import { Admins } from '../../../core/models/admin.model';
 })
 export class AddAdminComponent {
 
+  @Input() isEdit = false;
+  @Input() editAdmin?: Admins;
+
   adminCount: number = 0;
 
   constructor(protected dialogRef: NbDialogRef<AddAdminComponent>, private NbTostrService: NbToastrService) {
-    this.adminCount = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!).length : 0;
-    this.newAdmin.AdminId = (this.adminCount + 1).toString();
+    // this.adminCount = localStorage.getItem('Admins') ? JSON.parse(localStorage.getItem('Admins')!).length : 0;
+    // this.newAdmin.AdminId = (this.adminCount + 1);
     console.log(this.adminCount);
   }
 
-  newAdmin = { AdminId: '', shopName: '', userName: '', emailId: '', mobileNo: '',address:'' }
+  ngOnInit(): void {
+    if (this.isEdit && this.editAdmin) {
+      this.newAdmin = {
+        ...this.editAdmin
+      };
+    } else {
+      this.adminCount = localStorage.getItem('Admins') ?
+        JSON.parse(localStorage.getItem('Admins')!).length : 0;
+      this.newAdmin.AdminId = (this.adminCount + 1);
+    }
+  }
 
-  addAdmin() {  
-    const user:Admins={ ...this.newAdmin};
-    if(user.AdminId && user.shopName && user.userName && user.emailId && user.mobileNo && user.address) {
+  newAdmin = { AdminId: 0, shopName: '', userName: '', emailId: '', mobileNo: '', address: '', role: '' }
+
+
+  addAdmin() {
+    const user: Admins = { ...this.newAdmin };
+    if (user.AdminId &&
+      user.shopName &&
+      user.userName &&
+      user.emailId &&
+      user.mobileNo &&
+      user.address
+    ) {
       this.dialogRef.close(this.newAdmin);
     }
-    console.log( user);
+    console.log(user);
   }
 
   cancel() {

@@ -4,8 +4,10 @@ import { AdminComponent } from './admin.component';
 import { InvoicesComponent } from './components/invoices/invoices.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { HomeComponent } from '../home/home.component';
 
 const routes: Routes = [
+  {path:'home',component:HomeComponent},
   {
     path: '',
     component: AdminComponent,

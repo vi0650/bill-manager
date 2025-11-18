@@ -12,12 +12,13 @@ import { Admins } from '../../core/models/admin.model';
 export class AdminsListComponent implements OnInit {
 
   constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService) {
+
   }
 
   @Output() adminsChange = new EventEmitter<Admins>();
 
   Admin: Admins[] = [];
-
+  
   ngOnInit() {
     this.getAdminData();
   }
@@ -27,9 +28,9 @@ export class AdminsListComponent implements OnInit {
     if (storedAdmin) {
       this.Admin = JSON.parse(storedAdmin);
     } else {
-      this.Admin = [{ AdminId: '1', shopName: 'haldiram', userName: 'haldiram', emailId: 'haldiram@gmail.com', mobileNo: '+919993249324',address:'india' },
-      { AdminId: '2', shopName: 'bikaner', userName: 'bikaner', emailId: 'bikaner@gmail.com', mobileNo: '+919993249325',address:'india' },
-      { AdminId: '3', shopName: 'gopal', userName: 'gopal', emailId: 'gopal@gmail.com', mobileNo: '+919993249326',address:'india' }
+      this.Admin = [{ AdminId: 1, shopName: 'haldiram', userName: 'haldiram', emailId: 'haldiram@gmail.com', mobileNo: '+919993249324',address:'india',role:'admin' },
+      { AdminId: 2, shopName: 'bikaner', userName: 'bikaner', emailId: 'bikaner@gmail.com', mobileNo: '+919993249325',address:'india',role:'admin'},
+      { AdminId: 3, shopName: 'gopal', userName: 'gopal', emailId: 'gopal@gmail.com', mobileNo: '+919993249326',address:'india',role:'admin'}
       ];
       this.setAdminData();
     }
@@ -41,9 +42,13 @@ export class AdminsListComponent implements OnInit {
 
   openAddAdminDialog() {
     console.log('Opening dialog...');
-    const dialogRef = this.dialogService.open(AddAdminComponent);
-    dialogRef.onClose.subscribe((admin) => {
-      if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.address) {
+    const adminDialog = this.dialogService.open(AddAdminComponent,{
+      context:{
+        isEdit:false,
+      }
+    });
+    adminDialog.onClose.subscribe((admin) => {
+      if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.address && admin.role) {
         const adminExists = this.Admin.find(a => a.shopName === admin.shopName);
         if (adminExists) {
           this.NbTostr.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });
@@ -57,12 +62,31 @@ export class AdminsListComponent implements OnInit {
     });
   }
 
+  editAdminDialog(i:number){
+    console.log('opened edit dialog');
+    const adminEdit={
+      ...this.Admin[i],
+    };
+    const adminDialog = this.dialogService.open(AddAdminComponent,{
+      context:{
+        isEdit:true,
+        editAdmin:adminEdit,
+      },
+    });
+    adminDialog.onClose.subscribe((updateAdmin) =>{
+      if(updateAdmin && updateAdmin.AdminId){
+        this.Admin[i] = updateAdmin;
+        this.setAdminData();
+        this.NbTostr.success('Admin updated successfully','SUCCESS');
+      }
+    })
+  }
+
   deleteAdmin(i: number) {
     if (!confirm("Are you sure to delete this admin")) return;
     else {
       this.NbTostr.danger("Admin Deleted Successfully", "Deleted", { duration: 3000 });
     }
-    localStorage.removeItem('Admins');
     this.Admin.splice(i, 1);
     this.setAdminData();
   }

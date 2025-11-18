@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bill-manager": {
+    "bill-flow": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "allowedCommonJsDependencies": ["eva-icons"],
+            "allowedCommonJsDependencies": [
+              "eva-icons"
+            ],
             "outputPath": "docs",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -32,6 +34,7 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"
@@ -70,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bill-manager:build:production"
+              "buildTarget": "bill-flow:build:production"
             },
             "development": {
-              "buildTarget": "bill-manager:build:development"
+              "buildTarget": "bill-flow:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,6 +93,7 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
+              "src/assets",
               {
                 "glob": "**/*",
                 "input": "public"

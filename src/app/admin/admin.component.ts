@@ -35,6 +35,7 @@ export class AdminComponent {
   }
 
   menuItems = [
+    { title: 'Home', icon: 'home-outline', link: 'home' },
     { title: 'Invoices', icon: 'file-add-outline', link: 'invoices' },
     { title: 'Products', icon: 'cube', link: 'products' },
     { title: 'Profile', icon: 'settings-2-outline', link: 'profile' },

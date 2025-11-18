@@ -1,0 +1,120 @@
+//colours
+$primary: #2263ff;
+$bg: #f2f6fb;
+$text-dark: #0f1724;
+$text-light: #344055;
+$shadow: 0 8px 20px rgba(18, 40, 80, 0.03);
+
+/* Center full layout */
+.welcome-content {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //   padding: 1.5rem;
+  background: linear-gradient(
+    100deg,
+    rgba($primary, 0.08),
+    rgba(0, 200, 150, 0.04)
+  );
+}
+
+/* Card styling */
+nb-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  background: white;
+}
+
+/* Card header */
+nb-card-header {
+  text-align: center;
+  padding: 1.4rem;
+  border-bottom: 1px solid #e6e6e6;
+
+  h3 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 0;
+    color: #1a2340;
+  }
+}
+
+/* Form spacing */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  padding: 0.5rem 0;
+}
+
+/* Label styling */
+.label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  display: block;
+  color: #333;
+}
+
+/* Nebular form input spacing */
+nb-form-field {
+  width: 100%;
+
+  input[nbInput] {
+    height: 45px;
+    font-size: 0.95rem;
+    padding-left: 40px;
+  }
+
+  nb-icon[nbPrefix] {
+    margin-left: 10px;
+    font-size: 22px;
+  }
+}
+
+/* Login button center */
+.login-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8rem;
+
+  button {
+    width: 100%;
+    height: 45px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+}
+
+/* Footer text */
+nb-card-footer {
+  text-align: center;
+  padding: 1.1rem 0;
+
+  p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #3d63ff;
+    cursor: pointer;
+  }
+
+  p:hover {
+    text-decoration: underline;
+  }
+}
+
+/* Mobile tweaks */
+@media (max-width: 480px) {
+  nb-card {
+    max-width: 100%;
+  }
+
+  nb-card-header h3 {
+    font-size: 1.4rem;
+  }
+}

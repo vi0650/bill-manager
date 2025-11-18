@@ -1,26 +1,33 @@
 import { Component } from '@angular/core';
-import { NebulerModule } from '../shared/nebuler.module';
-import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 import { Admins } from '../core/models/admin.model';
+import { NbSidebarService } from '@nebular/theme';
 
 @Component({
   selector: 'app-home',
-  imports: [NebulerModule,RouterModule,FormsModule],
-  // standalone:true,
+  standalone: false,
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
 
-  adminId:string='';
-  userName:string='';
-  password:any='';
-  adminData:Admins[]=[];
+  menuItems = [
+    { title: 'Home', link: '/' },
+    { title: 'Login', link: '/login' },
+  ];
 
-  login(){
-    if(this.adminId && this.userName && this.password){
-      this.adminData.find
-    }
+  constructor(private nbSidebar: NbSidebarService) { }
+
+  adminId: string = '';
+  userName: string = '';
+  password: any = '';
+  adminData: Admins[] = [];
+
+  login() {
+    console.log('under construction');
+  }
+
+  toggle() {
+    this.nbSidebar.toggle(false, 'home-sidebar')
+    return true;
   }
 }

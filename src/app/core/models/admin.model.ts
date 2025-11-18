@@ -1,8 +1,9 @@
-export interface Admins{
-    AdminId:string;
-    shopName:string;
-    userName:string;
-    emailId:string;
-    mobileNo:string;
-    address:string;
+export interface Admins {
+    AdminId: number | null | any,
+    shopName: string,
+    userName: string,
+    emailId: string,
+    mobileNo: string,
+    address: string,
+    role: string
 }

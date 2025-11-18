@@ -24,7 +24,7 @@ export class ProductsComponent{
     if (storedProducts) {
       this.Products = JSON.parse(storedProducts);
     } else {
-      this.Products = [{ ProductId: '1', Name: 'dummy data', Rate: 100 }];
+      this.Products = [{ AdminId: 1, ProductId: 1, Name: 'dummy data', Rate: 100 }];
       this.setProductsData();
     }
     console.table(this.Products)

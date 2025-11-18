@@ -29,7 +29,7 @@ export class AddProductComponent {
     }
   }
 
-  newProduct: Product = { ProductId: '', Name: '', Rate: null };
+  newProduct: Product = { AdminId:null, ProductId: null, Name: '', Rate: null };
 
   addProduct() {
     const product: Product = { ...this.newProduct };

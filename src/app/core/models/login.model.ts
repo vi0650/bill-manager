@@ -1,5 +1,8 @@
 export interface login{
-    ProductId:string | any;
-    Name:string;
-    Rate:number| null | any;
+    AdminId: number | null | any,
+    shopName: string;
+    userName: string;
+    emailId: string;
+    mobileNo: string;
+    address: string;
 }
