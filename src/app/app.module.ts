@@ -27,7 +27,7 @@ import { HomeComponent } from './home/home.component';
     AuthModule
   ],
   providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),
-    // {provide: LocationStrategy,useClass:HashLocationStrategy}
+    {provide: LocationStrategy,useClass:HashLocationStrategy}
   ],
   bootstrap: [AppComponent]
 })
