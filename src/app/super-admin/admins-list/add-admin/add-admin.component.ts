@@ -33,7 +33,7 @@ export class AddAdminComponent {
     }
   }
 
-  newAdmin = { AdminId: 0, shopName: '', userName: '', emailId: '', mobileNo: '', address: '', role: '' }
+  newAdmin = { AdminId: 0, shopName: '', userName: '', emailId: '', mobileNo: '',password:'', address: '', role: '' }
 
 
   addAdmin() {
@@ -43,6 +43,7 @@ export class AddAdminComponent {
       user.userName &&
       user.emailId &&
       user.mobileNo &&
+      user.password &&
       user.address
     ) {
       this.dialogRef.close(this.newAdmin);

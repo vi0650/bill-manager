@@ -27,7 +27,7 @@
         <nb-list-item class="list-item" *ngFor="let users of Admin; let i = index">
           <div class="col index">{{ i + 1 }}</div>
           <div class="col role">
-            <nb-tag appearance="outline" [text]="users.role"></nb-tag>
+            <nb-tag appearance="outline" status="primary" [text]="users.role"></nb-tag>
           </div>
           <div class="col user-profile">
             <nb-user [name]="users.shopName"></nb-user>

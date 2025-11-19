@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AuthModule } from './auth/auth.module';
 import { AppComponent } from './app.component';
+import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -14,18 +15,20 @@ const routes: Routes = [
   },
   {
     path: 'super-admin',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./super-admin/super-admin.module')
       .then(m => m.SuperAdminModule),
   },
   {
     path: 'admin',
+    canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin.module')
       .then(m => m.AdminModule),
   },
 ];
-bootstrapApplication(AppComponent, {
-  providers: [
-    provideRouter(routes, withHashLocation())
+bootstrapApplication(AppComponent,{
+  providers:[
+    provideRouter(routes,withHashLocation())
   ]
 })
 

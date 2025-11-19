@@ -5,15 +5,14 @@
         <nb-icon icon="menu-arrow-outline"></nb-icon>
       </button>
       <span class="header-title">Super Admin</span>
+      <button class="logout" nbButton status="primary" outline size="small" (click)="logout()">
+        <nb-icon icon="log-out-outline"></nb-icon>
+        logout
+      </button>
     </div>
   </nb-layout-header>
 
-  <nb-sidebar
-    tag="super-sidebar"
-    state="expanded"
-    responsive
-    style="background-color: aliceblue"
-  >
+  <nb-sidebar tag="super-sidebar" state="expanded" responsive style="background-color: aliceblue">
     <nb-menu [items]="menuItems">
     </nb-menu>
   </nb-sidebar>

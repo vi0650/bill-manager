@@ -44,6 +44,11 @@
           name="mobileNo" placeholder="Enter Mobile Number" required>
       </div>
       <div class="form-group">
+        <label for="passwordInput" class="label">Password</label>
+        <input type="text" nbInput shape="semi-round" fullWidth id="passwordInput" [(ngModel)]="newAdmin.password"
+          name="password" placeholder="Enter Password" required>
+      </div>
+      <div class="form-group">
         <label for="addressInput" class="label">Address</label>
         <textarea type="text" nbInput shape="semi-round" fullWidth id="addressInput" [(ngModel)]="newAdmin.address"
           rows="2" name="addressInput" placeholder="Enter Address" required></textarea>

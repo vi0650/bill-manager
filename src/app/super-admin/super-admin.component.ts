@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 
 @Component({
@@ -7,12 +8,12 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
   templateUrl: './super-admin.component.html',
   styleUrl: './super-admin.component.css'
 })
-export class SuperAdminComponent {  
+export class SuperAdminComponent {
 
-  constructor(private sidebarService: NbSidebarService) {}
+  constructor(private sidebarService: NbSidebarService,private route:Router) { }
 
-  menuItems:NbMenuItem[] = [
-    { title: 'Home', icon: 'home-outline', link: '/' },
+  menuItems: NbMenuItem[] = [
+    // { title: 'Home', icon: 'home-outline', link: '/' },
     { title: 'Admins', icon: 'person-outline', link: 'admins-list' }
   ];
 
@@ -20,5 +21,10 @@ export class SuperAdminComponent {
     this.sidebarService.toggle(true, 'super-sidebar');
     return false;
   }
-  
+
+  logout() {
+    localStorage.removeItem('loggedUser');
+    this.route.navigate(['/login']);
+  }
+
 }

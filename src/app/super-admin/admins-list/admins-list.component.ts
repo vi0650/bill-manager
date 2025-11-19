@@ -28,10 +28,7 @@ export class AdminsListComponent implements OnInit {
     if (storedAdmin) {
       this.Admin = JSON.parse(storedAdmin);
     } else {
-      this.Admin = [{ AdminId: 1, shopName: 'haldiram', userName: 'haldiram', emailId: 'haldiram@gmail.com', mobileNo: '+919993249324',address:'india',role:'admin' },
-      { AdminId: 2, shopName: 'bikaner', userName: 'bikaner', emailId: 'bikaner@gmail.com', mobileNo: '+919993249325',address:'india',role:'admin'},
-      { AdminId: 3, shopName: 'gopal', userName: 'gopal', emailId: 'gopal@gmail.com', mobileNo: '+919993249326',address:'india',role:'admin'}
-      ];
+      this.Admin;
       this.setAdminData();
     }
   }
@@ -48,7 +45,7 @@ export class AdminsListComponent implements OnInit {
       }
     });
     adminDialog.onClose.subscribe((admin) => {
-      if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.address && admin.role) {
+      if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.password && admin.address && admin.role) {
         const adminExists = this.Admin.find(a => a.shopName === admin.shopName);
         if (adminExists) {
           this.NbTostr.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });

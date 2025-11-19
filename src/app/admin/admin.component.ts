@@ -19,7 +19,9 @@ export class AdminComponent {
   private navigationComplete: boolean = true;
   private loadtimePassed: boolean = true;
 
-  constructor(private sidebarService: NbSidebarService, private breakpointService: NbMediaBreakpointsService, private menuService: NbMenuService) { }
+  constructor(private sidebarService: NbSidebarService, private breakpointService: NbMediaBreakpointsService, private menuService: NbMenuService, private route: Router) { 
+
+  }
 
   ngOnInit(): void {
     const { lg } = this.breakpointService.getBreakpointsMap();
@@ -35,7 +37,7 @@ export class AdminComponent {
   }
 
   menuItems = [
-    { title: 'Home', icon: 'home-outline', link: 'home' },
+    // { title: 'Home', icon: 'home-outline', link: 'home' },
     { title: 'Invoices', icon: 'file-add-outline', link: 'invoices' },
     { title: 'Products', icon: 'cube', link: 'products' },
     { title: 'Profile', icon: 'settings-2-outline', link: 'profile' },
@@ -53,10 +55,15 @@ export class AdminComponent {
     return false;
   }
 
-  ngOnDestroy() {
-    this.destroy$.next();
-    this.destroy$.complete();
+  logout() {
+    localStorage.removeItem('loggedUser');
+    this.route.navigate(['/login']);
   }
+
+  // ngOnDestroy() {
+  //   this.destroy$.next();
+  //   this.destroy$.complete();
+  // }
 
   // routerSpinner() {
   //   this.router.events.subscribe((Event) => {
@@ -72,4 +79,5 @@ export class AdminComponent {
   //   console.log(this.loading,"navigation not started");
 
   // }
+
 }

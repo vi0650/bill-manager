@@ -1,6 +1,6 @@
 <nb-layout windowMode>
 
-  <nb-layout-header fixed class="site-header">
+  <!-- <nb-layout-header fixed class="site-header">
     <div class="nav-container">
       <div class="logo">bill-flow</div>
       <div class="nav-right">
@@ -8,7 +8,7 @@
         <button nbButton status="primary" routerLink="/admin">Sign Up</button>
       </div>
     </div>
-  </nb-layout-header>
+  </nb-layout-header> -->
 
   <nb-layout-column>
     <div class="nb-tag">
@@ -19,20 +19,31 @@
     <div class="welcome-content">
       <nb-card class="welcome-card">
         <nb-card-header>
-          <h2>Test mode</h2>
+          <h4>Test Mode Enabled</h4>
         </nb-card-header>
         <nb-card-body>
-          <p>Please select a mode to continue</p>
-          <div class="button-group">
-            <button nbButton status="info" size="medium" [routerLink]="['/admin']">
-              <nb-icon icon="person-outline"></nb-icon>
-              Admin
-            </button>
-            <button nbButton status="primary" size="medium" [routerLink]="['/super-admin']">
-              <nb-icon icon="people-outline"></nb-icon>
-              Super Admin
-            </button>
-          </div>
+          <p class="desc">
+            Your account is currently running in a safe sandbox environment.
+            Explore all features freely without affecting your real billing data.
+          </p>
+          <ul class="highlights">
+            <li><nb-icon status="success" icon="checkmark-circle-2-outline"></nb-icon> Full feature access</li>
+            <li><nb-icon status="success" icon="checkmark-circle-2-outline"></nb-icon> No charges in test mode</li>
+            <li><nb-icon status="success" icon="checkmark-circle-2-outline"></nb-icon> Safe for team training</li>
+          </ul>
+          <p class="desc">use this credentials</p>
+          <ul class="highlights">
+            <li><nb-icon icon="hash-outline"></nb-icon>admin</li>
+            <li><nb-icon icon="hash-outline"></nb-icon>Admin&#64;1234</li>
+          </ul>
+          <nb-card-footer>
+            <div class="button-group">
+              <button nbButton status="primary" size="medium" [routerLink]="['/login']">
+                <nb-icon icon="log-in-outline"></nb-icon>
+                login
+              </button>
+            </div>
+          </nb-card-footer>
         </nb-card-body>
       </nb-card>
     </div>

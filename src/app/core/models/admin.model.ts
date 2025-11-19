@@ -4,6 +4,7 @@ export interface Admins {
     userName: string,
     emailId: string,
     mobileNo: string,
+    password:string,
     address: string,
     role: string
 }
