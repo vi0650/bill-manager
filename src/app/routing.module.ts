@@ -23,11 +23,11 @@ const routes: Routes = [
       .then(m => m.AdminModule),
   },
 ];
-// bootstrapApplication(AppComponent,{
-//   providers:[
-//     provideRouter(routes,withHashLocation())
-//   ]
-// })
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideRouter(routes, withHashLocation())
+  ]
+})
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

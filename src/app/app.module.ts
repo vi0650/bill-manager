@@ -26,8 +26,8 @@ import { HomeComponent } from './home/home.component';
     NebulerModule,
     AuthModule
   ],
-  providers: [provideAnimations(),provideAnimationsAsync(),provideNoopAnimations(),
-    // {provide: LocationStrategy,useClass:HashLocationStrategy}
+  providers: [provideAnimations(), provideAnimationsAsync(), provideNoopAnimations(),
+  { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
 })
