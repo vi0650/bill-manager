@@ -13,10 +13,15 @@ import { Admins } from '../../core/models/admin.model';
 export class LoginComponent {
 
   constructor(private auth: AuthService, private toastr: NbToastrService, private route: Router) {
-    if (localStorage.getItem('loggedUser') === "admin") {
-      this.route.navigate(['/admin']);
-    }else{
-      this.route.navigate(['/super-admin'])
+    if (this.auth.isLoggesIn()) {
+      const user = this.auth.getLoggedUser();
+
+      // Redirect based on the parsed user object role
+      if (user.role === 'super-admin') {
+        this.route.navigate(['/super-admin']);
+      } else {
+        this.route.navigate(['/admin']);
+      }
     }
   }
 
@@ -24,17 +29,20 @@ export class LoginComponent {
   password: string = '';
 
   onlogin() {
-    const user: Admins | null = this.auth.login(this.username, this.password);
+    const user: Admins | any = this.auth.login(this.username, this.password);
 
     if (!user) {
-      this.toastr.warning("username or password is wrong", 'invalid credentials');
+      this.toastr.warning("user does not exist", 'invalid credentials');
       console.log(user);
       return;
     }
     if (user.role === "super-admin") {
-      this.route.navigate(['/super-admin']);
+      this.route.navigate(['/super-admin'], { replaceUrl: true });
+      console.log('super-admin');
     } else {
-      this.route.navigate(['/admin']);
+      this.route.navigate(['/admin'], { replaceUrl: true });
+      console.log('admin redirect');
+
     }
   }
 

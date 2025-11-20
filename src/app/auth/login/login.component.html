@@ -16,6 +16,7 @@
                 name="username"
                 id="username-input"
                 placeholder="Enter Username"
+                shape="semi-round"
                 [(ngModel)]="username"
               />
               <nb-icon nbPrefix icon="person-outline" pack="eva"></nb-icon>
@@ -25,17 +26,16 @@
             <nb-form-field>
               <input
                 nbInput
-                [type]="getInputType()"
                 fullWidth
-                shape="semi-round"
                 name="password"
                 id="password-input"
-                type="password"
+                [type]="getInputType()"
+                shape="semi-round"
                 placeholder="Enter Password"
                 [(ngModel)]="password"
               />
               <nb-icon nbPrefix icon="lock-outline" pack="eva"></nb-icon>
-              <button nbSuffix nbButton ghost (click)="toggleShowPassword()">
+              <button nbSuffix nbButton ghost status="warning" (click)="toggleShowPassword()">
                 <nb-icon
                   [icon]="showPassword ? 'eye-outline' : 'eye-off-2-outline'"
                   pack="eva"
@@ -48,7 +48,7 @@
             </nb-form-field>
 
             <div class="login-button">
-              <button nbButton status="primary" [disabled]="!form.valid" (click)="onlogin()">Login</button>
+              <button nbButton status="primary" fullWidth="auto" [disabled]="!form.valid" (click)="onlogin()">Login</button>
             </div>
           </form>
         </nb-card-body>

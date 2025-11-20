@@ -1,8 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Admins } from '../core/models/admin.model';
 import { NbMediaBreakpointsService, NbSidebarService, NbMenuService } from '@nebular/theme';
-import { takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject,takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,8 +15,8 @@ export class AdminComponent {
   private destroy$ = new Subject<void>();
   loading: boolean = false;
 
-  private navigationComplete: boolean = true;
-  private loadtimePassed: boolean = true;
+  // private navigationComplete: boolean = true;
+  // private loadtimePassed: boolean = true;
 
   constructor(private sidebarService: NbSidebarService, private breakpointService: NbMediaBreakpointsService, private menuService: NbMenuService, private route: Router) { 
 
@@ -60,10 +59,10 @@ export class AdminComponent {
     this.route.navigate(['/login']);
   }
 
-  // ngOnDestroy() {
-  //   this.destroy$.next();
-  //   this.destroy$.complete();
-  // }
+  ngOnDestroy() {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   // routerSpinner() {
   //   this.router.events.subscribe((Event) => {

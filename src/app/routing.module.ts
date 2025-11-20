@@ -18,12 +18,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./super-admin/super-admin.module')
       .then(m => m.SuperAdminModule),
+    data: { role: 'super-admin' } // <--- ONLY super-admin allowed
   },
   {
     path: 'admin',
     canActivate: [AuthGuard],
     loadChildren: () => import('./admin/admin.module')
       .then(m => m.AdminModule),
+    data: { role: 'admin' } // <--- ONLY admin allowed
   },
 ];
 bootstrapApplication(AppComponent,{

@@ -5,11 +5,13 @@ import { InvoicesComponent } from './components/invoices/invoices.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HomeComponent } from '../home/home.component';
+import { AuthGuard } from '../core/guards/auth.guard';
 
 const routes: Routes = [
   {path:'home',component:HomeComponent},
   {
-    path: 'admin',
+    path: '',
+    canActivate:[AuthGuard],
     component: AdminComponent,
     children: [
       { path: 'invoices', component: InvoicesComponent },

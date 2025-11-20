@@ -8,27 +8,29 @@ export class AuthService {
 
   constructor() { }
 
-  login(userName: string, password: string):Admins | null{
-    const admin:Admins[] = JSON.parse(localStorage.getItem('Admins') || '[]');
+  login(userName: string, password: string): Admins | null {
+    const admin: Admins[] = JSON.parse(localStorage.getItem('Admins') || '[]');
 
-    const user = admin.find((x:any) =>
+    const user = admin.find((x: any) =>
       x.userName === userName && x.password === password
     ) || null;
 
-    if (!user) return null;
+    if (!user)return null;
+ 
+
     localStorage.setItem('loggedUser', JSON.stringify(user));
     return user;
   }
 
   isLoggesIn() {
-    return localStorage.getItem('loggedUser') !== null;
+    return localStorage.getItem('loggedUser');
   }
 
   getLoggedUser() {
     return JSON.parse(localStorage.getItem('loggedUser')!);
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('loggedUser');
   }
 

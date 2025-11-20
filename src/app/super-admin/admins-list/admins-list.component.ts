@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { Admins } from '../../core/models/admin.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'admins-list',
@@ -11,14 +12,10 @@ import { Admins } from '../../core/models/admin.model';
 })
 export class AdminsListComponent implements OnInit {
 
-  constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService) {
-
-  }
-
-  @Output() adminsChange = new EventEmitter<Admins>();
+  constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService,private router:Router) { }
 
   Admin: Admins[] = [];
-  
+
   ngOnInit() {
     this.getAdminData();
   }
@@ -39,16 +36,16 @@ export class AdminsListComponent implements OnInit {
 
   openAddAdminDialog() {
     console.log('Opening dialog...');
-    const adminDialog = this.dialogService.open(AddAdminComponent,{
-      context:{
-        isEdit:false,
+    const adminDialog = this.dialogService.open(AddAdminComponent, {
+      context: {
+        isEdit: false,
       }
     });
     adminDialog.onClose.subscribe((admin) => {
       if (admin && admin.AdminId && admin.shopName && admin.userName && admin.emailId && admin.mobileNo && admin.password && admin.address && admin.role) {
         const adminExists = this.Admin.find(a => a.shopName === admin.shopName);
         if (adminExists) {
-          this.NbTostr.warning("Admin "+ `${admin.shopName}` +" already exists.", "Warning", { duration: 3000 });
+          this.NbTostr.warning("Admin " + `${admin.shopName}` + " already exists.", "Warning", { duration: 3000 });
           return;
         }
         this.Admin.push(admin);
@@ -59,22 +56,22 @@ export class AdminsListComponent implements OnInit {
     });
   }
 
-  editAdminDialog(i:number){
+  editAdminDialog(i: number) {
     console.log('opened edit dialog');
-    const adminEdit={
+    const adminEdit = {
       ...this.Admin[i],
     };
-    const adminDialog = this.dialogService.open(AddAdminComponent,{
-      context:{
-        isEdit:true,
-        editAdmin:adminEdit,
+    const adminDialog = this.dialogService.open(AddAdminComponent, {
+      context: {
+        isEdit: true,
+        editAdmin: adminEdit,
       },
     });
-    adminDialog.onClose.subscribe((updateAdmin) =>{
-      if(updateAdmin && updateAdmin.AdminId){
+    adminDialog.onClose.subscribe((updateAdmin) => {
+      if (updateAdmin && updateAdmin.AdminId) {
         this.Admin[i] = updateAdmin;
         this.setAdminData();
-        this.NbTostr.success('Admin updated successfully','SUCCESS');
+        this.NbTostr.success('Admin updated successfully', 'SUCCESS');
       }
     })
   }
@@ -89,7 +86,7 @@ export class AdminsListComponent implements OnInit {
   }
 
   refresh() {
-    window.location.reload();
+    this.router.navigate([this.router.url], { onSameUrlNavigation: 'reload' });
   }
 
 }
