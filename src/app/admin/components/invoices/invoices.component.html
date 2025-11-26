@@ -27,7 +27,7 @@
       <!-- list -->
       <nb-list>
         <nb-list-item class="list-item" *ngFor="let invoice of invoices; let i = index">
-          <div class="col index">{{ i + 1 }}</div>
+          <div class="col index">{{ invoice.invoiceId }}</div>
 
           <div class="col status">
             <ng-container *ngFor="let status of invoice.statusUpdate">
@@ -37,7 +37,7 @@
           </div>
 
           <div class="col name">
-            {{ invoice.invoiceId }} - {{ invoice.customerName }}
+            {{ i + 1 }} - {{ invoice.customerName }}
           </div>
 
           <div class="col date">

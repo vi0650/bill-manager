@@ -31,7 +31,7 @@ export function initAdmins(adminInit: AdminDataService) {
     AuthModule,
   ],
   providers: [provideAnimations(), provideAnimationsAsync(), provideNoopAnimations(),
-  {provide: LocationStrategy,useClass:HashLocationStrategy},
+  // {provide: LocationStrategy,useClass:HashLocationStrategy},
   {
     provide: APP_INITIALIZER,
     useFactory: initAdmins,

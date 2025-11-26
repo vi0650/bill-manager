@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { Admins } from '../models/admin.model';
 
 @Injectable({
@@ -13,28 +12,26 @@ export class AdminDataService {
     this.getAdmin()
   }
 
-  Admin: Admins[] = [];
+  private readonly storageKey = 'Admins';
 
-  getAdmin() {
-    const storedAdmin = localStorage.getItem('Admins');
-    if (storedAdmin) {
-      this.Admin = JSON.parse(storedAdmin);
-    } else {
-      this.Admin = [{
-        AdminId: 1,
-        shopName: 'admin',
-        userName: 'Admin',
-        password: 'Admin@1234',
-        role: 'super-admin',
-        emailId: 'Admin@gmail.com',
-        mobileNo: '+918934578435',
-        address: 'India'
-      }];
-      this.setAdminData();
-    }
+
+  Admins: Admins[] = [{
+      AdminId: 1,
+      shopName: 'admin',
+      userName: 'Admin',
+      password: 'Admin@1234',
+      role: 'super-admin',
+      emailId: 'Admin@gmail.com',
+      mobileNo: '+918934578435',
+      address: 'India'
+    }];
+
+  getAdmin(): Admins[] {
+    const storedAdmin = localStorage.getItem(this.storageKey);
+    return storedAdmin ? JSON.parse(storedAdmin) : (this.setAdminData(this.Admins),this.Admins);
   }
 
-  setAdminData() {
-    localStorage.setItem('Admins', JSON.stringify(this.Admin));
+  setAdminData(Admin: Admins[]) {
+    localStorage.setItem(this.storageKey, JSON.stringify(Admin));
   }
 }

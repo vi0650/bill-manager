@@ -3,6 +3,7 @@ import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddAdminComponent } from './add-admin/add-admin.component';
 import { Admins } from '../../core/models/admin.model';
 import { Router } from '@angular/router';
+import { AdminDataService } from '../../core/services/admin-data.service';
 
 @Component({
   selector: 'admins-list',
@@ -12,26 +13,13 @@ import { Router } from '@angular/router';
 })
 export class AdminsListComponent implements OnInit {
 
-  constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService,private router:Router) { }
+  constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService,private router:Router,private AdminDataService: AdminDataService) { }
 
   Admin: Admins[] = [];
 
   ngOnInit() {
-    this.getAdminData();
-  }
-
-  getAdminData() {
-    const storedAdmin = localStorage.getItem('Admins');
-    if (storedAdmin) {
-      this.Admin = JSON.parse(storedAdmin);
-    } else {
-      this.Admin;
-      this.setAdminData();
-    }
-  }
-
-  setAdminData() {
-    localStorage.setItem('Admins', JSON.stringify(this.Admin));
+    this.Admin = this.AdminDataService.getAdmin();
+    console.table(this.Admin);
   }
 
   openAddAdminDialog() {
@@ -49,7 +37,7 @@ export class AdminsListComponent implements OnInit {
           return;
         }
         this.Admin.push(admin);
-        this.setAdminData();
+        this.AdminDataService.setAdminData(this.Admin)
         this.NbTostr.success("Admin Added Successfully please refresh the page.", "Success", { duration: 3000 });
       }
       console.log('Dialog closed', admin);
@@ -70,7 +58,7 @@ export class AdminsListComponent implements OnInit {
     adminDialog.onClose.subscribe((updateAdmin) => {
       if (updateAdmin && updateAdmin.AdminId) {
         this.Admin[i] = updateAdmin;
-        this.setAdminData();
+        this.AdminDataService.setAdminData(this.Admin)
         this.NbTostr.success('Admin updated successfully', 'SUCCESS');
       }
     })
@@ -82,7 +70,7 @@ export class AdminsListComponent implements OnInit {
       this.NbTostr.danger("Admin Deleted Successfully", "Deleted", { duration: 3000 });
     }
     this.Admin.splice(i, 1);
-    this.setAdminData();
+    this.AdminDataService.setAdminData(this.Admin)
   }
 
   refresh() {

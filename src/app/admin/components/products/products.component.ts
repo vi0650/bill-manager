@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddProductComponent } from './add-product/add-product.component';
 import { Product } from '../../../core/models/product.model';
+import { ProductStorageService } from '../../../core/services/product-storage.service';
 
 @Component({
   selector: 'products',
@@ -9,36 +10,25 @@ import { Product } from '../../../core/models/product.model';
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss'
 })
-export class ProductsComponent{
+export class ProductsComponent {
 
-  constructor(private productDialogService: NbDialogService, private NbTostr: NbToastrService) { }
+  constructor(private productDialogService: NbDialogService, 
+    private NbTostr: NbToastrService,
+    private productStorageService: ProductStorageService
+  ) { }
 
   ngOnInit() {
-    this.getProductsData();
+    this.Products = this.productStorageService.getProducts();
+    console.table(this.Products)
   }
 
   Products: Product[] = [];
 
-  getProductsData() {
-    const storedProducts = localStorage.getItem('Products');
-    if (storedProducts) {
-      this.Products = JSON.parse(storedProducts);
-    } else {
-      this.Products = [{ AdminId: 1, ProductId: 1, Name: 'dummy data', Rate: 100 }];
-      this.setProductsData();
-    }
-    console.table(this.Products)
-  }
-
-  setProductsData() {
-    localStorage.setItem('Products', JSON.stringify(this.Products));
-  }
-
   openAddProductDialog() {
     console.log('opening add product dialog...');
-    const productDialog = this.productDialogService.open(AddProductComponent,{
-      context:{
-        isEdit:false,
+    const productDialog = this.productDialogService.open(AddProductComponent, {
+      context: {
+        isEdit: false,
       }
     });
     productDialog.onClose.subscribe((product) => {
@@ -50,14 +40,14 @@ export class ProductsComponent{
         }
         console.log('Product received:', product);
         this.Products.push(product);
-        this.setProductsData();
+        this.productStorageService.setProducts(this.Products);
         this.NbTostr.success(`Product added successfully.`, "SUCCESS", { duration: 3000 });
       }
       console.log('Dialog closed', product);
     })
   }
 
-  editProductDialog(i:number){
+  editProductDialog(i: number) {
     console.log('opening edit product dialog...');
     const productEdit = {
       ...this.Products[i],
@@ -66,22 +56,23 @@ export class ProductsComponent{
 
     const productDialog = this.productDialogService.open(AddProductComponent, {
       context: {
-        isEdit:true,
-        editProduct:productEdit,
+        isEdit: true,
+        editProduct: productEdit,
       },
     });
     productDialog.onClose.subscribe((updateProduct) => {
-      if(updateProduct && updateProduct.ProductId && updateProduct.Name && updateProduct.Rate){
+      if (updateProduct && updateProduct.ProductId && updateProduct.Name && updateProduct.Rate) {
         this.Products[i] = updateProduct;
-        this.setProductsData();
-        this.NbTostr.success('Product updated successfully','SUCCESS');
+        this.productStorageService.setProducts(this.Products);
+        this.NbTostr.success('Product updated successfully', 'SUCCESS');
       }
     })
   }
 
   deleteProduct(i: number) {
     this.Products.splice(i, 1);
-    this.setProductsData();
+    this.productStorageService.setProducts(this.Products);
+    this.NbTostr.danger('Product deleted successfully', 'SUCCESS');
   }
 
   refresh() {

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NbMediaBreakpointsService, NbMenuItem, NbMenuService, NbSidebarService } from '@nebular/theme';
 import { AuthService } from '../core/services/auth.service';
-import { Subject,takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'super-admin',
@@ -12,7 +12,7 @@ import { Subject,takeUntil } from 'rxjs';
 })
 export class SuperAdminComponent {
 
-  constructor(private sidebarService: NbSidebarService,private breakpointService: NbMediaBreakpointsService, private menuService: NbMenuService, private route: Router, private auth: AuthService) { }
+  constructor(private sidebarService: NbSidebarService, private breakpointService: NbMediaBreakpointsService, private menuService: NbMenuService, private route: Router, private auth: AuthService) { }
 
   private destroy$ = new Subject<void>();
 

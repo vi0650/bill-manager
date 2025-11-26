@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddInvoiceComponent } from './add-invoice/add-invoice.component';
-import { Invoice, statusDetail } from '../../../core/models/invoice.model';
+import { InvoiceStorageService } from '../../../core/services/invoice-storage.service';
+import { Invoice } from '../../../core/models/invoice.model';
 
 @Component({
   selector: 'invoices',
@@ -12,30 +13,24 @@ import { Invoice, statusDetail } from '../../../core/models/invoice.model';
 export class InvoicesComponent {
   constructor(
     private invoiceDialogService: NbDialogService,
-    private NbTostr: NbToastrService
-  ) {
-    console.log()
-  }
+    private NbTostr: NbToastrService,
+    private invoiceStorageService: InvoiceStorageService
+  ) { }
 
   ngOnInit(): void {
-    this.getInvoiceData();
+    this.invoices = this.invoiceStorageService.getInvoices();
+    console.table(this.invoices);
+    // this.NbTostr.danger('Please add Products first before adding invoices', 'Products not found');
   }
 
   invoices: Invoice[] = [];
-  status: statusDetail[] = [];
 
-  getInvoiceData() {
-    const storedInvoice = localStorage.getItem('Invoices');
-    if (storedInvoice) {
-      this.invoices = JSON.parse(storedInvoice);
-    } else {
-      this.invoices;
-      this.setInvoiceData();
-    }
-  }
-
-  setInvoiceData() {
-    localStorage.setItem('Invoices', JSON.stringify(this.invoices));
+  generateUniqueId(): number {
+    let newId: number;
+    do {
+      newId = Math.floor(1000 + Math.random() * 9000);
+    } while (this.invoices.some((invoice) => invoice.invoiceId === newId));
+    return newId;
   }
 
   openAddInvoiceDialog() {
@@ -48,16 +43,16 @@ export class InvoicesComponent {
     invoiceDialog.onClose.subscribe((invoice) => {
       if (
         invoice &&
-        invoice.invoiceId &&
         invoice.customerName &&
         invoice.phoneNo &&
         invoice.InvoiceDate &&
         invoice.Address &&
-        invoice.items &&
+        invoice.items &&  
         invoice.statusUpdate
       ) {
+        invoice.invoiceId = this.generateUniqueId();
         this.invoices.push(invoice);
-        this.setInvoiceData();
+        this.invoiceStorageService.setInvoices(this.invoices);
         this.NbTostr.success('invoice added successfully', `SUCCESS`);
       }
       console.log('Dialog closed', invoice);
@@ -91,7 +86,7 @@ export class InvoicesComponent {
         updatedInvoice.statusUpdate
       ) {
         this.invoices[i] = updatedInvoice;
-        this.setInvoiceData();
+        this.invoiceStorageService.setInvoices(this.invoices);
         this.NbTostr.success('Invoice updated successfully', 'SUCCESS');
       }
     });
@@ -99,7 +94,8 @@ export class InvoicesComponent {
 
   deleteInvoice(i: number) {
     this.invoices.splice(i, 1);
-    this.setInvoiceData();
+    this.invoiceStorageService.setInvoices(this.invoices);
+    this.NbTostr.danger('Invoice deleted successfully', 'SUCCESS');
   }
 
   refresh() {

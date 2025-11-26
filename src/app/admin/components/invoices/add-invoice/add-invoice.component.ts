@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
 import { Invoice, invoiceItems, statusDetail } from '../../../../core/models/invoice.model';
 import { Product } from '../../../../core/models/product.model';
+import { ProductStorageService } from '../../../../core/services/product-storage.service';
 
 @Component({
   selector: 'app-add-invoice',
@@ -23,7 +24,8 @@ export class AddInvoiceComponent {
   invoiceCount: number = 0;
   constructor(
     protected invoiceDialogRef: NbDialogRef<AddInvoiceComponent>,
-    private NbTostr: NbToastrService
+    private NbTostr: NbToastrService,
+    private productStorageService: ProductStorageService
   ) {
     //~ for generate invoice id
     // this.invoiceCount = localStorage.getItem('Invoices') ? JSON.parse(localStorage.getItem('Invoices')!).length : 0;
@@ -39,10 +41,8 @@ export class AddInvoiceComponent {
         items: this.editInvoice.items.map(item => ({ ...item })),
         InvoiceDate: new Date(this.editInvoice.InvoiceDate)
       };
-    } else {
-      this.invoiceCount = localStorage.getItem('Invoices') ?
-        JSON.parse(localStorage.getItem('Invoices')!).length : 0;
-      this.addInvoice.invoiceId = (this.invoiceCount + 1);
+    }else{
+      this.addInvoice.invoiceId = this.generateUniqueId();
     }
   }
 
@@ -77,7 +77,7 @@ export class AddInvoiceComponent {
   //empty variable array object
   addInvoice: Invoice = {
     AdminId: 0,
-    invoiceId: 0,
+    invoiceId: null,
     customerName: '',
     phoneNo: '',
     emailAddress: '',
@@ -104,6 +104,17 @@ export class AddInvoiceComponent {
     }
     console.log(this.addInvoice.items);
   }
+
+  /// for Each invoices generates unique id
+  generateUniqueId(): number {
+    let newId: number;
+    do {
+      newId = Math.floor(10000 + Math.random() * 90000);
+    } while (this.invoices.some((invoice) => invoice.invoiceId === newId));
+    return newId;
+  }
+
+  invoices: Invoice[] = [];
 
   updateRate(item: invoiceItems) {
     const selectedProduct = this.products.find((p) => p.Name === item.product);
