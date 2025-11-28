@@ -28,11 +28,11 @@ const routes: Routes = [
     data: { role: 'admin' } // <--- ONLY admin allowed
   },
 ];
-// bootstrapApplication(AppComponent,{
-//   providers:[
-//     provideRouter(routes,withHashLocation())
-//   ]
-// })
+bootstrapApplication(AppComponent,{
+  providers:[
+    provideRouter(routes,withHashLocation())
+  ]
+})
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

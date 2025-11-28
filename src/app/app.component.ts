@@ -8,26 +8,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-
-  ngOnInit(): void {
-    // if (!localStorage.getItem('Admins')) {
-    //   localStorage.setItem('Admins', JSON.stringify([
-    //     {
-    //       AdminId: 0,
-    //       shopName: 'admin',
-    //       userName: 'Admin',
-    //       password: 'Admin@1234',
-    //       role: 'super-admin',
-    //       emailId: '',
-    //       mobileNo: '',
-    //       address: ''
-    //     }
-    //   ]));
-    // }
-    
-  }
-
-
   // currentRoute = '';
 
   // constructor(
