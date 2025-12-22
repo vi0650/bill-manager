@@ -1,5 +1,4 @@
 <nb-layout windowMode>
-
   <!-- <nb-layout-header fixed class="site-header">
     <div class="nav-container">
       <div class="logo">bill-flow</div>
@@ -12,8 +11,12 @@
 
   <nb-layout-column>
     <div class="nb-tag">
-      <nb-tag status="info" appearance="outline" text="✨ New Features added | version - 1.05.06 →"
-        routerLink="/login"></nb-tag>
+      <nb-tag
+        status="info"
+        appearance="outline"
+        text="✨ New Features added | version - 1.05.06 →"
+        routerLink="/login"
+      ></nb-tag>
     </div>
 
     <div class="welcome-content">
@@ -24,12 +27,31 @@
         <nb-card-body>
           <p class="desc">
             Your account is currently running in a safe sandbox environment.
-            Explore all features freely without affecting your real billing data.
+            Explore all features freely without affecting your real billing
+            data.
           </p>
           <ul class="highlights">
-            <li><nb-icon status="success" icon="checkmark-circle-2-outline"></nb-icon> Full feature access</li>
-            <li><nb-icon status="success" icon="checkmark-circle-2-outline"></nb-icon> No charges in test mode</li>
-            <li><nb-icon status="success" icon="checkmark-circle-2-outline"></nb-icon> Safe for team training</li>
+            <li>
+              <nb-icon
+                status="success"
+                icon="checkmark-circle-2-outline"
+              ></nb-icon>
+              Full feature access
+            </li>
+            <li>
+              <nb-icon
+                status="success"
+                icon="checkmark-circle-2-outline"
+              ></nb-icon>
+              No charges in test mode
+            </li>
+            <li>
+              <nb-icon
+                status="success"
+                icon="checkmark-circle-2-outline"
+              ></nb-icon>
+              Safe for team training
+            </li>
           </ul>
           <p class="desc">use this credentials</p>
           <ul class="highlights">
@@ -38,7 +60,12 @@
           </ul>
           <nb-card-footer>
             <div class="button-group">
-              <button nbButton status="primary" size="medium" [routerLink]="['/login']">
+              <button
+                nbButton
+                status="primary"
+                size="medium"
+                [routerLink]="['/login']"
+              >
                 <nb-icon icon="log-in-outline"></nb-icon>
                 login
               </button>
@@ -53,37 +80,42 @@
 
       <div class="feature-grid">
         <nb-card class="feature-card">
-          <img src="assets/team.svg">
+          <img src="assets/graphic/team.svg" />
           <h4>Multi Admin</h4>
           <p>Add staff & control roles.</p>
         </nb-card>
 
         <nb-card class="feature-card">
-          <img src="assets/cart.svg">
+          <img
+            src="assets/graphic/cart.svg"
+            alt="Shopping cart icon representing product inventory management"
+          />
           <h4>Products</h4>
           <p>Simple stock control.</p>
         </nb-card>
 
         <nb-card class="feature-card">
-          <img src="assets/security.svg">
+          <img
+            src="assets/graphic/security.svg"
+            alt="A shield symbolizing security, representing the concept of secure login. The background is a clean, modern design that emphasizes safety and protection. The image conveys a sense of trust and reliability."
+          />
           <h4>Secure Login</h4>
           <p>Modern authentication.</p>
         </nb-card>
       </div>
     </section>
 
-
     <!-- FOOTER -->
     <footer class="site-footer">
-      <div>Bill-Flow — Made with care 
+      <div>
+        Bill-Flow — Made with care
         <!-- 💝 by<b><a href="https://github.com/vi0650" target="_blank">Vaibhav Padmani</a></b>. -->
       </div>
 
       <div>
-        <a (click)="build()">Docs</a> | <a (click)="build()">Contact</a> | <a (click)="build()">Privacy</a>
+        <a (click)="build()">Docs</a> | <a (click)="build()">Contact</a> |
+        <a (click)="build()">Privacy</a>
       </div>
     </footer>
-
   </nb-layout-column>
-
 </nb-layout>

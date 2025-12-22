@@ -1,7 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NbDialogService, NbToastrService } from '@nebular/theme';
 import { AddAdminComponent } from './add-admin/add-admin.component';
-import { Admins } from '../../core/models/admin.model';
+import { Admins, Role } from '../../core/models/admin.model';
 import { Router } from '@angular/router';
 import { AdminDataService } from '../../core/services/admin-data.service';
 
@@ -16,6 +16,7 @@ export class AdminsListComponent implements OnInit {
   constructor(private dialogService: NbDialogService, private NbTostr: NbToastrService,private router:Router,private AdminDataService: AdminDataService) { }
 
   Admin: Admins[] = [];
+  roles = Object.values(Role);
 
   ngOnInit() {
     this.Admin = this.AdminDataService.getAdmin();

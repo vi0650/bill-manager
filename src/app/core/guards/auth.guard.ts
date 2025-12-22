@@ -31,7 +31,7 @@ export class AuthGuard implements CanActivate {
 
     // 5. IF MISMATCH: Redirect user to THEIR allowed module
     // If an Admin tries to go to SuperAdmin, send them back to Admin
-    if (user.role === 'super-admin') {
+    if (user.role === 'SuperAdmin') {
       this.router.navigate(['/super-admin']);
     } else {
       this.router.navigate(['/admin']);

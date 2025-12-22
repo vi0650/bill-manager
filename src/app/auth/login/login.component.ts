@@ -17,7 +17,7 @@ export class LoginComponent {
       const user = this.auth.getLoggedUser();
 
       // Redirect based on the parsed user object role
-      if (user.role === 'super-admin') {
+      if (user.role === 'SuperAdmin') {
         this.route.navigate(['/super-admin']);
       } else {
         this.route.navigate(['/admin']);
@@ -36,9 +36,9 @@ export class LoginComponent {
       console.log(user);
       return;
     }
-    if (user.role === "super-admin") {
+    if (user.role === "SuperAdmin") {
       this.route.navigate(['/super-admin'], { replaceUrl: true });
-      console.log('super-admin');
+      console.log('SuperAdmin');
     } else {
       this.route.navigate(['/admin'], { replaceUrl: true });
       console.log('admin redirect');

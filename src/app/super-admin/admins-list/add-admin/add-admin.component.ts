@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NbDialogRef, NbToastrService } from '@nebular/theme';
-import { Admins } from '../../../core/models/admin.model';
+import { Admins, Role } from '../../../core/models/admin.model';
 
 @Component({
   selector: 'add-admin',
@@ -12,6 +12,7 @@ export class AddAdminComponent {
 
   @Input() isEdit = false;
   @Input() editAdmin?: Admins;
+  roles = Object.values(Role);
 
   adminCount: number = 0;
 

@@ -20,7 +20,7 @@ export class AdminDataService {
       shopName: 'admin',
       userName: 'Admin',
       password: 'Admin@1234',
-      role: 'super-admin',
+      role: 'SuperAdmin',
       emailId: 'Admin@gmail.com',
       mobileNo: '+918934578435',
       address: 'India'

@@ -25,8 +25,9 @@
             <label for="userRoleInput" class="label">Select Role</label>
             <nb-select [(ngModel)]="newAdmin.role" name="role" shape="semi-round" fullWidth placeholder="Role">
               <nb-option disabled="">select Role</nb-option>
-              <nb-option value="admin">Admin</nb-option>
-              <nb-option value="super-admin">Super Admin</nb-option>
+              <nb-option *ngFor="let user of roles" [value]="user">{{user}}</nb-option>
+              <!-- <nb-option value="admin">Admin</nb-option>
+              <nb-option value="super-admin">Super Admin</nb-option> -->
             </nb-select>
           </div>
         </div>
