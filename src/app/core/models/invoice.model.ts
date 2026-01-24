@@ -1,3 +1,5 @@
+import { DecimalPipe } from "@angular/common";
+
 export interface Invoice {
   AdminId: number | null | any,
   invoiceId:number | null | any,
@@ -16,7 +18,7 @@ export interface Invoice {
 
 export interface invoiceItems {
   product:string | any,
-  rate: number | null | any,
+  rate: DecimalPipe | null | any,
   qty: number | null | any,
   gst: number | null | any,
   amount: number | null | any,

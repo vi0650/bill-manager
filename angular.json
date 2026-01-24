@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "bill-flow": {
+    "invoice": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -73,10 +73,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "bill-flow:build:production"
+              "buildTarget": "invoice:build:production"
             },
             "development": {
-              "buildTarget": "bill-flow:build:development"
+              "buildTarget": "invoice:build:development"
             }
           },
           "defaultConfiguration": "development"

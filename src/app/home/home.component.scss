@@ -5,7 +5,6 @@ $text-dark: #0f1724;
 $text-light: #344055;
 $shadow: 0 8px 20px rgba(18, 40, 80, 0.03);
 
-// MIXINS
 @mixin center {
   display: flex;
   align-items: center;
@@ -85,13 +84,12 @@ button {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
-// GLOBAL
 nb-layout-column {
   background: $bg !important;
   padding: 0 !important;
 }
 
-// HEADER
+
 nb-layout-header {
   .nav-container {
     width: 100%;
@@ -114,7 +112,7 @@ nb-layout-header {
   }
 }
 
-// nb-tag
+
 .nb-tag {
   display: flex;
   justify-content: center;
@@ -126,7 +124,7 @@ nb-layout-header {
   );
 }
 
-// GLASS BANNER
+
 .glass-banner {
   @extend .page-container;
   margin: 30px auto;
@@ -141,7 +139,7 @@ nb-layout-header {
   text-align: center;
 }
 
-// FEATURES
+
 .features-section {
   @extend .page-container;
   padding: 3rem 0rem;
@@ -174,7 +172,6 @@ nb-layout-header {
   }
 }
 
-// FOOTER
 .site-footer {
   @extend .page-container;
   padding: 40px 20px;

@@ -1,7 +1,29 @@
 import { NgModule } from '@angular/core';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
-import { NbAuthModule } from '@nebular/auth'
-import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbDatepickerModule, NbDialogModule, NbFormFieldModule, NbIconModule, NbInputModule, NbLayoutModule, NbListModule, NbMenuModule, NbSearchModule, NbSelectModule, NbSidebarModule, NbSpinnerModule, NbTagModule, NbThemeModule, NbToastrModule, NbUserModule } from '@nebular/theme';
+import { NbAuthModule } from '@nebular/auth';
+import {
+  NbActionsModule,
+  NbButtonModule,
+  NbCardModule,
+  NbContextMenuModule,
+  NbDatepickerModule,
+  NbDialogModule,
+  NbFormFieldModule,
+  NbIconModule,
+  NbInputModule,
+  NbLayoutModule,
+  NbListModule,
+  NbMenuModule,
+  NbSearchModule,
+  NbSelectModule,
+  NbSidebarModule,
+  NbSpinnerModule,
+  NbTagModule,
+  NbThemeModule,
+
+  NbToastrModule,
+  NbUserModule,
+} from '@nebular/theme';
 
 @NgModule({
   declarations: [],
@@ -16,7 +38,7 @@ import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbD
     NbLayoutModule,
     NbEvaIconsModule,
     NbTagModule,
-    NbSearchModule
+    NbSearchModule,
   ],
   exports: [
     NbLayoutModule,
@@ -37,7 +59,7 @@ import { NbActionsModule, NbButtonModule, NbCardModule, NbContextMenuModule, NbD
     NbTagModule,
     NbFormFieldModule,
     NbAuthModule,
-    NbSearchModule
-  ]
+    NbSearchModule,
+  ],
 })
-export class NebulerModule { }
+export class NebulerModule {}

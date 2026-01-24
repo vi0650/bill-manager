@@ -1,4 +1,6 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ThemeService } from './core/services/theme.service';
+import { NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +10,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+
+  constructor(){ }
   // currentRoute = '';
 
   // constructor(

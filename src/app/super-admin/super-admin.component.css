@@ -38,6 +38,13 @@ nb-list-item:hover {
   padding: 0 1rem;
 }
 
+.header-logout{
+  margin-left: auto;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .header-container button nb-icon:hover{
   color: royalblue;
 }

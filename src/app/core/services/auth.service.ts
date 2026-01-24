@@ -22,7 +22,7 @@ export class AuthService {
     return user;
   }
 
-  isLoggesIn() {
+  isLoggedIn() {
     return localStorage.getItem('loggedUser');
   }
 

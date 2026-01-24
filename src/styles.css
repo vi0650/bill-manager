@@ -1,5 +1,7 @@
 
 @import "@nebular/theme/styles/prebuilt/default.css";
+@import "@nebular/theme/styles/prebuilt/dark.css";
+@use '../../../themes' as *;
 
 *{
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

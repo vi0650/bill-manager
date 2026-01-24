@@ -13,10 +13,9 @@ import { Admins } from '../../core/models/admin.model';
 export class LoginComponent {
 
   constructor(private auth: AuthService, private toastr: NbToastrService, private route: Router) {
-    if (this.auth.isLoggesIn()) {
+    if (this.auth.isLoggedIn()) {
       const user = this.auth.getLoggedUser();
 
-      // Redirect based on the parsed user object role
       if (user.role === 'SuperAdmin') {
         this.route.navigate(['/super-admin']);
       } else {
