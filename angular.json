@@ -26,6 +26,7 @@
             "allowedCommonJsDependencies": [
               "eva-icons"
             ],
+            "baseHref": "/invoice/",
             "outputPath": "docs",
             "index": "src/index.html",
             "browser": "src/main.ts",
